@@ -15,23 +15,32 @@ p{max-width:680px;margin:0 auto 10px;font-size:13px}
 <header>
 <h1>EVO V3 · Mobile browser preview</h1>
 <form>
-<label>Preset<select id="preset"><option value="412,780">Note 10+ · Browser bars visible</option><option value="412,869">Note 10+ · Full height reference</option><option value="412,720">Note 10+ · Shorter browser view</option><option value="360,740">Smaller Android browser</option><option value="custom">Custom size</option></select></label>
+<label>Preset<select id="preset"><option value="auto">Auto · Fit available screen</option><option value="412,780">Note 10+ · Browser bars visible</option><option value="412,869">Note 10+ · Full height reference</option><option value="412,720">Note 10+ · Shorter browser view</option><option value="360,740">Smaller Android browser</option><option value="custom">Custom size</option></select></label>
 <label>Width (px)<input id="width" type="number" min="280" max="1600" value="412" required></label>
 <label>Height (px)<input id="height" type="number" min="360" max="1600" value="780" required></label>
 <button type="submit">Apply size</button><button id="refresh" type="button">Refresh app</button>
 </form>
 </header>
 <main>
-<p>The 780 px browser height is an estimate. Browser bars and display settings affect the usable space. Adjust the height to match your phone. <span id="status" aria-live="polite"></span></p>
+<p>Auto fits the available browser space. Choose a preset or enter a custom size to test another screen. The Note 10+ browser height is an estimate. <span id="status" aria-live="polite"></span></p>
 <div id="stage"><iframe title="Live EVO V3 app" src="./"></iframe></div>
 </main>
 <script>
 const form=document.querySelector('form'), preset=document.querySelector('#preset');
 const width=document.querySelector('#width'), height=document.querySelector('#height');
 const stage=document.querySelector('#stage'), app=stage.querySelector('iframe');
+const main=document.querySelector('main'), header=document.querySelector('header');
+const status=document.querySelector('#status');
 let viewWidth=412, viewHeight=780;
 function render(){
- const scale=Math.min(1, document.querySelector('main').clientWidth-24>0?(document.querySelector('main').clientWidth-24)/viewWidth:1);
+ const availableWidth=Math.max(1,main.clientWidth-24);
+ if(preset.value==='auto'){
+  viewWidth=availableWidth;
+  viewHeight=Math.max(1,Math.floor((window.visualViewport?.height??window.innerHeight)-header.offsetHeight-status.parentElement.offsetHeight-34));
+  width.value=viewWidth;
+  height.value=viewHeight;
+ }
+ const scale=Math.min(1,availableWidth/viewWidth);
  stage.style.width=viewWidth*scale+'px';
  stage.style.height=viewHeight*scale+'px';
  app.style.width=viewWidth+'px';
@@ -40,10 +49,12 @@ function render(){
  document.querySelector('#status').textContent=viewWidth+' × '+viewHeight+' CSS px.';
 }
 form.onsubmit=event=>{event.preventDefault();viewWidth=width.valueAsNumber;viewHeight=height.valueAsNumber;render();};
-preset.onchange=()=>{if(preset.value==='custom'){width.focus();return;}[width.value,height.value]=preset.value.split(',');form.requestSubmit();};
+preset.onchange=()=>{if(preset.value==='auto'){render();return;}if(preset.value==='custom'){width.focus();return;}[width.value,height.value]=preset.value.split(',');form.requestSubmit();};
 for(const input of [width,height]) input.oninput=()=>{preset.value='custom';};
 document.querySelector('#refresh').onclick=()=>app.contentWindow.location.reload();
 window.addEventListener('resize',render);
+window.visualViewport?.addEventListener('resize',render);
+new ResizeObserver(render).observe(header);
 render();
 </script>
 </html>
