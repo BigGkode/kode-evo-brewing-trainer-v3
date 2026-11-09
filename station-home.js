@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
  quick.className = 'station-quick';
  quick.hidden = true;
  quick.innerHTML = `
-  <div class="station-quick-heading"><span class="station-kicker">FOUNDATION · DIRECT</span><h2 class="station-destination"></h2><div class="station-rail" role="group" aria-label="Change strength"></div></div>
+  <div class="station-quick-heading"><span class="station-kicker" data-quick-route></span><h2 class="station-destination"></h2><div class="station-quick-via" hidden><strong data-quick-to></strong><p>Choose your starting station</p></div><div class="station-rail" role="group" aria-label="Strength stations"></div></div><ol class="station-journey station-quick-journey" aria-label="Brew journey"></ol>
   <div class="station-ticket">
    <span class="station-kicker">YOUR BREW TICKET</span>
    <div class="station-quick-amounts">
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
      <button type="button" data-size-step="1" aria-label="Use 25 grams more brew water">+</button>
     </div></div>
    </div>
-   <p data-quick-yield></p>
+   <div class="station-water-add" data-water-add hidden></div><p data-quick-yield></p>
    <button type="button" class="station-continue" data-quick-brew>Go to brewing →</button>
    <div class="station-quick-links"><button type="button" data-quick-recipe>View recipe</button><button type="button" data-quick-help>Preparation help</button></div>
   </div>`;
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
  const sizeButtons = [...size.querySelectorAll('[data-brew-size]')];
  const quickRail = q('.station-rail');
  populateRail(quickRail, strength => {
-  destination = strength;
+  if (window.kodeBrewPath !== 'dilution') destination = strength;
   cups.querySelector('[data-foundation-strength="' + strength + '"]').click();
   render();
   renderSetup();
@@ -92,7 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
  });
  function renderSetup() {
   const dilution = window.kodeBrewPath === 'dilution';
-  const simple = !dilution && !window.kodeLearningRun && window.kodeEvoLevel === 1;
+  const finish = Number(by('planDilutionStrength').value);
+  const plan = window.kodePlannedDilution;
+  const simple = !window.kodeLearningRun && window.kodeEvoLevel === 1 && (!dilution || (finish >= 1 && finish < 5 && !!plan));
   choice.classList.toggle('station-quick-active', simple);
   quick.hidden = !simple;
   if (simple) {
@@ -100,12 +102,30 @@ document.addEventListener('DOMContentLoaded', () => {
    const water = window.getFoundationBrewSize();
    const dose = Number(by('brew_dose').value);
    const title = q('h2');
-   title.textContent = names[selected - 1];
+   const target = dilution ? finish : selected;
+   title.textContent = names[target - 1];
+   title.style.setProperty('--bean', colours[target - 1]);
+   q('[data-quick-route]').textContent = dilution ? 'DILUTION · DESTINATION' : 'FOUNDATION · DIRECT';
+   q('.station-quick-via').hidden = !dilution;
+   q('[data-quick-to]').textContent = 'To ' + names[target - 1] + ' · Via ' + names[selected - 1];
+   quickRail.setAttribute('aria-label', dilution ? 'Starting station' : 'Change strength');
+   [...quickRail.children].forEach((button, i) => { button.hidden = dilution && i + 1 <= target; });
+   quickRail.style.setProperty('--station-count', dilution ? 5 - target : 5);
    markRail(quickRail, selected);
-   title.style.setProperty('--bean', colours[selected - 1]);
+   const journey = dilution ? ['Plan brew', 'Brew', 'Add water', 'Taste'] : ['Choose size', 'Brew', 'Taste'];
+   q('.station-quick-journey').replaceChildren(...journey.map((label, i) => {
+    const item = document.createElement('li');
+    item.textContent = label;
+    if (i === 0) item.setAttribute('aria-current', 'step');
+    return item;
+   }));
+   const add = q('[data-water-add]');
+   add.hidden = !dilution;
+   add.textContent = dilution ? 'After brewing, add ' + plan.water + ' g water' : '';
+   q('[data-quick-help]').hidden = dilution;
    q('[data-quick-water]').textContent = water + ' g';
    q('[data-quick-dose]').textContent = dose + ' g';
-   q('[data-quick-yield]').textContent = 'Estimated in cup: about ' + Math.round(water - 2 * dose) + ' g';
+   q('[data-quick-yield]').textContent = 'Estimated in cup: about ' + Math.round(water - 2 * dose + (dilution ? plan.water : 0)) + ' g';
    const current = sizeButtons.findIndex(option => Number(option.dataset.brewSize) === water);
    quick.querySelectorAll('[data-size-step]').forEach(button => {
     button.disabled = !sizeButtons[current + Number(button.dataset.sizeStep)];
@@ -123,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
  document.addEventListener('kode-path-change', renderSetup);
  new MutationObserver(renderSetup).observe(choice,{attributes:true,attributeFilter:['hidden']});
  new MutationObserver(renderSetup).observe(by('choiceRecipe'),{childList:true});
+ new MutationObserver(renderSetup).observe(by('planDilutionSummary'),{childList:true});
  renderSetup();
  const find = selector => screen.querySelector(selector);
  const rail = find('.station-rail');
@@ -161,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
    finish.dispatchEvent(new Event('change', { bubbles:true }));
   }
   renderSetup();
-  if (!dilution && !quick.hidden) quick.scrollIntoView({ block:'start' });
+  if (!quick.hidden) quick.scrollIntoView({ block:'start' });
   else by('brewSizeHeading').scrollIntoView({ block:'nearest' });
  };
  function render() {

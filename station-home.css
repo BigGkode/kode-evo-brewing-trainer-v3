@@ -71,3 +71,12 @@
 
 #kob-app .station-quick-heading .station-rail{margin:9px 0 0}
 #kob-app .station-quick-heading .station-rail button{color:#fffdf7!important;text-decoration:none!important;min-height:50px;padding:6px 0!important;font-size:11px}
+
+#kob-app .station-quick [hidden]{display:none!important}
+#kob-app .station-quick .station-rail{grid-template-columns:repeat(var(--station-count,5),minmax(0,1fr))}
+#kob-app .station-quick-via{border:1px solid #a8d7e6;border-radius:6px;background:#245159;padding:8px 10px;color:#fffdf7}
+#kob-app .station-quick-via p{margin:3px 0 0;font-size:12px}
+#kob-app .station-quick-journey{color:#fffdf7;margin:9px 0 14px}
+#kob-app .station-quick-journey li[aria-current=step]::before{color:#173f46;outline:2px solid #fffdf7;outline-offset:2px}
+#kob-app .station-quick-journey li::before{color:#173f46}
+#kob-app .station-water-add{background:#cce6ee;color:#173f46;padding:8px 10px;border-radius:4px;font-weight:700}
