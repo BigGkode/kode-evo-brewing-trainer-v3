@@ -1,0 +1,1010 @@
+<!doctype html><html lang="en-GB"><head><style>html.kode-starting #kob-app{visibility:hidden}</style><script>document.documentElement.classList.add("kode-starting");window.kodeStartupFallback=setTimeout(()=>document.documentElement.classList.remove("kode-starting"),5000);</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EVO V3 · Station preview</title><style>
+@font-face{font-family:'NoBH-Bold';src:url('https://www.baristahustle.com/wp-content/themes/divi-child/assets/fonts/head/Head-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Head-Bold';src:url('https://www.baristahustle.com/wp-content/themes/divi-child/assets/fonts/nobh/NoBH-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'NoBH-Regular';src:url('https://www.baristahustle.com/wp-content/themes/divi-child/assets/fonts/nobh/NoBH-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+html,body{margin:0;background:#f9f9f9}#kob-canvas{width:100%;height:auto;overflow:hidden;border-radius:6px;padding:3%;box-sizing:border-box;container:kob / inline-size;background:#f6f5ed}#kob-app{width:100%;min-width:0;overflow:hidden;font-family:'NoBH-Regular',sans-serif;font-size:15px;line-height:1.5;color:#213b35}#kob-app *{box-sizing:border-box}
+#kob-app{--ink:#213b35;--paper:#f6f5ed;--line:#d4d9ce;--orange:#c55b36}#kob-app *{box-sizing:border-box}#kob-app{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Arial,sans-serif}#kob-app header{display:flex;justify-content:space-between;align-items:center;padding:22px 4vw;border-bottom:1px solid var(--line)}#kob-app .brand{font-weight:800;letter-spacing:2px}#kob-app .brand span{font-weight:400;letter-spacing:0;margin:0 18px;color:#718078}#kob-app small,#kob-app .eyebrow{font-size:11px;letter-spacing:1.5px;text-transform:uppercase}#kob-app main{max-width:1440px;padding:34px 4vw;margin:auto}#kob-app h1{font:normal clamp(38px,4vw,62px)/1.07 Georgia,serif;margin:12px 0}#kob-app h2{font:normal 28px Georgia,serif;margin:7px 0 20px}#kob-app p{margin:8px 0 18px}#kob-app .intro{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}#kob-app .intro p{max-width:580px;color:#5e6d64}#kob-app .switch{display:flex;border:1px solid var(--line);padding:4px;border-radius:30px;white-space:nowrap}#kob-app button{font:inherit;cursor:pointer;color:inherit;background:transparent;border:1px solid var(--line);border-radius:6px;padding:10px 15px}#kob-app button:hover{background:#e7eade}#kob-app button:focus-visible,#kob-app input:focus-visible{outline:3px solid #c55b36;outline-offset:3px}#kob-app .switch button{border:0;border-radius:25px}#kob-app .active,#kob-app .primary{background:var(--ink)!important;color:#f9f9f9}#kob-app .workspace{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px}#kob-app .map{background:#edf0e5;border:1px solid var(--line);border-radius:12px;padding:24px 24px 10px}#kob-app .maphead{display:flex;justify-content:space-between;align-items:center}#kob-app .tag{font-size:11px;background:#dce3d4;padding:5px 9px;border-radius:20px}#kob-app svg{width:100%;overflow:visible}#kob-app svg text{font-family:Arial,sans-serif;fill:#52665a;font-size:12px}#kob-app #point{transition:cx 1s ease,cy 1s ease}#kob-app #trail{transition:all 1s}#kob-app .caption{border-top:1px solid var(--line);padding:14px 0;display:flex;gap:12px;align-items:center}#kob-app .dot{width:10px;height:10px;display:inline-block;border-radius:100%;background:var(--orange)}#kob-app .controls{background:#f9f9f9;border:1px solid var(--line);border-radius:12px;padding:23px}#kob-app .presets{display:flex;gap:6px;margin:16px 0}#kob-app .presets button{flex:1;padding:9px 5px}#kob-app .field{margin:20px 0}#kob-app .field label{display:flex;justify-content:space-between;font-size:13px}#kob-app input[type=range]{width:100%;accent-color:var(--ink);margin:10px 0}#kob-app .ends{display:flex;justify-content:space-between;font-size:11px;color:#7b847d}#kob-app .hint{font-size:12px;color:#617067}#kob-app .readout{background:#e9eddf;padding:15px;border-radius:7px;margin-top:20px}#kob-app .readout strong{font-family:Georgia,serif;font-size:23px;font-weight:400}#kob-app .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin:30px 0}#kob-app .cards article{border-top:1px solid var(--line);padding-top:18px}#kob-app .cards b{font-size:13px}#kob-app .cards p{font-size:13px;color:#607067}#kob-app .recipe{margin-top:24px;padding:24px;background:#e8e9df;border-radius:10px;display:grid;grid-template-columns:1fr 2fr;gap:30px}#kob-app .recipe h2{margin:7px 0}#kob-app .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}#kob-app .steps b{display:block;margin:10px 0}#kob-app .steps p{font-size:13px}#kob-app .advanced{display:none}#kob-app.adv .advanced{display:block}#kob-app.adv .simple{display:none}#kob-app details{margin-top:25px;font-size:13px;border-top:1px solid var(--line);padding:20px 0}#kob-app summary{cursor:pointer}#kob-app footer{font-size:11px;color:#758076;border-top:1px solid var(--line);padding:20px 0;margin-top:20px}#kob-app input[type=number]{width:85px;border:1px solid var(--line);padding:6px;border-radius:4px}#kob-app a{color:inherit}@container kob (max-width:700px){#kob-app .workspace{grid-template-columns:1fr}#kob-app .intro{display:block}#kob-app .switch{width:max-content}#kob-app .cards,#kob-app .recipe{grid-template-columns:1fr}#kob-app .steps{gap:12px}#kob-app header{font-size:11px}#kob-app .brand span{margin:0 7px}#kob-app .map{padding:15px}}@media(prefers-reduced-motion:reduce){#kob-app #point,#kob-app #trail{transition:none}}#kob-app .simulator{margin:26px 0;background:#f9f9f9;border:1px solid var(--line);border-radius:12px;padding:25px}#kob-app .simhead{display:flex;justify-content:space-between;gap:20px}#kob-app .simlayout{display:grid;grid-template-columns:1.6fr 1fr;gap:30px}#kob-app .simstage{background:#f0f1e9;border-radius:10px;overflow:hidden}#kob-app canvas{width:100%;display:block}#kob-app .simbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:15px 0}#kob-app .simbar select{padding:9px;border:1px solid var(--line);background:#f9f9f9;border-radius:5px}#kob-app .simstatus{display:flex;justify-content:space-between;gap:15px;padding:14px;border-top:1px solid var(--line);font-size:13px}#kob-app .progress{height:5px;background:#dce1d3}#kob-app .progress i{display:block;height:100%;background:#c55b36;width:0}#kob-app .simmetrics{padding:15px;background:#edf0e5;border-radius:6px}#kob-app .reference{max-width:500px;width:100%;display:block}#kob-app .simtimeline{display:flex;gap:3px;height:16px;margin:12px 0}#kob-app .simtimeline span{background:#cbd8c2;min-width:2px}#kob-app .simtimeline span.bloom{background:#ddaaa1}#kob-app .simtimeline span.pause{background:#e9e8df}#kob-app .simtimeline span.draw{background:#c1bdd0}@container kob (max-width:700px){#kob-app .simlayout{grid-template-columns:1fr}}#kob-app.adv .workspace.advanced{display:grid}#kob-app.adv .cards.advanced{display:grid}#kob-app.adv .recipe.advanced{display:grid}#kob-app.adv .simstatus.advanced{display:flex}#kob-app.adv .simtimeline.advanced{display:flex}#kob-app.adv label.advanced{display:inline-flex}#kob-app.adv button.advanced,#kob-app.adv select.advanced,#kob-app.adv span.advanced{display:inline-block}#kob-app:not(.adv) .advanced{display:none!important}#kob-app:not(.adv) .simlayout{grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr)}#kob-app:not(.adv) .workspace{grid-template-columns:1fr}#kob-app:not(.adv) .progress{display:none}#kob-app:not(.adv) .simmetrics{margin-top:20px}#kob-app:not(.adv) footer{font-size:12px}@container kob (max-width:700px){#kob-app:not(.adv) .simlayout{grid-template-columns:1fr}}#kob-app #legacyControls{display:none!important}#kob-app .workspace{grid-template-columns:1fr!important}#kob-app .chartExplanation{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:18px 0}#kob-app .chartExplanation p{font-size:13px;color:#607067}#kob-app .chartExplanation b{font-size:14px}@container kob (max-width:700px){#kob-app .chartExplanation{grid-template-columns:1fr}}#kob-app .chartIntro{margin:30px 0 18px}#kob-app .chartIntro h2{font-size:clamp(30px,4vw,44px);margin:8px 0 12px}#kob-app .chartIntro p{color:#607067;max-width:650px}#kob-app .map{background:#e4ecde;border:0;box-shadow:0 6px 24px #213b350a}#kob-app .maphead{margin-bottom:18px}#kob-app .maphead small{font-size:12px;font-weight:bold}#kob-app .caption{font-size:17px;padding:18px 0}#kob-app .caption .dot{width:14px;height:14px}#kob-app .chartExplanation>div{padding:16px;background:#f6f7ef;border-radius:10px}#kob-app .chartExplanation b{font-size:16px}#kob-app .chartExplanation p{margin-bottom:0}#kob-app #chartComparison{padding:17px 19px;background:#213b35;color:#f9f9f9;border-radius:10px;font-size:16px;line-height:1.55}#kob-app #targetPoint{stroke-width:3}#kob-app #trail{stroke-width:3}#kob-app #origin{r:7}#kob-app #point{r:12}#kob-app .map svg text{font-size:14px}#kob-app .map svg{margin-bottom:8px}#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:1fr}#kob-app:not(.adv) .simulator .simlayout>div:last-child{display:flex;flex-direction:column}#kob-app:not(.adv) .simulator .presets{margin-top:0}#kob-app:not(.adv) .simulator .simmetrics{margin-top:0}#kob-app .presets button{min-height:46px}#kob-app .simbar button,#kob-app .simbar select{min-height:44px}@container kob (max-width:700px){#kob-app main{padding:24px 16px}#kob-app header{padding:16px}#kob-app .intro{margin-bottom:22px}#kob-app h1{font-size:42px}#kob-app .simulator{padding:16px}#kob-app .simlayout{gap:10px}#kob-app .simulator h2{font-size:27px}#kob-app .map{padding:18px 10px}#kob-app .map svg{width:calc(100% + 30px);margin-left:-15px}#kob-app .map svg text{font-size:16px}#kob-app .chartExplanation{gap:10px}#kob-app .chartExplanation>div{padding:14px}#kob-app .maphead{padding:0 6px}#kob-app .maphead .tag{display:none}#kob-app .caption{padding-left:8px}#kob-app .chartIntro{margin-top:26px}#kob-app .simstage canvas{max-height:480px;object-fit:contain}#kob-app .simbar{margin-bottom:0}#kob-app .simulator .presets{position:sticky;bottom:10px;background:#f9f9f9;padding:6px;border-radius:9px;box-shadow:0 3px 18px #213b351a;z-index:2}#kob-app .chartIntro p{font-size:15px}}#kob-app .ratioKey{display:flex;align-items:flex-start;gap:13px;padding:18px;background:#f6f7ef;border-radius:10px;margin:16px 0}#kob-app .ratioKey b{font-size:16px}#kob-app .ratioKey p{font-size:14px;margin:7px 0 0;color:#53665b}#kob-app .ratioDash{width:38px;min-width:38px;border-top:3px dashed #647d65;margin-top:11px}#kob-app #ratioLine{stroke-width:2.5;stroke-dasharray:5 7}#kob-app .chartMode{width:max-content;margin:28px 0 0}#kob-app .chartMode + .chartIntro{margin-top:18px}#kob-app .map{background:#f0e9dc}#kob-app .maphead .tag{background:#e2d4bd;color:#65472f}#kob-app .glassRuler{transition:x .65s ease,y .65s ease,width .65s ease,height .65s ease;filter:drop-shadow(2px 3px 2px #33231425)}#kob-app .rulersVisible #extractionRuler{animation:slideExtraction 1.4s ease-out both}#kob-app .rulersVisible #strengthRuler{animation:slideStrength 1.4s .2s ease-out both}@keyframes slideExtraction{from{transform:translateY(-45px);opacity:0}to{transform:translateY(0);opacity:1}}@keyframes slideStrength{from{transform:translateX(-60px);opacity:0}to{transform:translateX(0);opacity:1}}#kob-app .rangeSettings{padding:20px;background:#f9f9ed;border-radius:10px;margin:20px 0}#kob-app .rangeSettings h2{font-size:24px}#kob-app .rangeSettings p{font-size:14px}#kob-app .rangeInputs{display:grid;grid-template-columns:1fr 1fr;gap:16px}#kob-app .rangeInputs label{display:flex;flex-direction:column;gap:6px;font-size:13px}#kob-app .rangeInputs input{width:100%;min-height:44px}#kob-app #rangeError{color:#963d26}@media(prefers-reduced-motion:reduce){#kob-app .glassRuler{animation:none!important;transition:none}}#kob-app .map:not(.rulersVisible) .glassRuler{opacity:0}#kob-app .maphead{gap:10px;flex-wrap:wrap}#kob-app #replayRulers{font-size:13px;padding:8px 12px;min-height:40px;background:#f9f6e7;border-color:#c6b297}#kob-app .rulersVisible #extractionRuler{animation-duration:1.6s}#kob-app .rulersVisible #strengthRuler{animation-duration:1.6s;animation-delay:.45s}@media(prefers-reduced-motion:reduce){#kob-app .map:not(.rulersVisible) .glassRuler{opacity:1}}#kob-app #rulerTicks{pointer-events:none}#kob-app .map:not(.rulersVisible) #rulerTicks{opacity:0}#kob-app .rulersVisible #rulerTicks{animation:rulerNumbers 2s ease both}@keyframes rulerNumbers{0%,65%{opacity:0}100%{opacity:1}}@media(prefers-reduced-motion:reduce){#kob-app #rulerTicks{animation:none!important;opacity:1!important}}#kob-app .graphZoomControls{display:flex;align-items:center;gap:8px;margin:8px 0 12px}#kob-app .graphZoomControls button{min-width:44px;min-height:44px;background:#f9f8ec}#kob-app .graphZoomControls span{font-size:13px;min-width:48px;text-align:center}#kob-app .graphZoomControls #graphZoomReset{margin-left:auto;font-size:13px}#kob-app #graphViewport{overflow:hidden;touch-action:none;border-radius:8px;position:relative}#kob-app #graphViewport.zoomed{touch-action:none;cursor:grab}#kob-app #graphViewport.dragging{cursor:grabbing}#kob-app #graphViewport svg{display:block;transform-origin:0 0;will-change:transform;width:100%;margin:0}#kob-app .zoomHint{font-size:12px;color:#6c604f;margin:10px 0 15px}#kob-app #graphViewport:focus-visible{outline:2px solid #c55b36;outline-offset:3px}#kob-app .glassRuler{filter:drop-shadow(2px 3px 2px #132b3b40);paint-order:stroke fill}#kob-app #extractionPrinted,#kob-app #strengthPrinted{font-family:Arial,sans-serif;pointer-events:none}#kob-app .map:not(.rulersVisible) #extractionPrinted,#kob-app .map:not(.rulersVisible) #strengthPrinted{opacity:0}#kob-app .rulersVisible #extractionPrinted,#kob-app .rulersVisible #strengthPrinted{animation:rulerNumbers 2s ease both}#kob-app #extractionRuler,#kob-app #strengthRuler,#kob-app #extractionPrinted,#kob-app #strengthPrinted{animation:none!important;opacity:1!important}#kob-app #extractionRulerGroup,#kob-app #strengthRulerGroup{transform-box:view-box}#kob-app .map:not(.rulersVisible) #extractionRulerGroup,#kob-app .map:not(.rulersVisible) #strengthRulerGroup{opacity:0}#kob-app .rulersVisible #extractionRulerGroup{animation:layExtraction 1.8s cubic-bezier(.2,.7,.2,1) both}#kob-app .rulersVisible #strengthRulerGroup{animation:layStrength 1.8s .4s cubic-bezier(.2,.7,.2,1) both}@keyframes layExtraction{0%,15%{transform:translateX(var(--extraction-start,-211.67px));opacity:1}100%{transform:translateX(0);opacity:1}}@keyframes layStrength{0%,15%{transform:translateY(var(--strength-start,93.42px));opacity:1}100%{transform:translateY(0);opacity:1}}@media(prefers-reduced-motion:reduce){#kob-app #extractionRulerGroup,#kob-app #strengthRulerGroup{animation:none!important;opacity:1!important}}#kob-app #extractionPrinted,#kob-app #strengthPrinted,#kob-app #extractionRulerGroupMarks text,#kob-app #strengthRulerGroupMarks text{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif!important;font-weight:900!important;fill:#122968!important;font-stretch:condensed}#kob-app #extractionPrinted{font-size:11px!important;letter-spacing:.45px!important}#kob-app #strengthPrinted{font-size:11px!important;letter-spacing:.35px!important}#kob-app #extractionRulerGroupMarks line,#kob-app #strengthRulerGroupMarks line{stroke:#122968;stroke-opacity:.8}#kob-app .rangeCaption{display:none!important}#kob-app #ratioLineLabel{fill:#f9f1d9!important;paint-order:stroke;stroke:#50251c;stroke-width:.5px}#kob-app #ratioLine{stroke:#edc4a1}#kob-app .map #grid line{stroke:#f5dcc6;opacity:.18}#kob-app canvas.serverExpanded{max-height:none!important}#kob-app.actualMode .actualPanel{display:block!important}#kob-app.actualMode #mapCaption .advanced{display:block!important}#kob-app.actualMode #mapCaption .simple{display:none!important}#kob-app.actualMode .actualPanel{border:1px solid #d3b991}#kob-app.actualMode .cccRecipeChoices{display:none}#kob-app.actualMode #chartNumbers{display:block!important}#kob-app #extractionRulerGroup,#kob-app #strengthRulerGroup{transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}#kob-app #measurePoint{min-height:44px;background:#f9f8ec;margin-bottom:10px;border-color:#c6b297}@media(prefers-reduced-motion:reduce){#kob-app #extractionRulerGroup,#kob-app #strengthRulerGroup{transition:none!important}}#kob-app #extractionRuler,#kob-app #strengthRuler{transition:width .5s ease,height .5s ease}#kob-app /* Legible chart labels at small sizes; ruler markings retain their navy ink. */
+#graphViewport svg>text{font-size:18px;fill:#453126}#kob-app #graphViewport svg>text.simple{font-size:19px;font-weight:700}#kob-app #extractionPrinted,#kob-app #strengthPrinted{paint-order:stroke fill;stroke:#f4efe3;stroke-width:1.2px;stroke-opacity:.75}#kob-app #extractionPrinted{font-size:14px!important}#kob-app #strengthPrinted{font-size:13px!important}#kob-app #extractionRulerGroupMarks text,#kob-app #strengthRulerGroupMarks text{font-size:16px!important;paint-order:stroke fill;stroke:#f4efe3;stroke-width:1px;stroke-opacity:.8}#kob-app #eyReading,#kob-app #tdsReading{font-size:19px!important;paint-order:stroke fill;stroke:#f9f4df;stroke-width:1.5px;stroke-opacity:.8}#kob-app .graphZoomControls button{font-weight:600}#kob-app .zoomReading{position:sticky;top:8px;z-index:4;display:none;padding:12px 14px;margin:0 0 12px;background:#f9f5e4;border:1px solid #d6bea0;border-radius:7px;font-size:16px;font-weight:700;color:#263b35}#kob-app .map.graphIsZoomed .zoomReading{display:block}#kob-app .actualPanel{padding:14px!important;margin:14px 0!important}#kob-app .actualPanel h2{font-size:20px;margin:0 0 12px}#kob-app .actualPanel .rangeInputs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}#kob-app .actualPanel .rangeInputs label{font-size:12px;gap:4px}#kob-app .actualPanel .rangeInputs input{padding:7px;min-height:40px;font-size:16px}#kob-app .actualPanel button{padding:8px 11px;font-size:13px;min-height:40px}#kob-app .actualPanel p{margin:8px 0;font-size:12px}#kob-app .actualPanel #actualError:empty{display:none}#kob-app .actualPanel .hint{margin-bottom:0}#kob-app #graphViewport svg>text.simple{font-size:18px;font-weight:400}#kob-app.actualMode #simFields,#kob-app.actualMode .presetSettings{display:block!important}#kob-app .brandLogos{display:flex;align-items:center;gap:20px}#kob-app .brandLogos a{display:flex;align-items:center;min-height:44px}#kob-app .brandLogos img{display:block;object-fit:contain}#kob-app .brandLogos .kodeLogo{width:110px;height:auto}#kob-app .brandLogos .bhLogo{width:42px;height:42px}#kob-app .brandLogos span{margin:0;color:#7a8072}#kob-app .brandLogos a:focus-visible{outline:2px solid #c55b36;outline-offset:5px}@container kob (max-width:700px){#kob-app header{flex-wrap:wrap;gap:8px}#kob-app .brandLogos{gap:14px}#kob-app .brandLogos .kodeLogo{width:92px}#kob-app .brandLogos .bhLogo{width:38px;height:38px}#kob-app header>small{font-size:10px}}#kob-app:not(.adv):not(.actualMode) header>small,#kob-app:not(.adv):not(.actualMode) .eyebrow,#kob-app:not(.adv):not(.actualMode) .simhead small,#kob-app:not(.adv):not(.actualMode) .simmetrics,#kob-app:not(.adv):not(.actualMode) .caption,#kob-app:not(.adv):not(.actualMode) footer{display:none!important}#kob-app:not(.adv):not(.actualMode) .intro{margin-bottom:20px}#kob-app:not(.adv):not(.actualMode) .simhead h2{margin:0 0 14px}/* Ruler scales carry the values; avoid duplicating them on the chart axes. */
+#kob-app.adv #ticks{display:none!important}#kob-app.adv #extractionRangeText,#kob-app.adv #strengthRangeText{display:none!important}#kob-app.actualMode #clearActual{display:none!important}#kob-app:not(.actualMode) .actualPanel{display:none!important}
+
+#kob-app header{padding:12px 0 18px}#kob-app main{max-width:none;width:100%;padding:24px 0;margin:0}#kob-app h1,#kob-app h2,#kob-app h3{font-family:'Head-Bold',sans-serif!important;font-weight:700}#kob-app button,#kob-app input,#kob-app select,#kob-app textarea,#kob-app p,#kob-app svg text{font-family:'NoBH-Regular',sans-serif!important}#kob-app b,#kob-app strong,#kob-app small,#kob-app summary,#kob-app .brand,#kob-app .presets button{font-family:'NoBH-Bold',sans-serif!important;font-weight:700}#kob-app #extractionPrinted,#kob-app #strengthPrinted,#kob-app #extractionRulerGroupMarks text,#kob-app #strengthRulerGroupMarks text{font-family:'NoBH-Bold',sans-serif!important}#kob-app .simulator{background:#f9f9f9}#kob-app .rangeInputs>*{min-width:0}#kob-app .simbar{flex-wrap:wrap}#kob-app .reference{max-width:100%}#kob-app button,#kob-app input,#kob-app select{max-width:100%}#kob-app .intro{align-items:center}#kob-app .brandLogos{flex-wrap:wrap}
+@container kob (max-width:700px){#kob-app main{padding:20px 0}#kob-app .intro{display:block}#kob-app .simlayout,#kob-app .chartExplanation,#kob-app .recipe,#kob-app .cards{grid-template-columns:1fr}#kob-app:not(.adv) .simlayout{grid-template-columns:1fr}#kob-app .simulator{padding:14px}#kob-app h1{font-size:38px}#kob-app header{flex-wrap:wrap}#kob-app .graphZoomControls{flex-wrap:wrap}#kob-app .actualPanel .rangeInputs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container kob (min-width:701px){#kob-app .intro{display:flex}#kob-app .simlayout{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}#kob-app .chartExplanation{grid-template-columns:1fr 1fr}}
+
+#kob-app .trainerRecipe{margin-top:28px;padding:24px;background:#e9eddf;border-radius:10px}#kob-app .trainerSteps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}#kob-app .trainerTargets{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0}#kob-app .trainerTargets b{padding:12px;background:#f9f9f9;border-radius:6px}#kob-app .trainerDose{padding:10px 18px;background:#edf0e5;border-radius:8px;margin-bottom:16px}#kob-app #simPlay{display:block;width:100%;height:34px;margin:8px 0;padding:0 16px;border:0;border-radius:8px;background:#c55b36!important;color:#fff!important;font-size:16px;line-height:34px;font-weight:700;letter-spacing:.02em;box-shadow:0 3px 0 #984328;cursor:pointer}#kob-app .playback-controls{display:flex;align-items:stretch;gap:8px;margin:12px 0}#kob-app .playback-controls #simPlay{flex:1;width:auto;margin:0}#kob-app .playback-controls button:not(#simPlay){height:34px;min-width:42px;padding:0 8px;font-size:16px;background:#edf0e5;border-color:#d4d9ce}#kob-app .playback-controls button:not(#simPlay):hover{background:#dce3d4}#kob-app #simPlay:hover{filter:brightness(1.06)}#kob-app #simPlay:active{transform:translateY(2px);box-shadow:0 2px 0 #984328}#kob-app .trainerDose label{display:flex;justify-content:space-between}#kob-app.adv .trainerDose{display:none}#kob-app .simstatus{flex-wrap:wrap} @container kob (max-width:700px){#kob-app .trainerSteps{grid-template-columns:1fr}}
+#kob-app .pourLesson{display:flex;gap:14px;align-items:center;padding:12px;background:#edf0e5;border-radius:8px}#kob-app .pourLesson svg{width:140px;flex-shrink:0}#kob-app .pourLesson p{font-size:13px;margin:6px 0}#kob-app .pourCue{padding:12px 0;font-family:NoBH-Bold,sans-serif;color:#984326}#kob-app [hidden]{display:none!important}#kob-app .dilutionPanel{margin:24px 0;padding:20px;border:1px solid var(--line);border-radius:10px;background:#edf0e5}#kob-app .dilutionInputs label{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:14px 0}#kob-app .dilutionInputs input{width:150px}#kob-app button:disabled{opacity:.45;cursor:default}#kob-app .dilutionPanel button{margin:4px 0}#kob-app:not(.adv) header>small,#kob-app:not(.adv) .simhead small,#kob-app:not(.adv) .trainerDose>small{display:none}#kob-app:not(.adv) .dilutionPanel p{margin:10px 0}#kob-app:not(.adv) .simulator{margin-top:10px}#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1fr)!important}#kob-app:not(.adv) .simlayout>div:last-child{display:none}#kob-app .simhead+.trainerDose{background:transparent;padding:0;margin:0 0 16px}#kob-app .simhead+.trainerDose .presets{margin:0;max-width:500px}#kob-app:not(.adv) .simstage canvas{max-height:none;width:100%;object-fit:contain}#kob-app:not(.adv) .simhead h2{margin-bottom:14px}#kob-app .pourFooter{margin:24px 0;padding:24px;background:#edf0e5;border-radius:10px}#kob-app .pourFooterGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}#kob-app .pourFooter .field{margin-top:0}#kob-app.adv .simlayout{align-items:start}@container kob (max-width:700px){#kob-app .pourFooterGrid{grid-template-columns:1fr;gap:16px}}@container kob (min-width:701px){#kob-app.adv #simFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:22px;row-gap:12px}#kob-app.adv #simFields .field{margin:0;min-width:0}#kob-app.adv #simFields label{align-items:flex-start;gap:8px;min-height:38px;font-size:13px;line-height:1.35}#kob-app.adv #simFields label b{white-space:nowrap}#kob-app.adv #simFields input[type=range]{margin:8px 0 4px}#kob-app.adv #resetCustom{margin-top:16px}#kob-app.adv .simlayout>div:last-child>section>h2{margin-bottom:10px}#kob-app.adv .simmetrics{margin-top:16px}}
+#kob-app .pourFooterGrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}#kob-app .pourFooter .pourLesson{height:100%;min-height:260px;justify-content:center;flex-direction:column;text-align:center}#kob-app .pourFooter .pourLesson svg{width:220px;max-width:100%}#kob-app .pourFooterControls{min-width:0}#kob-app .pourFooterControls>.field{margin-bottom:20px}@container kob (max-width:700px){#kob-app .pourFooterGrid{grid-template-columns:1fr}#kob-app .pourFooter .pourLesson{min-height:0}}#kob-app #strengthReading{height:34px;display:flex;align-items:center;justify-content:center;margin:10px 0 0;padding:0 14px;background:#fff;border:2px solid #c55b36;border-radius:8px;color:var(--ink);font-size:16px;line-height:1;font-weight:800;text-align:center;box-shadow:inset 5px 0 0 #c55b36}/* Strength increases from pale brown to deep espresso. */
+#kob-app #simpleMild{--strength-brown:#f1dfc9;--strength-ink:#443022}
+#kob-app #simpleLevel2{--strength-brown:#d4b18b;--strength-ink:#3c281c}
+#kob-app #simpleLevel3{--strength-brown:#956441;--strength-ink:#ffffff}
+#kob-app #simpleLevel4{--strength-brown:#70452d;--strength-ink:#ffffff}
+#kob-app #simpleBold{--strength-brown:#59351f;--strength-ink:#ffffff}
+#kob-app .trainerDose .presets button{background:var(--strength-brown);color:var(--strength-ink);border-color:var(--strength-brown);transition:filter .15s,box-shadow .15s}
+#kob-app .trainerDose .presets button:hover{background:var(--strength-brown);filter:brightness(.95)}
+#kob-app .trainerDose .presets button.active{background:var(--strength-brown)!important;color:var(--strength-ink);border-color:#9b5c20;box-shadow:inset 0 0 0 2px #f4d29a,0 0 0 2px #b8752b}
+#kob-app .trainerDose .presets button:focus-visible{outline:3px solid #c55b36;outline-offset:4px}
+
+/* Brew Focus: product layout and palette. */
+html,body{background:#f6f2e9}
+#kob-canvas{padding:0;background:#f6f2e9;border-radius:0}
+#kob-app{--ink:#173f46;--paper:#f6f2e9;--line:#d6dcd3;--orange:#ba382f;color:var(--ink);background:var(--paper)}
+#kob-app header{background:#173f46;color:#fff;padding:18px clamp(16px,3vw,42px);gap:18px;flex-wrap:wrap;border:0}
+#kob-app header .brandLogos img{filter:brightness(0) invert(1)}
+#kob-app header .brandLogos span{color:#c1d4d1}
+#kob-app header .brandLogos{gap:16px}
+#kob-app header .brandLogos .kodeLogo{width:104px}
+#kob-app header .brandLogos .bhLogo{width:36px;height:36px}
+#kob-app header .switch{margin-left:auto;display:flex;gap:5px;background:#ffffff16;padding:4px;border-radius:8px}
+#kob-app header .switch button{color:#fff;border:0;border-radius:5px;padding:7px 16px;min-height:38px;background:transparent}
+#kob-app header .switch button.active{background:#f6f2e9!important;color:#173f46}
+#kob-app main{max-width:1480px;padding:24px clamp(16px,3vw,42px);margin:auto}
+#kob-app .intro{margin:0 0 22px}
+#kob-app h1{font-size:clamp(25px,2.5vw,36px);margin:0}
+#kob-app .simulator{padding:0;background:transparent;border:0;margin:0!important}
+#kob-app .simhead{margin-bottom:16px}
+#kob-app .simhead h2,#kob-app:not(.adv) .simhead h2{font-size:20px;margin:0}
+#kob-app .simhead small{display:none}
+#kob-app .simulator .simlayout,#kob-app:not(.adv) .simulator .simlayout{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:24px;align-items:start}
+#kob-app .focus-playback{min-width:0}
+#kob-app .simstage{background:#eeeee4;border:1px solid #d6dcd3;border-radius:10px}
+#kob-app .simstage canvas,#kob-app:not(.adv) .simstage canvas{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
+#kob-app .simstatus{background:#f8f7ef;padding:12px 14px;gap:8px 16px;font-size:13px;align-items:center}
+#kob-app #simPhase{flex:1;min-width:150px}
+#kob-app #simClock,#kob-app #simPoured{font-variant-numeric:tabular-nums}
+#kob-app .progress{height:3px;background:#d8dfd6}
+#kob-app .progress i{background:#ba382f}
+#kob-app .simulator .simlayout>.focus-recipe{display:block!important;min-width:0;background:#fffdf7;border:1px solid #d6dcd3;border-radius:10px;padding:20px}
+#kob-app .focus-recipe-title{font-size:20px;margin:0 0 16px}
+#kob-app .focus-recipe .trainerDose{background:transparent;padding:0;margin:0}
+#kob-app .focus-recipe .trainerDose .presets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;position:static;margin:0 0 20px;padding:0;box-shadow:none;background:transparent;z-index:auto}
+#kob-app .focus-recipe .presets button{min-width:0;min-height:42px;padding:8px 2px;font-size:11px;letter-spacing:0;border-radius:5px}
+#kob-app #strengthReading{height:auto;min-height:44px;justify-content:flex-start;padding:0;margin:0 0 18px;border:0;border-radius:0;box-shadow:none;background:transparent;text-align:left;font-size:20px;line-height:1.35}
+#kob-app .focus-recipe .trainerDose{display:flex;flex-direction:column}
+#kob-app .focus-recipe #strengthReading{order:-1}
+#kob-app.adv .focus-recipe .trainerDose{display:none}
+#kob-app .focus-facts{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;border-top:1px solid #d6dcd3;padding-top:16px;margin:0 0 20px}
+#kob-app .focus-facts dt{font-size:12px;color:#607775;margin:0 0 4px}
+#kob-app .focus-facts dd{margin:0;font-size:18px;font-variant-numeric:tabular-nums}
+#kob-app .focus-routine{border-top:1px solid #d6dcd3;padding-top:14px;font-size:13px}
+#kob-app .focus-routine summary{min-height:32px;cursor:pointer}
+#kob-app .focus-routine p{margin:8px 0 0}
+#kob-app .playback-controls{margin:14px 0 0;gap:8px;align-items:center}
+#kob-app .playback-controls #simPlay{height:42px;line-height:42px;border-radius:7px;background:#ba382f!important;box-shadow:0 2px 0 #8b2923;font-size:16px}
+#kob-app .playback-controls button:not(#simPlay){height:42px;min-width:44px;font-size:23px;background:#fffdf7;border-color:#ccd6cd;color:#173f46}
+#kob-app .playback-controls button:not(#simPlay):hover{background:#e4e9df}
+#kob-app .simbar{margin:14px 0 12px;gap:8px;font-size:13px}
+#kob-app .simbar button,#kob-app .simbar select{background:#fffdf7;min-height:40px;padding:7px 10px}
+#kob-app .focus-scrub-label{display:block;font-size:12px;margin:12px 0 4px}
+#kob-app #simScrub{display:block!important;width:100%;accent-color:#ba382f;margin:0 0 8px;min-height:24px}
+#kob-app #simTimeline{display:flex!important;height:5px;gap:3px;margin:0;border-radius:3px;overflow:hidden}
+#kob-app #simTimeline .bloom{background:#ba382f}
+#kob-app #simTimeline .pour{background:#173f46}
+#kob-app #simTimeline .pause{background:#c5b69d}
+#kob-app #simTimeline .draw{background:#72918d}
+#kob-app .focus-phase-labels{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#607775;margin:7px 0 18px}
+#kob-app .focus-recipe .advanced h2{font-size:17px}
+#kob-app.adv .focus-recipe .simmetrics{padding:12px;background:#edf0e6}
+#kob-app .field input[type=range]{accent-color:#ba382f}
+#kob-app button:focus-visible,#kob-app input:focus-visible,#kob-app select:focus-visible{outline-color:#bd792d}
+@container kob (max-width:850px){#kob-app .simulator .simlayout,#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1fr)!important;gap:16px}#kob-app .focus-recipe{order:-1}#kob-app .focus-recipe .trainerDose .presets{margin-bottom:14px}#kob-app .focus-recipe .presets button{font-size:13px}#kob-app .focus-facts{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:14px}#kob-app main{padding:20px 16px}#kob-app .focus-routine{padding-top:10px}#kob-app header{padding:16px}#kob-app.adv .focus-recipe #simFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@container kob (max-width:430px){#kob-app header .brandLogos .kodeLogo{width:80px}#kob-app header .brandLogos .bhLogo{width:28px;height:28px}#kob-app header .brandLogos{gap:9px}#kob-app header .switch button{padding:6px 10px;font-size:12px}#kob-app .simulator .simlayout>.focus-recipe{padding:16px}#kob-app .focus-recipe .presets button{font-size:11px}#kob-app #strengthReading{font-size:19px}#kob-app .focus-facts dd{font-size:16px}#kob-app .focus-facts dt{font-size:11px}}
+
+
+/* Keep the core brewing workspace within the available desktop height. */
+#kob-app header{padding-top:10px;padding-bottom:10px}
+#kob-app header .brandLogos .kodeLogo{width:90px}
+#kob-app header .brandLogos .bhLogo{width:30px;height:30px}
+#kob-app main{padding-top:12px;padding-bottom:12px}
+#kob-app .intro{margin-bottom:10px}
+#kob-app h1{font-size:26px}
+#kob-app .simhead{margin-bottom:10px}
+#kob-app .simhead h2,#kob-app:not(.adv) .simhead h2{font-size:18px}
+#kob-app .simstatus{padding:8px 12px;font-size:12px}
+#kob-app .playback-controls{margin-top:10px}
+#kob-app .simbar{margin:10px 0 6px}
+#kob-app .focus-scrub-label{margin-top:6px}
+#kob-app .focus-phase-labels{margin-bottom:4px}
+#kob-app .simulator .simlayout>.focus-recipe{padding:16px}
+#kob-app .simstage canvas,#kob-app:not(.adv) .simstage canvas{max-height:none;object-fit:contain}
+@container kob (min-width:720px){#kob-app .simulator .simlayout,#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1fr) 280px!important;gap:20px}#kob-app .focus-recipe{order:0}}
+@container kob (max-width:719px){#kob-app main{padding:10px 12px}#kob-app header{padding:10px 12px}#kob-app .focus-recipe-title{font-size:16px;margin-bottom:8px}#kob-app .simulator .simlayout{gap:10px}#kob-app .focus-recipe .trainerDose{display:grid;grid-template-columns:1fr;gap:0}#kob-app #strengthReading{font-size:18px;min-height:28px;margin-bottom:8px}#kob-app .focus-recipe .trainerDose .presets{margin-bottom:10px}#kob-app .focus-recipe .presets button{min-height:36px;padding:6px 2px}#kob-app .focus-facts{gap:8px;border-top:0;padding-top:0;margin-bottom:8px}#kob-app .focus-facts dt{font-size:11px;margin-bottom:1px}#kob-app .focus-facts dd{font-size:15px}#kob-app .focus-routine{padding-top:7px}#kob-app .focus-routine summary{min-height:24px}#kob-app .simulator .simlayout>.focus-recipe{padding:12px}}
+
+#kob-app .playback-controls #simSpeed{height:42px;min-width:94px;max-width:120px;padding:5px 8px;border:1px solid #ccd6cd;background:#fffdf7;border-radius:6px;font-size:13px}#kob-app .focus-scrub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}#kob-app .focus-routine #toggleServer{margin-top:10px;font-size:12px;padding:7px 10px}@container kob (max-width:430px){#kob-app .playback-controls{gap:5px}#kob-app .playback-controls button:not(#simPlay){min-width:36px}#kob-app .playback-controls #simSpeed{min-width:84px;width:84px;font-size:12px}#kob-app .playback-controls #simPlay{font-size:14px;padding:0 8px}}
+
+/* Prioritise the brewing cutaway over supporting recipe controls. */
+#kob-app header{padding-top:8px;padding-bottom:8px}
+#kob-app .intro,#kob-app:not(.adv):not(.actualMode) .intro{margin-bottom:5px}
+#kob-app h1{font-size:22px}
+#kob-app .simhead{margin-bottom:8px}
+#kob-app .simhead h2,#kob-app:not(.adv) .simhead h2{font-size:13px;color:#607775;margin:0}
+#kob-app .simulator .simlayout>.focus-recipe{background:transparent;border:0;border-left:1px solid #d6dcd3;border-radius:0;padding:8px 0 8px 18px}
+#kob-app .focus-recipe-disclosure>.focus-recipe-title{font-size:15px;margin-bottom:12px;cursor:pointer;min-height:28px}
+#kob-app .focus-recipe-disclosure:not([open])>.focus-recipe-title{margin-bottom:0}
+#kob-app .focus-recipe #strengthReading{font-size:17px;min-height:36px}
+#kob-app .focus-recipe .trainerDose .presets{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#kob-app .focus-recipe .presets button{font-size:12px;min-height:36px}
+#kob-app .focus-facts{grid-template-columns:1fr 1fr;gap:12px;font-size:12px}
+#kob-app .focus-facts dd{font-size:16px}
+#kob-app .simstage{background:#f0f0e6;border-color:#dce1d7}
+#kob-app .playback-controls #simPlay{flex:0 1 160px;font-size:14px;box-shadow:none}
+#kob-app .playback-controls #toggleServer{font-size:12px;min-width:88px;padding:0 9px;margin-left:auto}
+#kob-app .playback-controls{flex-wrap:wrap}
+@container kob (min-width:900px){#kob-app .simulator .simlayout,#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1fr) 235px!important;gap:20px}}
+@container kob (max-width:899px){#kob-app .simulator .simlayout,#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1fr)!important;gap:12px}#kob-app .focus-recipe{order:1}#kob-app .simulator .simlayout>.focus-recipe{padding:10px 0 0;border-left:0;border-top:1px solid #d6dcd3}#kob-app .focus-recipe .trainerDose .presets{grid-template-columns:repeat(5,minmax(0,1fr))}#kob-app .focus-facts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container kob (max-width:480px){#kob-app .playback-controls #simPlay{flex:1;min-width:100px}#kob-app .playback-controls #toggleServer{order:5;min-height:32px;height:32px}#kob-app .playback-controls #simSpeed{order:6;height:32px}#kob-app h1{font-size:20px}}
+
+
+/* Recipe and strength stay open in a horizontal strip above the cutaway. */
+#kob-app .simulator .simlayout,#kob-app:not(.adv) .simulator .simlayout{grid-template-columns:minmax(0,1fr)!important;gap:12px}
+#kob-app .simulator .simlayout>.focus-recipe{order:-1;display:block!important;padding:12px 16px;background:#fffdf7;border:1px solid #d6dcd3;border-radius:8px}
+#kob-app .focus-recipe-disclosure>.focus-recipe-title{margin-bottom:10px;font-size:14px;min-height:20px}
+#kob-app .focus-recipe-content{display:grid;grid-template-columns:minmax(300px,1.5fr) minmax(220px,1fr) minmax(180px,.8fr);gap:12px 24px;align-items:center}
+#kob-app .focus-recipe .trainerDose{margin:0}
+#kob-app .focus-recipe #strengthReading{font-size:18px;min-height:26px;margin:0 0 10px}
+#kob-app .focus-recipe .trainerDose .presets{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:0}
+#kob-app .focus-recipe .presets button{font-size:12px;min-height:36px;padding:7px 3px}
+#kob-app .focus-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;padding:0;margin:0}
+#kob-app .focus-facts dt{font-size:11px}
+#kob-app .focus-facts dd{font-size:16px}
+#kob-app .focus-routine{border:0;padding:0;margin:0;font-size:12px}
+#kob-app .focus-routine summary{min-height:28px}
+#kob-app .focus-recipe-content>section.advanced{grid-column:1/-1;border-top:1px solid #d6dcd3;padding-top:12px}
+#kob-app.adv .focus-recipe #simFields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 20px}
+#kob-app.adv .focus-recipe #simFields .field{padding:0;margin:0;min-width:0}
+#kob-app.adv .focus-recipe .simmetrics{grid-column:1/-1;margin:0}
+#kob-app .focus-recipe-content>.hint{grid-column:1/-1;margin:0}
+@container kob (max-width:1000px){#kob-app .focus-recipe-content{grid-template-columns:minmax(260px,1.4fr) minmax(200px,1fr)}#kob-app .focus-routine{grid-column:1/-1}#kob-app.adv .focus-recipe #simFields{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container kob (max-width:600px){#kob-app .focus-recipe-content{grid-template-columns:minmax(0,1fr);gap:10px}#kob-app .focus-facts{padding-top:8px;border-top:1px solid #d6dcd3}#kob-app .focus-recipe .presets button{font-size:11px}#kob-app.adv .focus-recipe #simFields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Compact recipe strip: remove inherited disclosure spacing. */
+#kob-app .simulator .simlayout>.focus-recipe{padding:7px 12px}
+#kob-app .focus-recipe details.focus-recipe-disclosure{margin:0;padding:0;border:0}
+#kob-app .focus-recipe-disclosure>.focus-recipe-title{font-size:12px;line-height:1.3;min-height:16px;margin:0 0 6px}
+#kob-app .focus-recipe-content{gap:4px 20px}
+#kob-app .focus-recipe #strengthReading{font-size:16px;line-height:1.3;min-height:22px;margin:0 0 5px}
+#kob-app .focus-recipe .trainerDose .presets{gap:6px;margin:0}
+#kob-app .focus-recipe .presets button{min-height:32px;padding:5px 3px;font-size:12px}
+#kob-app .focus-facts{margin:0;padding:0;gap:8px;border:0}
+#kob-app .focus-facts dt{font-size:11px;line-height:1.25;margin:0 0 2px}
+#kob-app .focus-facts dd{font-size:15px;line-height:1.3}
+#kob-app .focus-recipe details.focus-routine{margin:0;padding:0;border:0}
+#kob-app .focus-routine summary{min-height:20px;font-size:11px;line-height:1.4}
+@container kob (max-width:600px){#kob-app .focus-recipe-content{gap:7px}#kob-app .focus-facts{padding-top:4px}#kob-app .focus-recipe .presets button{font-size:11px}}
+
+/* Keep ratio next to dose; use the remaining strip for all brew data. */
+#kob-app .focus-recipe #strengthReading{display:block;height:auto;min-height:22px}
+#kob-app .focus-ratio-inline{white-space:nowrap;font-size:.85em;font-weight:500;color:#607775}
+#kob-app .focus-recipe-content{grid-template-columns:minmax(300px,.9fr) minmax(0,1.5fr);align-items:start;gap:8px 24px}
+#kob-app .focus-facts{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px;align-items:start}
+#kob-app .focus-facts dd{font-size:13px;line-height:1.35;overflow-wrap:anywhere}
+#kob-app .focus-facts dt{font-size:11px;line-height:1.25}
+#kob-app .focus-routine{grid-column:1/-1}
+@container kob (max-width:1000px){#kob-app .focus-recipe-content{grid-template-columns:minmax(260px,1fr) minmax(0,1.2fr);gap:8px 18px}#kob-app .focus-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 12px}}
+@container kob (max-width:600px){#kob-app .focus-recipe-content{grid-template-columns:minmax(0,1fr)}#kob-app .focus-facts{grid-template-columns:repeat(3,minmax(0,1fr));padding-top:9px}#kob-app .focus-recipe #strengthReading{font-size:16px}}
+
+
+/* Recipe details control the live data panel beside strength selection. */
+#kob-app .focus-selection{min-width:0}
+#kob-app .focus-recipe details.focus-routine{grid-column:2;margin:0;padding:0;border:0;min-width:0}
+#kob-app .focus-routine>summary{font-size:12px;line-height:1.4;min-height:22px;margin-bottom:8px}
+#kob-app .focus-routine:not([open])>summary{margin-bottom:0}
+#kob-app .focus-routine .focus-facts{grid-template-columns:repeat(3,minmax(0,1fr));padding:0;gap:10px 14px}
+#kob-app .focus-target{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:12px 0 0;font-size:12px;color:#607775}
+#kob-app .focus-target strong{color:#173f46;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+#kob-app .focus-extra{grid-column:1/-1;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding-top:10px;border-top:1px solid #d6dcd3}
+#kob-app.adv .focus-extra{display:grid}
+#kob-app .focus-extra dt{font-size:11px;color:#607775}
+#kob-app .focus-extra dd{margin:3px 0 0;font-size:13px}
+@container kob (max-width:600px){#kob-app .focus-recipe details.focus-routine{grid-column:1}#kob-app .focus-target{margin-top:9px}#kob-app .focus-extra{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@container kob (min-width:601px){#kob-app .focus-recipe details.focus-routine{transform:translateY(-22px);margin-bottom:-22px}}
+/* Playback beside the page title, freeing space around the brewer. */
+#kob-app .intro{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:nowrap}
+#kob-app .intro>div:first-child{min-width:0;flex:1}
+#kob-app .intro .playback-controls{flex:0 0 auto;display:flex;flex-wrap:nowrap;align-items:center;gap:5px;margin:0}
+#kob-app .intro .playback-controls #simPlay{flex:0 0 auto;width:112px;min-width:0;height:34px;line-height:34px;font-size:12px;padding:0 8px}
+#kob-app .intro .playback-controls button:not(#simPlay){height:34px;min-height:34px;min-width:32px;padding:0 7px;font-size:20px}
+#kob-app .intro .playback-controls #toggleServer{order:0;min-width:76px;margin:0;font-size:12px;padding:0 8px}
+#kob-app .intro .playback-controls #simSpeed{order:0;width:82px;min-width:82px;height:34px;font-size:12px;padding:3px 5px}
+#kob-app .intro h1{font-size:clamp(18px,2vw,22px);line-height:1.2}
+@container kob (max-width:560px){#kob-app .intro{flex-wrap:wrap;gap:9px}#kob-app .intro>div:first-child{flex-basis:100%}#kob-app .intro .playback-controls{width:100%;flex-wrap:wrap}#kob-app .intro .playback-controls #simPlay{flex:1;width:auto}#kob-app .intro .playback-controls #toggleServer{margin-left:auto}}
+
+/* Foundation teaching layer. Brewing geometry and simulation are unchanged. */
+#kob-app [hidden]{display:none!important}
+#kob-app .foundation-mode{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 12px}
+#kob-app .foundation-kicker{font-size:10px;letter-spacing:1.4px;font-weight:700;color:#657f82}
+#kob-app .foundation-mode p{margin:1px 0 0;font-size:13px}
+#kob-app .foundation-switch{display:flex;border:1px solid #b9cac7;padding:3px;border-radius:9px}
+#kob-app .foundation-switch button{font-size:12px;border:0;padding:8px 12px}
+#kob-app .foundation-switch button[aria-pressed=true]{background:#173f46;color:#fff}
+#kob-app #foundationPrep{display:flex;align-items:center;gap:24px;background:#fffdf7;border:1px solid #d4d9ce;border-radius:12px;padding:18px 24px;margin:12px 0}
+#kob-app #prepArt{flex:0 0 130px;color:#173f46}
+#kob-app #prepArt svg{display:block;width:130px;height:110px}
+#kob-app .prep-copy{flex:1;min-width:0}
+#kob-app #prepTitle{font:bold 21px/1.2 Arial,sans-serif;margin:4px 0 8px}
+#kob-app #prepText{font-size:14px;max-width:670px;margin:0 0 10px}
+#kob-app .prep-actions{display:flex;gap:8px;margin-top:10px}
+#kob-app #prepNext{background:#ba382f;color:white;border:0;font-weight:bold;padding:9px 18px}
+#kob-app #prepBack{padding:7px 12px}
+#kob-app #prepDots{display:flex;gap:5px}
+#kob-app #prepDots i{width:18px;height:3px;background:#d8dfd9;border-radius:2px}
+#kob-app #prepDots i.current{background:#ba382f}
+#kob-app #foundationSummary{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#173f46;color:#fff;padding:9px 14px;border-radius:8px;margin-bottom:10px;font-size:13px}
+#kob-app #foundationEdit{color:#fff;border-color:#ffffff66;font-size:12px;padding:4px 10px}
+#kob-app.guide-brewing .focus-recipe{display:none!important}
+#kob-app .simstage{position:relative}
+#kob-app #foundationPrompt{position:absolute;top:14px;left:14px;z-index:2;width:235px;max-width:43%;padding:13px 15px;background:#fffdf7f5;border:1px solid #d4d9ce;border-left:3px solid #ba382f;border-radius:9px;box-shadow:0 4px 16px #173f460a}
+#kob-app #guideTarget{display:block;font-size:19px;line-height:1.2;margin:5px 0;color:#173f46}
+#kob-app #guideText{font-size:12px;line-height:1.45;margin:6px 0}
+#kob-app #guideNext{display:block;font-size:12px;font-weight:bold;color:#ba382f}
+#kob-app #guideHide{border:0;padding:6px 0 0;font-size:10px;text-decoration:underline;color:#657f82}
+@container kob (max-width:600px){
+ #kob-app .foundation-mode{align-items:flex-start;flex-direction:column}
+ #kob-app .foundation-switch{width:100%}#kob-app .foundation-switch button{flex:1}
+ #kob-app #foundationPrep{gap:12px;padding:14px}#kob-app #prepArt{flex-basis:75px}#kob-app #prepArt svg{width:75px;height:90px}
+ #kob-app #prepTitle{font-size:18px}#kob-app #prepText{font-size:12px}
+ #kob-app #foundationPrompt{position:relative;top:auto;left:auto;max-width:none;width:auto;margin:10px;box-shadow:none}
+ #kob-app #guideTarget{font-size:17px}
+}
+
+/* Foundation: choose, prepare, then brew. */
+#kob-app main{max-width:1320px}
+#kob-app .intro{margin-bottom:8px;display:block}
+#kob-app .intro h1{font-size:clamp(23px,3.2vw,34px);letter-spacing:-.7px;margin:8px 0}
+#kob-app .foundation-mode{margin:0 0 22px;align-items:center}
+#kob-app .foundation-mode>div>p{display:none}
+#kob-app .foundation-kicker{font-size:10px;letter-spacing:1.8px}
+#kob-app #foundationChoice{padding:clamp(20px,3vw,38px);border:1px solid #d4ded8;border-radius:16px;background:#fffdf8;margin-bottom:20px}
+#kob-app .choice-heading h2{font:bold clamp(24px,3vw,34px)/1.15 Arial,sans-serif;letter-spacing:-.7px;margin:8px 0}
+#kob-app .choice-heading p{color:#657f82;font-size:14px;margin:0 0 24px}
+#kob-app .foundation-cups{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+#kob-app .foundation-cups button{--cup:#ead5bb;background:#f8f4ec;border:1px solid #e0ded2;display:flex;align-items:center;flex-direction:column;border-radius:12px;padding:18px 8px;transition:transform .2s,border-color .2s}
+#kob-app .foundation-cups button:nth-child(2){--cup:#d4b18b}#kob-app .foundation-cups button:nth-child(3){--cup:#956441}#kob-app .foundation-cups button:nth-child(4){--cup:#70452d}#kob-app .foundation-cups button:nth-child(5){--cup:#59351f}
+#kob-app .foundation-cups svg{width:85px;height:72px;margin-bottom:12px}
+#kob-app .foundation-cups strong{font-size:16px}#kob-app .foundation-cups span{font-size:11px;color:#657f82;margin-top:4px}
+#kob-app .foundation-cups button:hover{transform:translateY(-3px);border-color:#ba382f}
+#kob-app .foundation-cups button[aria-pressed=true]{border:2px solid #ba382f;background:#f4eadd;box-shadow:0 0 0 3px #ba382f14}
+#kob-app .choice-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:24px;border-top:1px solid #e3e7de;padding-top:18px}
+#kob-app .choice-bottom p{margin:0;font-size:14px}
+#kob-app #choiceNext,#kob-app #prepNext{background:#ba382f;color:white;border:0;border-radius:7px;font-weight:bold;padding:12px 18px}
+#kob-app #choiceNext:disabled{opacity:.45;cursor:default}
+#kob-app #foundationPrep{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(260px,1.1fr);gap:clamp(24px,4vw,60px);padding:24px 5%;border-radius:16px;min-height:330px;background:linear-gradient(110deg,#edf0e7 0%,#f6f3e9 43%,#fffdf8 43%)}
+#kob-app #prepArt{width:100%;max-width:400px;justify-self:center}
+#kob-app #prepArt svg{width:100%;height:auto;max-height:320px;overflow:visible}
+#kob-app #prepTitle{font:bold clamp(23px,3vw,32px)/1.15 Arial,sans-serif;letter-spacing:-.6px;margin:12px 0 16px}
+#kob-app #prepText{font-size:15px;line-height:1.7;max-width:460px}
+#kob-app #prepDots{margin:22px 0 18px}#kob-app #prepDots i{width:25px}
+#kob-app .prep-actions{gap:12px}
+#kob-app #foundationSummary{background:#e7ede8;color:#173f46;border:1px solid #d1dcd4;margin-bottom:14px;border-radius:9px}
+#kob-app #foundationEdit{color:#173f46;border-color:#aebeb7}
+#kob-app .foundation-toolbar{margin:0 0 10px}
+#kob-app .foundation-toolbar .playback-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0}
+#kob-app .foundation-toolbar #simPlay{min-width:185px;min-height:42px;font-size:15px;line-height:normal;height:42px;padding:8px 18px}
+#kob-app .foundation-toolbar button:not(#simPlay){height:42px;min-height:42px;padding:5px 13px;font-size:22px}
+#kob-app .foundation-toolbar #toggleServer{margin-left:auto;font-size:13px}
+#kob-app .foundation-toolbar #simSpeed{height:42px;width:110px;padding:7px;font-size:13px;border:1px solid #c6d3cc;border-radius:7px;background:#fffdf8}
+#kob-app.foundation-preflight .foundation-toolbar,#kob-app.foundation-preflight .focus-playback{display:none!important}
+#kob-app .simulator{margin-top:0!important}
+#kob-app.foundation-preflight:not(.foundation-editing) .simulator{display:none!important}
+#kob-app .simstage{display:grid;grid-template-columns:230px minmax(0,1fr);align-items:stretch}
+#kob-app #foundationPrompt{position:static;max-width:none;width:auto;margin:18px 0 18px 18px;padding:22px 16px;background:#fffdf7;align-self:center;box-shadow:none;border:0;border-left:3px solid #ba382f;border-radius:0;grid-column:1;grid-row:1}
+#kob-app #guideTarget{font-size:24px;letter-spacing:-.5px;margin:10px 0}
+#kob-app #guideText{font-size:13px;line-height:1.65;margin:12px 0}
+#kob-app #guideNext{font-size:12px;line-height:1.6}
+#kob-app canvas{grid-column:2;grid-row:1;min-width:0}
+#kob-app .simstage:has(#foundationPrompt[hidden]){grid-template-columns:1fr}
+#kob-app .simstage:has(#foundationPrompt[hidden]) canvas{grid-column:1}
+#kob-app .simstatus,#kob-app .progress{grid-column:1/-1}
+#kob-app #foundationChoice button:focus-visible{outline:3px solid #ba382f;outline-offset:3px}
+@container kob (max-width:650px){
+ #kob-app .foundation-cups{gap:5px}#kob-app .foundation-cups button{padding:13px 3px}#kob-app .foundation-cups svg{width:52px;height:48px}#kob-app .foundation-cups strong{font-size:12px}#kob-app .foundation-cups span{display:none}
+ #kob-app .choice-bottom{align-items:stretch;flex-direction:column}
+ #kob-app #foundationPrep{grid-template-columns:1fr;gap:0;padding:16px 22px;background:linear-gradient(#edf0e7,#fffdf8 70%)}
+ #kob-app #prepArt{max-width:250px}#kob-app #prepArt svg{max-height:210px}
+ #kob-app #prepTitle{margin-top:8px;font-size:24px}#kob-app #prepText{font-size:14px}
+ #kob-app .simstage{grid-template-columns:1fr}#kob-app canvas{grid-column:1;grid-row:2}
+ #kob-app #foundationPrompt{grid-column:1;grid-row:1;margin:12px;padding:10px 14px;align-self:start}#kob-app #guideTarget{font-size:20px;margin:5px 0}#kob-app #guideText{margin:5px 0;font-size:12px}
+ #kob-app .simstage:has(#foundationPrompt[hidden]) canvas{grid-row:1}
+ #kob-app .foundation-toolbar #simPlay{min-width:140px;flex:1}#kob-app .foundation-toolbar #toggleServer{margin-left:0}
+}
+@media(prefers-reduced-motion:reduce){#kob-app .foundation-cups button{transition:none}}
+
+/* Small demonstrations and contextual zone lessons. */
+#kob-app #prepZoneLesson,#kob-app #guideZoneLesson{border-top:1px solid #d7dfd5;margin-top:14px;padding-top:12px}
+#kob-app #prepZoneTitle,#kob-app #guideZoneTitle{font-size:10px;letter-spacing:1.5px;color:#8c652d}
+#kob-app [data-zone="extraction"] #prepZoneTitle,#kob-app [data-zone="extraction"] #guideZoneTitle{color:#32798a}
+#kob-app #prepZoneText,#kob-app #guideZoneText{font-size:12px;line-height:1.6;margin:5px 0 7px}
+#kob-app details.zone-why{font-size:12px;border:0;padding:0;margin:6px 0 0;transform:none}
+#kob-app .zone-why summary{font-size:11px;color:#657f82}
+#kob-app .zone-why p{font-size:12px;line-height:1.6;margin:8px 0}
+#kob-app .prep-paper-lower{animation:prep-lower 3.5s ease-in-out infinite}
+#kob-app .prep-paper-seat{animation:prep-seat 3s ease-in-out infinite}
+#kob-app .prep-seat-cue{animation:prep-cue 3s ease-in-out infinite}
+#kob-app .prep-shake{animation:prep-shake 4s ease-in-out infinite}
+#kob-app .prep-add-grounds{animation:prep-cue 4s ease-in-out infinite}
+#kob-app .prep-orbit{animation:prep-orbit var(--orbit-time,1s) linear infinite}
+@keyframes prep-lower{0%,15%{transform:translateY(-18px);opacity:.5}55%,100%{transform:translateY(0);opacity:1}}
+@keyframes prep-seat{0%,20%{transform:translateY(-5px)}55%,100%{transform:translateY(0)}}
+@keyframes prep-cue{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes prep-shake{0%,45%,100%{transform:translateX(0)}55%,75%{transform:translateX(-3px)}65%,85%{transform:translateX(3px)}}
+@keyframes prep-orbit{0%,100%{transform:translate(var(--orbit-rx),0)}25%{transform:translate(0,17px)}50%{transform:translate(calc(-1 * var(--orbit-rx)),0)}75%{transform:translate(0,-17px)}}
+@media(prefers-reduced-motion:reduce){#kob-app .prep-paper-lower,#kob-app .prep-paper-seat,#kob-app .prep-seat-cue,#kob-app .prep-shake,#kob-app .prep-add-grounds,#kob-app .prep-orbit{animation:none}#kob-app .prep-orbit{transform:translate(var(--orbit-rx),0)}}
+#kob-app [data-zone="bypass"] #prepZoneTitle{color:#648238}
+#kob-app [data-zone="exit"] #prepZoneTitle,#kob-app [data-zone="exit"] #guideZoneTitle{color:#9b6d1e}
+#kob-app #waterPractice{border:1px solid #cadad5;background:#edf3ef;border-radius:9px;padding:12px 14px;margin-top:14px}
+#kob-app .practice-readout{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+#kob-app .practice-readout strong{font-size:22px;font-variant-numeric:tabular-nums}#kob-app #practiceClock{font-size:12px;font-variant-numeric:tabular-nums}
+#kob-app #practiceProgress{display:block;width:100%;height:5px;margin:10px 0;accent-color:#32798a}
+#kob-app #practiceStatus{font-size:12px;line-height:1.5;margin:8px 0}
+#kob-app #practicePlay{font-size:12px;border:1px solid #173f46;background:#173f46;color:#fff;padding:8px 12px}
+#kob-app .brew-scale{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:18px;padding:10px 15px;background:#e7ede7;border-top:1px solid #d4ded5}
+#kob-app .brew-scale>div{min-width:145px;padding:7px 16px;border-radius:7px;background:#173f46;color:#fffdf8}
+#kob-app .brew-scale span{font-size:9px;letter-spacing:1px;text-transform:uppercase;display:block;color:#d1ded6}
+#kob-app .brew-scale strong{font-size:25px;font-weight:500;line-height:1.3;font-variant-numeric:tabular-nums;display:block}
+#kob-app .brew-scale p{font-size:12px;max-width:260px;margin:0}
+#kob-app .prep-falling-coffee{animation:prep-coffee-drop 2s ease-in infinite}
+@keyframes prep-coffee-drop{0%{transform:translateY(-10px);opacity:0}20%{opacity:1}85%{opacity:1}100%{transform:translateY(75px);opacity:0}}
+@media(prefers-reduced-motion:reduce){#kob-app .prep-falling-coffee{animation:none}}
+
+/* One six-second teaching cycle: add the entire dose, then shake. */
+#kob-app .prep-shake{animation:prep-dose-then-shake 6s ease-in-out 1 forwards}
+#kob-app .prep-dose-cup{animation:prep-cup-away 6s ease-in-out 1 forwards}
+#kob-app .prep-falling-coffee{animation:prep-complete-dose 6s linear 1 forwards}
+#kob-app .prep-bed-build{transform-origin:200px 222px;animation:prep-bed-fill 6s linear 1 forwards}
+#kob-app .prep-shake-cue{animation:prep-shake-after-dose 6s linear 1 forwards}
+@keyframes prep-dose-then-shake{0%,52%,85%,100%{transform:translateX(0)}58%,70%,82%{transform:translateX(-3px)}64%,76%{transform:translateX(3px)}}
+@keyframes prep-cup-away{0%,34%{opacity:1}43%,100%{opacity:0}}
+@keyframes prep-complete-dose{0%{opacity:0;transform:translateY(-10px)}5%{opacity:1;transform:translateY(0)}15%{opacity:1;transform:translateY(32px)}25%{opacity:1;transform:translateY(64px)}36%{opacity:1;transform:translateY(104px)}42%,100%{opacity:0;transform:translateY(112px)}}
+@keyframes prep-bed-fill{0%{transform:scaleY(.05)}43%,100%{transform:scaleY(1)}}
+@keyframes prep-shake-after-dose{0%,50%,90%,100%{opacity:0}55%,85%{opacity:1}}
+@media(prefers-reduced-motion:reduce){#kob-app .prep-shake,#kob-app .prep-dose-cup,#kob-app .prep-falling-coffee,#kob-app .prep-bed-build,#kob-app .prep-shake-cue{animation:none}#kob-app .prep-falling-coffee{display:none}}
+#kob-app .prep-paper-seat{animation:prep-seat-once 1.8s ease-out 1 forwards}
+#kob-app .prep-contact-confirm{animation:prep-contact-arrive 1.8s ease-out 1 forwards}
+@keyframes prep-seat-once{0%,15%{transform:translateY(-5px)}80%,100%{transform:translateY(0)}}
+@keyframes prep-contact-arrive{0%,45%{opacity:.15}100%{opacity:1}}
+@media(prefers-reduced-motion:reduce){#kob-app .prep-paper-seat,#kob-app .prep-contact-confirm{animation:none}}
+/* Keep preparation cards steady as practice controls appear. */
+@container kob (min-width:651px){
+ #kob-app #foundationPrep{box-sizing:border-box;height:460px;min-height:460px;grid-template-rows:minmax(0,1fr)}
+ #kob-app #foundationPrep .prep-copy{max-height:100%;overflow-y:auto;min-height:0;padding-right:4px}
+ #kob-app #waterPractice{padding:10px 12px;margin-top:10px}
+ #kob-app #foundationPrep:has(#waterPractice:not([hidden])) #prepTitle{margin:8px 0 10px}
+ #kob-app #foundationPrep:has(#waterPractice:not([hidden])) #prepText{margin:0;line-height:1.5}
+ #kob-app #foundationPrep:has(#waterPractice:not([hidden])) #prepDots{margin:14px 0 12px}
+}
+/* Every preparation illustration uses the same coordinate frame and anchor. */
+#kob-app #foundationPrep #prepArt{width:100%;max-width:324px;aspect-ratio:430/425;align-self:center;justify-self:center;display:grid;place-items:center}
+#kob-app #foundationPrep #prepArt>svg{display:block;width:100%;height:100%;max-height:none;overflow:visible}
+@container kob (max-width:650px){
+ #kob-app #foundationPrep #prepArt{max-width:212px;margin-inline:auto}
+}
+/* Focus the active brew on its illustration and current instruction. */
+#kob-app.guide-brewing .simulator .simlayout>.focus-recipe{display:none!important}
+#kob-app .simulator .simstage{grid-template-columns:minmax(180px,1fr) minmax(0,2.6fr);align-items:center}
+#kob-app #foundationPrompt{margin:18px 0 18px 18px;padding:16px 14px}
+#kob-app #guideTarget{font-size:23px;line-height:1.25}
+#kob-app #guideText{font-size:13px;line-height:1.55}
+#kob-app #guideZoneLesson{margin-top:14px;padding-top:12px}
+#kob-app #guideZoneLesson p{font-size:12px;line-height:1.5}
+#kob-app .simstage #brewerCanvas{align-self:center;justify-self:center;width:100%;object-fit:contain}
+#kob-app .focus-playback>.foundation-toolbar{margin:12px 0}
+#kob-app .simstage:has(#foundationPrompt[hidden]){grid-template-columns:1fr}
+@container kob (max-width:650px){
+ #kob-app .simulator .simstage{grid-template-columns:1fr}
+ #kob-app #foundationPrompt{margin:12px;padding:10px 14px}
+ #kob-app .simstage #brewerCanvas{grid-column:1;grid-row:2}
+ #kob-app .simstage:has(#foundationPrompt[hidden]) #brewerCanvas{grid-row:1}
+}
+/* Let the brewing illustration use the space left by compact controls. */
+#kob-app.brew-screen{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+#kob-app.brew-screen>header{flex:0 0 auto;padding-block:8px}
+#kob-app.brew-screen>main{flex:1;min-height:0;display:flex;flex-direction:column;padding:8px 3%;overflow:hidden}
+#kob-app.brew-screen .intro{display:none}
+#kob-app.brew-screen .foundation-mode{flex:0 0 auto;margin:0 0 6px;padding:0;min-height:0}
+#kob-app.brew-screen .foundation-mode p{display:none}
+#kob-app.brew-screen .foundation-switch button{padding:6px 12px;font-size:13px;min-height:32px}
+#kob-app.brew-screen #foundationSummary{flex:0 0 auto;margin:0 0 6px;padding:6px 12px;font-size:13px}
+#kob-app.brew-screen #foundationEdit{padding:4px 10px;font-size:12px}
+#kob-app.brew-screen #brewerSim{flex:1;min-height:0;display:flex;flex-direction:column}
+#kob-app.brew-screen .foundation-toolbar{flex:0 0 auto;margin:0 0 6px}
+#kob-app.brew-screen .simulator .simlayout{flex:1;min-height:0;display:flex!important;flex-direction:column;gap:0}
+#kob-app.brew-screen .simulator .simlayout>.focus-playback{flex:1;min-height:0;display:flex!important;flex-direction:column}
+#kob-app.brew-screen .simstage{flex:1;min-height:0;grid-template-rows:minmax(0,1fr) auto auto auto;overflow:hidden}
+#kob-app.brew-screen .simstage #brewerCanvas{width:100%;height:100%!important;min-height:0;max-height:100%;object-fit:contain}
+#kob-app.brew-screen #foundationPrompt{max-height:100%;min-height:0;overflow-y:auto;margin-block:10px}
+#kob-app.brew-screen .brew-scale{padding:5px 10px;gap:12px}
+#kob-app.brew-screen .brew-scale>div{padding:4px 12px}
+#kob-app.brew-screen .brew-scale strong{font-size:22px}
+#kob-app.brew-screen .simstatus{padding:6px 12px;font-size:12px}
+#kob-app.brew-screen .focus-scrub{margin:5px 0;height:16px}
+#kob-app.brew-screen .simtimeline{margin-top:4px}
+#kob-app.brew-screen .focus-phase-labels{font-size:11px;margin-bottom:0}
+@container kob (max-width:650px){
+ #kob-app.brew-screen .simulator .simstage{grid-template-rows:auto minmax(0,1fr) auto auto auto}
+ #kob-app.brew-screen #foundationPrompt{max-height:100px;margin:5px 8px;padding:5px 10px}
+ #kob-app.brew-screen #guideTarget{font-size:18px;margin:3px 0}
+ #kob-app.brew-screen #guideText{margin:3px 0}
+ #kob-app.brew-screen #guideZoneLesson{display:none}
+ #kob-app.brew-screen .foundation-mode{gap:5px;flex-wrap:wrap}
+ #kob-app.brew-screen .foundation-toolbar button:not(#simPlay){font-size:16px;padding:4px 8px}
+}
+/* Anchor preparation navigation independently of each lesson's length. */
+#kob-app #foundationPrep .prep-copy{align-self:stretch;display:flex;flex-direction:column;min-height:0;position:relative;padding-bottom:66px}
+#kob-app #foundationPrep .prep-actions{position:absolute;bottom:0;left:0;right:4px;display:flex;align-items:stretch;gap:12px;margin:0;min-height:46px;background:#fffdf8;z-index:1}
+#kob-app #foundationPrep #prepBack{flex:0 0 76px;margin:0}
+#kob-app #foundationPrep #prepNext{flex:0 0 240px;max-width:calc(100% - 88px);min-height:46px;margin:0;white-space:normal}
+#kob-app #foundationPrep #prepDots{margin-top:auto;padding-top:16px;flex-shrink:0}
+@container kob (max-width:650px){
+ #kob-app #foundationPrep .prep-copy{min-height:390px;padding-bottom:66px}
+ #kob-app #foundationPrep #prepNext{flex:1;max-width:none}
+}
+/* Fit the recipe return alongside the slide controls. */
+#kob-app #foundationPrep.kode-lesson .lesson-footer .prep-actions:has(#prepReturnToRecipe:not([hidden])){
+ grid-template-columns:56px minmax(0,1fr) minmax(0,1.2fr)!important;
+}
+#kob-app #foundationPrep.kode-lesson .prep-actions:has(#prepReturnToRecipe:not([hidden])) button{
+ max-width:none;padding:4px!important;font-size:13px!important;
+}
+#kob-app .recipe-selectors{display:flex;flex-wrap:wrap;gap:6px 10px}
+#kob-app #dockedRecipeCard>.recipe-selectors{padding:10px 11px 0}
+#kob-app .recipe-selectors label{display:grid;flex:1 1 76px;gap:2px;font-size:11px;font-weight:700}
+#kob-app .recipe-selectors select{width:100%;min-height:34px;padding:4px;font-size:13px}
+#kob-app .recipe-selectors .recipe-strength-select{background:var(--recipe-strength);color:var(--recipe-strength-ink)}
+#kob-app .recipe-selectors .recipe-strength-select option{background:#fffdf8;color:#173f46}
+#kob-app #dockedRecipeCard:has(>.recipe-selectors:not([hidden])) :is(.dock-heading,.dock-water){display:none}
+/* Combine the recipe and playback in one responsive brewing bar. */
+#kob-app.brew-screen #foundationSummary{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:7px 10px}
+#kob-app.brew-screen #foundationSummaryText{flex:1 1 280px;font-size:12px;line-height:1.4}
+#kob-app.brew-screen #foundationSummary #foundationEdit{flex:0 0 auto;order:3}
+#kob-app.brew-screen #foundationSummary .foundation-toolbar{flex:0 1 auto;order:2;margin:0;min-width:0}
+#kob-app.brew-screen #foundationSummary .playback-controls{gap:5px;margin:0;flex-wrap:nowrap}
+#kob-app.brew-screen #foundationSummary #simPlay{min-width:132px;height:34px;min-height:34px;font-size:13px;padding:6px 12px}
+#kob-app.brew-screen #foundationSummary .playback-controls button:not(#simPlay){height:34px;min-height:34px;padding:4px 9px;font-size:17px}
+#kob-app.brew-screen #foundationSummary #toggleServer{font-size:12px;margin-left:0}
+#kob-app.brew-screen #foundationSummary #simSpeed{height:34px;width:94px;padding:4px;font-size:12px}
+@container kob (max-width:850px){
+ #kob-app.brew-screen #foundationSummary .foundation-toolbar{flex:1 0 100%;order:4}
+ #kob-app.brew-screen #foundationSummary .playback-controls{flex-wrap:wrap}
+ #kob-app.brew-screen #foundationSummary #simPlay{flex:1}
+}
+/* Foundation uses the brewer detail; full setup remains available in Freestyle. */
+#kob-app:not(.adv) #toggleServer{display:none!important}
+#kob-app #toggleServer{white-space:nowrap;min-width:max-content;line-height:1.2}
+#kob-app #brewScaleTarget{font-size:15px;font-weight:600;color:#173f46}
+/* A visible ten-second heads-up without interrupting the brew. */
+#kob-app #pourAwareness{position:absolute;right:18px;top:18px;z-index:4;width:min(300px,70%);padding:14px 20px;border:2px solid #ba382f;border-radius:12px;background:#fff8eb;color:#173f46;box-shadow:0 5px 22px #173f4626;text-align:center;pointer-events:none;animation:pour-awareness 1s ease-in-out infinite}
+#kob-app #pourAwarenessTitle{display:block;font-size:12px;letter-spacing:1.4px;color:#ba382f}
+#kob-app #pourAwarenessCount{display:block;font-size:54px;line-height:1.15;font-variant-numeric:tabular-nums;margin:4px 0}
+#kob-app #pourAwarenessText{display:block;font-size:12px;line-height:1.4}
+#kob-app #pourAwareness.pour-now{background:#ba382f;color:#fffdf8;animation:none}
+#kob-app #pourAwareness.pour-now #pourAwarenessTitle{color:#fffdf8}
+#kob-app #pourAwareness.pour-now #pourAwarenessCount{font-size:30px}
+@keyframes pour-awareness{50%{border-color:#dc9b32;box-shadow:0 0 0 5px #dc9b3226}}
+@media(prefers-reduced-motion:reduce){#kob-app #pourAwareness{animation:none}}
+@container kob (max-width:650px){#kob-app #pourAwareness{right:10px;top:115px;width:210px;padding:10px}#kob-app #pourAwarenessCount{font-size:40px}}
+#kob-app .foundation-mode .foundation-kicker{font-size:12.5px;color:#365e65}
+</style><link rel="stylesheet" href="evo2.css"><link rel="stylesheet" href="layout-review.css?v=recipe-close1"><link rel="stylesheet" href="responsive-layout.css?v=20261103-android1"><link rel="stylesheet" href="learning-slides.css?v=10"><link rel="stylesheet" href="phone-functional.css?v=28"><link rel="stylesheet" href="responsive-audit.css?v=20"><link rel="stylesheet" href="foundation-trials.css?v=10"><link rel="stylesheet" href="landing-home.css?v=pro1"><link rel="stylesheet" href="station-home.css"></head><body><div id="kob-canvas"><div id="kob-app"><header><div class="brand brandLogos"><a href="https://kode-brewing.ch/" target="_blank" rel="noopener noreferrer" aria-label="KODE website"><img class="kodeLogo" src="kode-logo.png" alt="KODE"></a><span aria-hidden="true">×</span><a href="https://www.baristahustle.com/" target="_blank" rel="noopener noreferrer" aria-label="Barista Hustle website"><img class="bhLogo" src="barista-hustle-logo.svg" alt="Barista Hustle"></a></div><small>FB45 · Recipe trainer</small><div class="switch" aria-label="Display mode"><button id="simple" class="active" aria-pressed="true">EVO</button><button id="advanced" aria-pressed="false">Freestyle</button></div></header><main><div class="intro"><div><h1>FB45 Brewing Technology</h1></div></div><section class="foundation-mode" aria-label="Foundation experience"><div><span class="foundation-kicker">EVO · FOUNDATION</span><p>One technique. A confident first brew.</p></div><div class="foundation-switch" role="group" aria-label="Choose your experience"><button id="learnMode" aria-pressed="false">First time? Learn KODE →</button><button id="brewMode" aria-pressed="true">Brew with KODE</button><button id="foundationStartOver" type="button">Start over</button></div></section><div id="foundationSummary" hidden><strong id="foundationSummaryText"></strong><button id="foundationEdit">Edit recipe</button></div><section id="foundationChoice"><div class="choice-heading"><span class="foundation-kicker">01 / YOUR CUP</span><h2>How do you like your coffee?</h2><p>Same EVO technique. Same optimisation. Fixed 250 g water. Less coffee for lighter; more for stronger.</p></div><div class="foundation-cups" role="group" aria-label="Choose coffee strength"><button data-foundation-strength="1" aria-pressed="false"><svg viewBox="0 0 90 75" aria-hidden="true"><path d="M17 19h48v27q0 18-24 18T17 46z" fill="var(--cup)" stroke="currentColor" stroke-width="2"/><path d="M65 25h8q17 12-8 23M12 69h60" fill="none" stroke="currentColor" stroke-width="2"/></svg><strong>Delicate</strong><span>Light & gentle</span></button><button data-foundation-strength="2" aria-pressed="false"><svg viewBox="0 0 90 75" aria-hidden="true"><path d="M17 19h48v27q0 18-24 18T17 46z" fill="var(--cup)" stroke="currentColor" stroke-width="2"/><path d="M65 25h8q17 12-8 23M12 69h60" fill="none" stroke="currentColor" stroke-width="2"/></svg><strong>Bright</strong><span>Lively & light</span></button><button data-foundation-strength="3" aria-pressed="false"><svg viewBox="0 0 90 75" aria-hidden="true"><path d="M17 19h48v27q0 18-24 18T17 46z" fill="var(--cup)" stroke="currentColor" stroke-width="2"/><path d="M65 25h8q17 12-8 23M12 69h60" fill="none" stroke="currentColor" stroke-width="2"/></svg><strong>Classic</strong><span>A balanced cup</span></button><button data-foundation-strength="4" aria-pressed="false"><svg viewBox="0 0 90 75" aria-hidden="true"><path d="M17 19h48v27q0 18-24 18T17 46z" fill="var(--cup)" stroke="currentColor" stroke-width="2"/><path d="M65 25h8q17 12-8 23M12 69h60" fill="none" stroke="currentColor" stroke-width="2"/></svg><strong>Rich</strong><span>Full & rounded</span></button><button data-foundation-strength="5" aria-pressed="false"><svg viewBox="0 0 90 75" aria-hidden="true"><path d="M17 19h48v27q0 18-24 18T17 46z" fill="var(--cup)" stroke="currentColor" stroke-width="2"/><path d="M65 25h8q17 12-8 23M12 69h60" fill="none" stroke="currentColor" stroke-width="2"/></svg><strong>Intense</strong><span>Deep & strong</span></button></div><div class="choice-bottom"><p id="choiceRecipe">Select a strength to see your recipe.</p><button id="choiceNext" disabled>Choose a strength →</button></div></section><section id="foundationPrep" aria-label="Prepare your Foundation brew"><div id="prepArt" aria-hidden="true"></div><div class="prep-copy"><span class="foundation-kicker" id="prepCount"></span><h2 id="prepTitle"></h2><p id="prepText"></p><div id="prepZoneLesson" hidden><strong id="prepZoneTitle"></strong><p id="prepZoneText"></p><details class="zone-why"><summary>Why this matters</summary><p id="prepZoneWhy"></p></details></div><div id="waterPractice" hidden><div class="practice-readout"><strong id="practiceWeight">0 / 100 g</strong><span id="practiceClock">0 / 10 s</span></div><progress id="practiceProgress" max="10" value="0" aria-label="Practice pour progress"></progress><p id="practiceStatus" aria-live="polite">Optional · practise the movement before adding coffee.</p><button id="practicePlay">Start water practice</button></div><div id="prepDots" aria-hidden="true"></div><div class="prep-actions"><button id="prepBack">Back</button><button type="button" id="prepReturnToRecipe" hidden>Return to my recipe</button><button id="prepNext">Let’s prepare →</button></div></div></section><section class="simulator" id="brewerSim"><div class="foundation-toolbar"><div class="playback-controls"><button id="simRewind" type="button" aria-label="Rewind five seconds" title="Rewind 5 seconds">«</button><button id="simPlay" class="primary">▶ Brew recipe</button><button id="simForward" type="button" aria-label="Fast-forward five seconds" title="Fast-forward 5 seconds">»</button><button id="simRestart" type="button" aria-label="Restart brew" title="Restart">↺</button><button id="toggleServer" aria-expanded="false" title="Switch between the brewer cutaway and complete setup">Full setup</button><button id="guidanceToggle" type="button" aria-controls="foundationPrompt" aria-expanded="true">Hide guidance</button><select id="simSpeed" aria-label="Playback speed"><option value="1" selected>Real time</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></div></div><div class="simlayout"><aside class="focus-recipe" aria-label="Brew recipe"><details class="focus-recipe-disclosure" open><summary class="focus-recipe-title">Recipe &amp; strength</summary><div class="focus-recipe-content"><div class="focus-selection"><div class="trainerDose simple"><div class="presets" aria-label="Coffee strength"><button id="simpleMild" aria-label="Delicate coffee strength" aria-pressed="false">Delicate</button><button id="simpleLevel2" aria-label="Bright coffee strength" aria-pressed="false">Bright</button><button id="simpleLevel3" aria-label="Classic coffee strength" aria-pressed="false">Classic</button><button id="simpleLevel4" aria-label="Rich coffee strength" aria-pressed="false">Rich</button><button id="simpleBold" aria-label="Intense coffee strength" aria-pressed="false">Intense</button></div><input id="trainerStrength" type="hidden" value="5"><p id="strengthReading" aria-live="polite"><span id="focusRecipeMass">15 g coffee · 250 g water</span><span class="focus-ratio-inline"> · <span id="focusRatio">1:16.7</span></span></p></div><p class="focus-target"><span>Target brew time</span><strong>2:40–2:55</strong></p></div><details class="focus-routine" open><summary>Recipe &amp; pouring details</summary><dl class="focus-facts" aria-label="Brewing and technique data"><div><dt>Water temperature</dt><dd id="focusTemp">94°C</dd></div><div><dt>Pour rate</dt><dd id="focusRate">10 g/s</dd></div><div><dt>Spout height</dt><dd id="focusHeight">6 cm</dd></div><div><dt>Pour pattern</dt><dd id="focusPattern">Circular</dd></div><div><dt>Circle diameter</dt><dd id="focusDiameter">50 mm</dd></div><div><dt>Rotation speed</dt><dd id="focusRotation">1 circle/s</dd></div><div><dt>First pour</dt><dd id="focusBloom">100 g · 10 s</dd></div><div><dt>Delay time</dt><dd id="focusBloomRest">60 s</dd></div><div><dt>Following pour(s)</dt><dd id="focusFollowing">150 g · 15 s</dd></div></dl></details><dl class="focus-extra advanced" aria-label="Additional timing"><div><dt>Pours after bloom</dt><dd id="focusPours">1</dd></div><div><dt>Pause between pours</dt><dd id="focusPause">0 s</dd></div><div><dt>Final drawdown</dt><dd id="focusDrawdown">85.5 s</dd></div><div><dt>Total brew time</dt><dd id="focusDuration">2:56</dd></div></dl><section class="advanced"><h2>Recipe settings</h2><p id="brewSummary" aria-live="polite"></p><p class="hint">Adjust your recipe, then replay. Changes restart the brew. Timing and bed movement are illustrative.</p><div id="simFields"></div><button id="resetCustom">Reset to foundation recipe</button></section><div class="simmetrics" aria-live="polite"><b id="simOutcome"></b><p id="simExplanation" class="hint advanced"></p><div class="advanced" id="simAdvanced"></div></div><p class="hint advanced">Changes restart the simulation. Dose changes bed depth. Water movement and drawdown are illustrative.</p></div></details></aside><div class="focus-playback"><div class="simstage"><div id="foundationPrompt" hidden><span class="foundation-kicker" id="guidePhase"></span><strong id="guideTarget"></strong><p id="guideText"></p><span id="guideNext"></span><div id="guideZoneLesson"><strong id="guideZoneTitle"></strong><p id="guideZoneText"></p><details class="zone-why"><summary>Why this matters</summary><p id="guideZoneWhy"></p></details></div><button id="guideHide" aria-label="Hide brewing guidance">Hide guidance</button></div><canvas id="brewerCanvas" width="850" height="780" role="img" aria-label="Animated FB45 cutaway with flat-bottom wave filter, coffee grounds, kettle stream and circulating water"></canvas><div id="pourAwareness" role="status" aria-live="polite" hidden><strong id="pourAwarenessTitle"></strong><b id="pourAwarenessCount"></b><span id="pourAwarenessText"></span></div><div class="brew-scale"><div><span>Scale · total water</span><strong id="brewScaleWeight">0 g</strong></div><p id="brewScaleTarget"></p></div><div class="progress"><i id="simProgress"></i></div><div class="simstatus"><b id="simPhase">Ready to bloom</b><span id="simClock">0:00</span><span id="simPoured">0 g poured</span></div></div><div class="pourCue advanced" id="pourCue" aria-live="polite"></div><label for="simScrub" class="hint focus-scrub-label">Brew timeline</label><input class="focus-scrub" id="simScrub" type="range" min="0" max="1000" value="0"><div id="simTimeline" class="simtimeline"></div><div class="focus-phase-labels" aria-hidden="true"><span>Pour 1</span><span>Drawdown 1</span><span>Pour 2</span><span>Drawdown 2</span></div><p class="hint advanced">Use the timeline to inspect each pour and drawdown. Water and bed movement are illustrative.</p></div></div></section><section class="trainerRecipe advanced"><small>15 g / 250 g · Foundation</small><h2>Two pours. One consistent routine.</h2><div class="trainerSteps"><article><b>01 / Bloom · 100 g</b><p>Pour at 94°C and 10 g/s. <span id="bloomTechnique">Use 50 mm circles.</span> For circles, complete one circle per second. Keep the spout parallel and 6 cm above the vessel’s top rim.</p></article><article><b>02 / Bloom delay · 60 seconds</b><p>After the first pour, allow a 60-second delay for the slurry front to descend. The wall layer grows behind it and the bottom completes as the front reaches the base, leaving only a small slurry cap.</p></article><article><b>03 / Finish · another 150 g</b><p>Repeat the same pouring action at 94°C and 10 g/s. Add the remaining 150 g in 15 seconds, stopping at 250 g total. Fresh water rotates into the bottom bed and up the sides.</p></article></div><div class="trainerTargets"><b>Intense extraction · 21.5–22.5% EY</b><b>TDS · 1.40–1.50% · aim 1.45%</b><b>Last drips · 2:40–2:55</b></div><h2>Dial in your grind</h2><p>Start a little finer than your normal pour-over grind. If the brew finishes before 2:40, grind finer. If it finishes after 2:55, grind coarser. Check the bloom drawdown as well as the final drip time.</p><p class="hint">These are recipe targets. The animation illustrates bed movement and timing; it does not measure or predict extraction yield or TDS.</p></section><section class="pourFooter advanced"><h2>Pouring technique</h2><div class="pourFooterGrid"><div class="pourFooterControls"><div class="field trainerPour advanced"><label for="pourPattern">Pouring pattern</label><select id="pourPattern" style="width:100%;padding:10px;margin-top:8px;border:1px solid var(--line);border-radius:6px;background:#f9f9f9"><option value="circle">Circular pour</option><option value="centre">Centre pour</option></select><p class="hint">Change technique before brewing or during playback. The brew continues from the same point.</p><div id="circleDiameterField" class="field"><label for="circleDiameter">Circle diameter <b id="circleDiameterVal">50 mm</b></label><input id="circleDiameter" type="range" min="10" max="60" step="5" value="50"><div class="ends"><span>10 mm · small</span><span>60 mm · large</span></div><p class="hint">Foundation recipe: large circles, 45–60 mm. Diameter is the full width of the circle. At 60 mm, the path reaches the bottom edges of the coffee bed in this illustration.</p></div></div><div class="field advanced" id="circleSpeedField"><label for="circlePeriod">Time to complete one circle <b id="circlePeriodVal">1 s · 1 circle/s</b></label><input id="circlePeriod" type="range" min="0.5" max="10" step="0.001" value="1"><div class="ends"><span>0.5 s · faster</span><span>10 s · slower</span></div><p class="hint">Foundation recipe: one second per circle (1 circle/s). This sets pouring speed; playback speed only changes how quickly you watch the brew.</p></div></div><div class="pourLesson"><svg viewBox="0 0 160 140" role="img" aria-label="Top view of the selected pouring path"><circle cx="80" cy="65" r="55" fill="#f6f5ed" stroke="#87978b"/><circle id="pourOrbit" cx="80" cy="65" r="25" fill="none" stroke="#c55b36" stroke-dasharray="4 4"/><circle id="pourMarker" cx="80" cy="65" r="5" fill="#213b35"/><text x="80" y="135" text-anchor="middle">TOP VIEW</text></svg><div><b id="pourTechnique" aria-live="polite"></b><p id="pourInstruction"></p></div></div></div></section><footer class="advanced">KODE × BARISTA HUSTLE · RECIPE TRAINER · Illustrative FB45 simulation</footer></main><script>document.addEventListener("DOMContentLoaded",()=>{['simple','advanced'].forEach((id,i)=>document.getElementById(id).onclick=()=>{document.getElementById('kob-app').classList.toggle('adv',!!i);window.setTrainerMode?.(!!i);['simple','advanced'].forEach(k=>{document.getElementById(k).classList.toggle('active',k===id);document.getElementById(k).setAttribute('aria-pressed',String(k===id))})});(()=>{'use strict';
+const by=id=>document.getElementById(id),canvas=by('brewerCanvas'),ctx=canvas.getContext('2d');
+let viewHeight=700;
+function resizeBrewerCanvas(){const scale=Math.max(2,Math.min(4,(canvas.getBoundingClientRect().width/850)*(window.devicePixelRatio||1)));canvas.width=Math.round(850*scale);canvas.height=Math.round(viewHeight*scale);ctx.setTransform(canvas.width/850,0,0,canvas.height/viewHeight,0,0);draw()}
+const MODEL={maxFlow:10,baseEY:18,tempEffect:.23,turbulenceEffect:.7,pulseEffect:.45,pauseEffect:.035,waterEffect:.006,retention:2,drainMild:90,drainBold:120};
+const recipes={foundation:{dose:15,water:250,temp:94,turb:2,pulses:1,pause:0,bloom:60,rate:10,height:6,bloomMass:100,drawdown:85.5}};
+let foundationWater=250;
+function foundationRecipe(water=foundationWater,strength=+by('trainerStrength').value){const scale=water/250;return {...recipes.foundation,water,rate:window.kodeKettleType==='traditional'?(window.kodeTraditionalRate||15):10,height:window.kodeKettleType==='traditional'?3:6,bloom:60,dose:Math.round((13+(strength-1)*.5)*scale*100)/100,bloomMass:water*.4,drawdown:Math.round(recipes.foundation.drawdown*Math.pow(scale,.65)*2)/2};}
+function doseLabel(){return String(Math.round(settings.dose*10)/10)}
+function bloomRiseScale(){return Math.pow(settings.bloomMass/100,.65)}
+const definitions=[['dose','Coffee dose',11,25,.01,'g'],['water','Brewing water',180,400,5,'g'],['temp','Water temperature',90,100,1,'°C'],['rate','Pour flow rate',2,20,.5,'g/s'],['height','Spout distance from vessel',2,12,.5,'cm'],['bloomMass','Bloom water',20,200,1,'g'],['bloom','First drawdown after bloom',35,60,5,'s'],['pulses','Pours after bloom',1,8,1,''],['pause','Pause between pours',0,30,1,'s'],['drawdown','Final drawdown',30,150,.5,'s']];
+by('simFields').innerHTML=definitions.map(([id,label,min,max,step])=>`<div class="field"><label for="brew_${id}">${label}<b id="brew_${id}Val"></b></label><input id="brew_${id}" type="range" min="${min}" max="${max}" step="${step}"></div>`).join('');
+let bedCells=[],suspended=0,showFullServer=false,actualBrew=null,dilutionScene=null,dilutionPreviousView=null;
+let recipe='foundation',settings={...recipes.foundation},segments=[],duration=150,time=0,running=false,last=0,frameId=0,waterPool=0,energy=0,particles=[],traces=[],poured=0,drained=0,hasStarted=false;
+
+function rand(i){return (Math.sin(i*127.1+311.7)*43758.5453)%1+1- Math.floor((Math.sin(i*127.1+311.7)*43758.5453)%1+1)}
+function configure(){actualBrew=null;settings=Object.fromEntries(definitions.map(([id])=>[id,+by('brew_'+id).value]));settings.turb=recipes[recipe].turb;definitions.forEach(([id,,,,,unit])=>by('brew_'+id+'Val').textContent=id==='turb'?['Gentle','Moderate','High'][settings[id]]:settings[id]+(unit?' '+unit:''));makeSchedule();restart();}
+function makeSchedule(){segments=[];let t=0;function add(label,sec,mass,type){segments.push({label,start:t,end:t+sec,mass,type});t+=sec}
+const bloom=Math.min(settings.bloomMass,settings.water),remaining=settings.water-bloom;
+add('Bloom · '+bloom+' g',bloom/settings.rate,bloom,'bloom');if(settings.bloom)add('Bloom rest',settings.bloom,0,'pause');
+for(let i=0;i<settings.pulses;i++){const mass=remaining/settings.pulses;add('Pour '+(i+1)+' of '+settings.pulses,mass/settings.rate,mass,'pour');if(i<settings.pulses-1&&settings.pause)add('Between pours',settings.pause,0,'pause');}add('Drawdown · watch the last drips',settings.drawdown,0,'draw');duration=t;
+by('simTimeline').innerHTML=segments.map(s=>`<span class="${s.type}" style="flex:${s.end-s.start}" title="${s.label}: ${Math.round(s.end-s.start)} seconds"></span>`).join('');}
+function finalEY(){return Math.max(14,Math.min(26,MODEL.baseEY+(settings.rate-recipes[recipe].rate)*.08+(settings.temp-94)*MODEL.tempEffect+settings.turb*MODEL.turbulenceEffect+(settings.pulses-1)*MODEL.pulseEffect+settings.pause*MODEL.pauseEffect+(guideApp.classList.contains('adv')?(settings.water-250)*MODEL.waterEffect:0)))}
+function resetParticles(){particles=Array.from({length:Math.round(settings.dose*15)},(_,i)=>({x:310+rand(i+1)*230,y:426-rand(i+700)*bedDepth(),vx:0,vy:0,r:1+rand(i+400)*1.7,float:rand(i+3000)<.9}));traces=Array.from({length:90},(_,i)=>({x:280+rand(i+1400)*290,y:350+rand(i+1700)*100,life:rand(i+2000)}))}
+function bedDepth(){return 25+settings.dose*1.8}
+// Bed cross-section: material is eroded locally, held in suspension and redeposited.
+// Cell material is conserved. This is a reduced teaching model, not CFD/DEM.
+const BED_LEFT=300,BED_RIGHT=550,CELLS=51;
+function bedSurface(x){const index=Math.max(0,Math.min(CELLS-1,(x-BED_LEFT)/(BED_RIGHT-BED_LEFT)*(CELLS-1))),i=Math.floor(index),j=Math.min(CELLS-1,i+1),actualDepth=(bedCells[i]||bedDepth())*(1-index+i)+(bedCells[j]||bedDepth())*(index-i),sideX=215+(slurryTargetSurface()-167)*(112/257),center=425,radius=Math.max(1,center-sideX),u=Math.min(1,Math.abs(x-center)/radius),rise=426-slurryTargetSurface()-bedDepth(),depth=bedDepth()+rise*u*u*bedShapeProgress()+actualDepth-bedDepth();return 426-depth}
+function impact(){const f=flow(),waterDepth=postBloomPourActive()&&Number.isFinite(activeSegment().inheritedBedStart)?Math.max(0,424-liquidSurfaceY()):waterPool*.9;
+// Estimate nozzle velocity for a 4 mm jet, then gravity acceleration and spreading.
+const velocity=Math.sqrt((f/12.57)**2+2*9.81*settings.height/100);
+const breakup=1/(1+Math.pow(settings.height/(8+settings.rate*.9),4));
+const reach=Math.exp(-waterDepth/(35+velocity*22));
+return {power:f/10*velocity*breakup*reach,width:12+waterDepth*.15,waterDepth,breakup}}
+function updateBed(dt){const hit=impact(),x=spoutX(),segment=activeSegment(),lifting=(segment.type==="bloom"||segment.label==="Bloom rest")&&time-segment.start<=3.5,sinking=saturationDropProgress(),holdingSuspended=((segment.type==="bloom"||segment.label==="Bloom rest")&&bedShapeProgress()<.7)||(postBloomPourActive()&&sinking<.2),swirl=postBloomPourActive()?1+Math.min(1,waterPool/60)+.35*Math.abs(Math.sin(pourAngle())):1,elapsedBefore=Math.max(0,time-dt-segment.start),liftFraction=lifting?(elapsedBefore+dt>=3.5?1:Math.min(1,dt/Math.max(.001,3.5-elapsedBefore))):0;let lifted=0;
+for(let i=0;i<CELLS;i++){const cx=BED_LEFT+i*5,weight=Math.exp(-(((cx-x)/hit.width)**2)),erosion=Math.min(bedCells[i]*.2,hit.power*weight*dt*2.5*swirl),amount=lifting?Math.max(erosion,bedCells[i]*liftFraction):erosion;bedCells[i]-=amount;lifted+=amount} suspended+=lifted;
+// Settling redistributes lifted material around the impact region; no target crater.
+ const settleRate=postBloomPourActive()?.04+1.2*sinking:segment.label==="Bloom rest"?.045+1.2*bedShapeProgress():holdingSuspended?.045:.35,settle=Math.min(suspended,suspended*dt*(settleRate/(1+energy))),weights=bedCells.map((_,i)=>{if(segment.type==="draw"||segment.type==="pause"||postBloomPourActive()){const edge=Math.min(i,CELLS-1-i),wall=Math.exp(-edge/5),base=Math.exp(-(((i-(CELLS-1)/2)/10)**2));return 1+2.2*wall+.8*base}const dx=BED_LEFT+i*5-x;return .06+Math.exp(-(((Math.abs(dx)-30)/22)**2))}),total=weights.reduce((a,b)=>a+b,0);
+weights.forEach((w,i)=>bedCells[i]+=settle*w/total);suspended-=settle;
+// Local avalanches relax over-steep slopes while conserving cell material.
+for(let pass=0;pass<2;pass++)for(let i=0;i<CELLS-1;i++){const diff=bedCells[i]-bedCells[i+1],excess=Math.max(0,Math.abs(diff)-3.3),move=Math.min(excess*.5,excess*dt*3);if(diff>0){bedCells[i]-=move;bedCells[i+1]+=move}else{bedCells[i]+=move;bedCells[i+1]-=move}}
+}
+function restart(){window.kodeLearningCheckpoint=null;window.clearKodeDilutionScene?.();waitingPour=null;authorisedPours.clear();for(const s of segments){delete s.inheritedBedStart;delete s.inheritedBedDepth;delete s.inheritedSurface;delete s.inheritedWater;delete s.startWater;delete s.surfaceStart;delete s.bedStartProgress;delete s.releaseWaterAtStop;delete s.releaseSurfaceAtStop;delete s.cloudSinking}running=false;time=0;waterPool=0;energy=0;poured=0;drained=0;hasStarted=false;bedCells=Array(CELLS).fill(bedDepth());suspended=0;by('simPlay').textContent='▶ Brew recipe';resetParticles();updateUI();draw();}
+function seekPlayback(delta){const wasRunning=running,target=Math.max(0,Math.min(duration,time+delta));restart();hasStarted=target>0;while(time<target)step(Math.min(.1,target-time));running=wasRunning&&target<duration;updateUI();draw();by('simPlay').textContent=target>=duration?'↻ Replay':running?'Ⅱ Pause':target>0?'▶ Continue':'▶ Brew recipe'}
+function activeSegment(){return segments.find(s=>time>=s.start&&time<s.end)||segments[segments.length-1]}
+function postBloomPassed(){if(!hasStarted||!segments.length||segments[0].type!=="bloom")return false;const rest=segments[1]?.type==="pause"?segments[1]:null;return time>=(rest?rest.end:segments[0].end)}
+function postBloomPourActive(){return postBloomPassed()&&activeSegment().type==="pour"}
+function drawdownProgress(){if(!hasStarted)return 0;const d=segments.find(s=>s.type==="draw");return d?Math.max(0,Math.min(1,(time-d.start)/(d.end-d.start))):0}
+function outflowProgress(){const segment=activeSegment(),startWater=Math.max(1,Number.isFinite(segment.startWater)?segment.startWater:waterPool);return Math.max(0,Math.min(1,1-waterPool/startWater))}function bedLiftProgress(){const segment=activeSegment();if(segment.type==="bloom"||segment.label==="Bloom rest")return Math.max(0,Math.min(1,(time-segment.start)/3.5));if(postBloomPourActive())return 1;return 0}function saturationDropProgress(){if(!postBloomPourActive())return 0;const segment=activeSegment();if(Number.isFinite(segment.inheritedBedStart))return Math.max(0,Math.min(.45,(time-segment.inheritedBedStart-7)/18));const soakTime=settings.dose/settings.rate;return Math.max(0,Math.min(1,(time-segment.start-soakTime)/3.5))}function bedShapeProgress(){if(!hasStarted)return 0;const segment=activeSegment(),afterBloom=postBloomPassed();if(segment.label==="Bloom rest"){const elapsed=Math.max(0,Math.min(1,(time-segment.start)/(segment.end-segment.start)));return Math.min(.95,.08+.87*Math.max(elapsed,outflowProgress()))}if(segment.type==="draw"){const start=Number.isFinite(segment.bedStartProgress)?segment.bedStartProgress:0;return start+(1-start)*drawdownProgress()}if(segment.type==="pause"){return Math.min(.95,outflowProgress())}if(segment.type==="pour"&&afterBloom){return 0}return 0}function liquidSurfaceY(bedTop=426-bedDepth()){const segment=activeSegment(),rise=segment&&(segment.type==="bloom"||segment.label==="Bloom rest")?128.7*bloomRiseScale()*Math.min(1,Math.max(0,waterPool/settings.bloomMass))+bloomEndRise():waterPool*.9,raw=Math.max(175,bedTop-rise);if(segment&&segment.label==="Bloom rest"){const start=Number.isFinite(segment.surfaceStart)?segment.surfaceStart:raw,startWater=Math.max(1,Number.isFinite(segment.startWater)?segment.startWater:waterPool),elapsed=Math.max(0,Math.min(1,(time-segment.start)/(segment.end-segment.start))),drained=1-Math.max(0,Math.min(1,waterPool/startWater));return Math.min(start+(416-start)*drained,431-(Math.min(34*Math.pow(settings.water/250,.65),Math.max(18,bedThickness()*.66))+4)-8)}if(segment.type==="pour"&&Number.isFinite(segment.inheritedSurface))return Math.max(175,segment.inheritedSurface-(waterPool-segment.inheritedWater)*(128.7*bloomRiseScale()/Math.max(1,settings.bloomMass)));if(!segment||segment.type!=="draw")return raw;const d=segments.find(s=>s.type==="draw"),progress=drawdownProgress(),start=Number.isFinite(d.surfaceStart)?d.surfaceStart:raw,startWater=Math.max(1,Number.isFinite(d.startWater)?d.startWater:waterPool),drained=1-Math.max(0,Math.min(1,waterPool/startWater));return start+(431-start)*Math.max(progress,drained)}function slurryTargetSurface(){return 276+42*(15/settings.dose)}
+function bloomEndRise(){const bloom=segments.find(s=>s.type==="bloom");if(!bloom)return 0;const p=Math.max(0,Math.min(1,(time-bloom.start)/(bloom.end-bloom.start)));return 11*bloomRiseScale()*Math.max(0,Math.min(1,(p-.8)/.2))}function bedExpansion(){return Math.min(1,Math.max(0,poured/Math.max(1,settings.bloomMass)))}function bedThickness(){return Math.min(48*Math.pow(settings.water/250,.65),Math.max(12,24*settings.dose/15)*(1+bedExpansion()))}
+function secondBedSettling(){const s=activeSegment();if(s.type!=="draw"||!Number.isFinite(s.inheritedBedStart))return 0;const u=Math.max(0,Math.min(1,(time-s.start)/11));return u*u*(3-2*u)}function secondCoffeeOrbit(p,surface){const seed=Math.floor(p.r*1000),phase=(time-activeSegment().inheritedBedStart)*(2*Math.PI/(Number(by('circlePeriod').value)||1)/5)+rand(seed+601)*Math.PI*2,span=Math.max(12,419-surface),cy=surface+span*(.35+.3*rand(seed+611)),ry=span*(.18+.13*rand(seed+621)),y=Math.max(surface+3,Math.min(420,cy+Math.sin(phase)*ry)),left=215+(y-167)*112/257,rx=(425-left-12)*(.25+.7*rand(seed+631)),x=425+Math.cos(phase)*rx;return {x,y}}function secondBedTarget(p){const seed=Math.floor(p.r*1000),side=rand(seed+501)<.6,y=side?300+rand(seed+511)*78:381+rand(seed+521)*29,lx=215+(y-167)*112/257,x=side?(rand(seed+531)<.5?lx+17:850-lx-17):350+rand(seed+541)*150;return {x,y}}function secondPourRelease(y=424){const s=activeSegment();if(!Number.isFinite(s.inheritedBedStart))return 0;const addedWater=s.type==="draw"?s.releaseWaterAtStop:Math.max(0,waterPool-s.inheritedWater),u=Math.max(0,Math.min(1,addedWater/Math.max(1,settings.dose*2))),releaseSurface=s.type==="draw"?s.releaseSurfaceAtStop:liquidSurfaceY(),wet=Math.max(0,Math.min(1,(y-releaseSurface+6)/30));return u*u*(3-2*u)*wet*wet*(3-2*wet)}function firstPourBedPath(formation,erosion=0){const segment=activeSegment(),settled=secondBedSettling(),top=270+24*settled,depth=(Number.isFinite(segment.inheritedBedDepth)?segment.inheritedBedDepth:Math.min(34*Math.pow(settings.water/250,.65),Math.max(18,bedThickness()*.66)))*(1+.12*settled),slope=112/257,nx=.916,ny=.4,wall=y=>{const startSurface=Number.isFinite(segment.surfaceStart)?segment.surfaceStart:top,formingSurface=startSurface+(liquidSurfaceY()-startSurface)*.85,u=Math.max(0,Math.min(1,(formingSurface-y+30)/30)),v=Math.max(0,Math.min(1,(y-top)/24)),approach=u*u*(3-2*u),taper=.28+.72*v*v*(3-2*v);const wet=Math.max(0,Math.min(1,(y-liquidSurfaceY()+8)/25));return depth*taper*(formation+(1-formation)*approach)*(1+.025*Math.sin((y-top)*.075)+.012*Math.sin((y-top)*.17))*(1-.95*erosion*secondPourRelease(y))},lx=y=>215+(y-167)*slope,rx=y=>850-lx(y),join=Math.max(top+5,403-depth*.35-29*settled),baseY=431-(depth+4+16*settled)*formation*(1-.95*erosion*secondPourRelease(424)),topDepth=wall(top);ctx.beginPath();ctx.moveTo(lx(top),top);ctx.lineTo(327,424);ctx.quadraticCurveTo(330,431,338,431);ctx.lineTo(512,431);ctx.quadraticCurveTo(520,431,523,424);ctx.lineTo(rx(top),top);if(settled>0){const old=[],bowl=[],line=(a,x,y)=>a.push({x,y}),curve=(a,c1x,c1y,c2x,c2y,x,y)=>{const p=a[a.length-1];for(let i=1;i<=20;i++){const u=i/20,v=1-u;a.push({x:v*v*v*p.x+3*v*v*u*c1x+3*v*u*u*c2x+u*u*u*x,y:v*v*v*p.y+3*v*v*u*c1y+3*v*u*u*c2y+u*u*u*y})}},jq=wall(join),rj=rx(join)-nx*jq,lj=lx(join)+nx*jq,jy=join-ny*jq;line(old,rx(top),top);line(old,rx(top)-nx*topDepth,top);for(let i=1;i<=24;i++){const y=top+(join-top)*i/24;line(old,rx(y)-nx*wall(y),Math.max(top,y-ny*wall(y)))}curve(old,rj-5,jy+12,510-10*settled,baseY,495-14*settled,baseY);curve(old,470,baseY-.6*formation,452,baseY+2.6*formation,425,baseY+3*formation);curve(old,398,baseY+3.4*formation,380,baseY+.7*formation,355+14*settled,baseY);curve(old,340+10*settled,baseY,lj+5,jy+12,lj,jy);for(let i=23;i>=0;i--){const y=top+(join-top)*i/24;line(old,lx(y)+nx*wall(y),Math.max(top,y-ny*wall(y)))}line(old,lx(top),top);const rt=rx(top)-nx*topDepth,lt=lx(top)+nx*topDepth;line(bowl,rx(top),top);line(bowl,rt,top);curve(bowl,rt-26,top+2,rt-32,baseY-17,486,baseY-5);curve(bowl,466,baseY+1,447,baseY+3,425,baseY+3);curve(bowl,402,baseY+3,382,baseY+1,364,baseY-5);curve(bowl,lt+32,baseY-17,lt+26,top+2,lt,top);line(bowl,lx(top),top);const sample=(a,n)=>{const lengths=[0];for(let i=1;i<a.length;i++)lengths.push(lengths[i-1]+Math.hypot(a[i].x-a[i-1].x,a[i].y-a[i-1].y));const out=[];let j=1;for(let k=0;k<=n;k++){const d=lengths[lengths.length-1]*k/n;while(j<lengths.length-1&&lengths[j]<d)j++;const u=(d-lengths[j-1])/Math.max(.001,lengths[j]-lengths[j-1]);out.push({x:a[j-1].x+(a[j].x-a[j-1].x)*u,y:a[j-1].y+(a[j].y-a[j-1].y)*u})}return out},a=sample(old,100),b=sample(bowl,100);for(let i=0;i<a.length;i++)ctx.lineTo(a[i].x+(b[i].x-a[i].x)*settled,a[i].y+(b[i].y-a[i].y)*settled);ctx.closePath();return}ctx.quadraticCurveTo(rx(top)-nx*topDepth*.5,top,rx(top)-nx*topDepth,top);for(let i=1;i<=24;i++){const y=top+(join-top)*i/24,q=wall(y);ctx.lineTo(rx(y)-nx*q,Math.max(top,y-ny*q))}const jq=wall(join),rightX=rx(join)-nx*jq,leftX=lx(join)+nx*jq,joinY=join-ny*jq;ctx.bezierCurveTo(rightX-5,joinY+12,510-10*settled,baseY,495-14*settled,baseY);ctx.bezierCurveTo(470,baseY-.6*formation,452,baseY+2.6*formation,425,baseY+3*formation);ctx.bezierCurveTo(398,baseY+3.4*formation,380,baseY+.7*formation,355+14*settled,baseY);ctx.bezierCurveTo(340+10*settled,baseY,leftX+5,joinY+12,leftX,joinY);for(let i=23;i>=0;i--){const y=top+(join-top)*i/24,q=wall(y);ctx.lineTo(lx(y)+nx*q,Math.max(top,y-ny*q))}ctx.quadraticCurveTo(lx(top)+nx*topDepth*.5,top,lx(top),top);ctx.closePath()}function bedBandPath(formation=1){if(activeSegment().label==="Bloom rest"){firstPourBedPath(formation);return}const segment=activeSegment(),innerTop=Math.max(250,Math.min(424,Number.isFinite(segment.surfaceStart)?segment.surfaceStart:slurryTargetSurface())),fullT=Math.min(30,Math.max(16,bedThickness()*.58)),t=fullT*formation,wallFormation=y=>{if(segment.label!=="Bloom rest")return formation;const approach=Math.max(0,Math.min(1,(liquidSurfaceY()-y+22)/22));return Math.max(formation,approach*approach*(3-2*approach))},topT=fullT*.24*wallFormation(innerTop),outerTop=innerTop+.4*fullT*.24,left=215+(outerTop-167)*(112/257),right=850-left,nx=.916,ny=.4,outflow=(segment.type==="pause"||segment.type==="draw")?outflowProgress():0,disturbance=postBloomPourActive()?1:outflow,baseExtra=7*outflow*formation;const localT=x=>{const i=Math.max(0,Math.min(CELLS-1,Math.round((x-BED_LEFT)/(BED_RIGHT-BED_LEFT)*(CELLS-1)))),ratio=(bedCells[i]||bedDepth())/bedDepth(),edgeWeight=.25+.75*Math.min(1,Math.abs(x-425)/87),centerWeight=Math.max(0,1-Math.abs(x-425)/87);return t*(1+(Math.max(.68,Math.min(1.08,ratio))-1)*disturbance)+baseExtra*edgeWeight-5*centerWeight*formation},leftT=localT(338),rightT=localT(512),centerT=localT(425);ctx.beginPath();ctx.moveTo(left,outerTop);ctx.lineTo(327,424);ctx.quadraticCurveTo(330,431,338,431);ctx.lineTo(512,431);ctx.quadraticCurveTo(520,431,523,424);ctx.lineTo(right,outerTop);ctx.lineTo(right-nx*topT,innerTop);for(let i=1;i<=24;i++){const u=i/24,y=innerTop+(424-innerTop)*u,q=(fullT*.24*(1-u)+(rightT/Math.max(.001,formation))*u)*wallFormation(y);ctx.lineTo(right+(523-right)*u-nx*q,y-ny*q*u)}ctx.quadraticCurveTo(512,424-rightT,512,431-rightT);ctx.quadraticCurveTo(425,431-centerT+6,338,431-leftT);ctx.quadraticCurveTo(338,424-leftT,327+nx*leftT,424-ny*leftT);for(let i=23;i>=0;i--){const u=i/24,y=innerTop+(424-innerTop)*u,q=(fullT*.24*(1-u)+(leftT/Math.max(.001,formation))*u)*wallFormation(y);ctx.lineTo(left+(327-left)*u+nx*q,y-ny*q*u)}ctx.closePath()}function drawFormingBed(progress){const p=Math.max(0,Math.min(1,progress)),t=bedThickness(),segment=activeSegment(),bloomPour=segment.type==="bloom",bloomRest=segment.label==="Bloom rest",restProgress=bloomRest?Math.max(0,Math.min(1,(time-segment.start)/(segment.end-segment.start))):0,top=Math.max(275,Math.min(424,Number.isFinite(segment.surfaceStart)?segment.surfaceStart:slurryTargetSurface())),leftTop=215+(top-167)*(112/257),rightTop=850-leftTop,sideStart=Math.max(segment.start,13),sideProgress=bloomRest?Math.max(0,Math.min(1,((time-sideStart)+1*Math.max(0,time-24))/Math.max(1,segment.end-sideStart))):0,formationRate=bloomRest?1+1*Math.max(0,Math.min(1,(time-24)/Math.max(1,segment.end-24))):1,sideP=bloomPour?0:bloomRest?Math.sqrt(sideProgress):Math.min(1,p/.62),surfaceFraction=Math.max(0,Math.min(1,(liquidSurfaceY()-315)/101)),baseP=bloomPour?0:bloomRest?Math.max(Math.min(1,Math.sqrt(surfaceFraction)*formationRate),Math.max(0,Math.min(1,(time-13)/11)),restProgress>=.9?.9:0):Math.max(0,Math.min(1,(p-.65)/.3)),baseT=(t*.62+4)*baseP,pourLabel=segment.label,pourNumber=+(pourLabel.match(/Pour (\d+)/)||[])[1]||0,agitation=segment.type==="bloom"?Math.min(1,energy/8)*.9:postBloomPourActive()?Math.min(1,energy/8)*(pourNumber===1 ? .7 : pourNumber>=2 ? 1.3 : 1):0;ctx.fillStyle=`rgba(43,27,18,${.96/(1+energy*.18)})`;ctx.strokeStyle=`rgba(34,22,15,${.78/(1+energy*4)})`;ctx.lineWidth=1;if(segment.type==="draw"&&Number.isFinite(segment.inheritedBedStart)){firstPourBedPath(1,1-secondBedSettling());ctx.fill();ctx.stroke();return}if(postBloomPourActive()&&Number.isFinite(segment.inheritedBedStart)){firstPourBedPath(1,1);ctx.fill();ctx.stroke();return}if(bloomRest){const build=Math.max(0,Math.min(1,(firstBedClock()-13)/19)),smooth=build*build*(3-2*build),formation=.04+.92*smooth+.04*Math.max(0,Math.min(1,(firstBedClock()-32)/Math.max(1,13+(segment.end-13)*.85-32)));if(time>=13){bedBandPath(formation);ctx.fill();bedBandPath(formation);ctx.stroke()}return}if(p>=.999||(bloomRest&&restProgress>=.999)){bedBandPath();ctx.fill();bedBandPath();ctx.stroke();return}const side=(x0,dir)=>{const y0=top,y1=424,reach=y0+(y1-y0)*sideP,nx=.916,ny=.4,xAt=y=>x0+dir*(y-y0)*(112/257),wave=y=>agitation*2.5*Math.sin(time*17+y*.13),qAt=y=>t*.16+(.84*t)*(y-y0)/(y1-y0),outer=y=>xAt(y)+wave(y),inner=y=>xAt(y)+dir*nx*qAt(y)+wave(y),frontX=(outer(reach)+inner(reach))/2,frontY=reach-ny*qAt(reach)/2+3;ctx.beginPath();ctx.moveTo(outer(y0),y0);ctx.lineTo(outer(reach),reach);ctx.quadraticCurveTo(frontX,frontY,inner(reach),reach-ny*qAt(reach));for(let y=reach-8;y>y0;y-=8)ctx.lineTo(inner(y),y-ny*qAt(y));ctx.closePath();ctx.fill()};if(sideP>0){side(leftTop,1);side(rightTop,-1)}if(baseP>0){ctx.beginPath();ctx.moveTo(327,431);ctx.lineTo(523,431);ctx.lineTo(523,431-baseT+3*baseP);ctx.quadraticCurveTo(425,431-baseT+6*baseP,327,431-baseT+3*baseP);ctx.closePath();ctx.fill()}}function drawFloatingCoffee(surface){const inherited=activeSegment();if(Number.isFinite(inherited.inheritedBedStart)){const amount=inherited.type==="draw"?1-secondBedSettling():secondPourRelease(),cloud=ctx.createLinearGradient(0,surface,0,425);cloud.addColorStop(0,`rgba(56,37,25,${.14*amount})`);cloud.addColorStop(.55,`rgba(56,37,25,${.22*amount})`);cloud.addColorStop(1,`rgba(56,37,25,${.12*amount})`);ctx.fillStyle=cloud;ctx.fillRect(215,surface,420,431-surface);return}const segment=activeSegment(),sinking=postBloomPourActive()?saturationDropProgress():segment.type==="draw"&&Number.isFinite(segment.cloudSinking)?segment.cloudSinking:0,alpha=segment.type==="bloom"?.96*bedLiftProgress()*(.8+.2*bedExpansion()):segment.label==="Bloom rest"?.82*(1-.92*firstBedFormation()):postBloomPourActive()?(1-sinking)*(Number.isFinite(segment.inheritedBedStart)?.42*secondPourRelease():1):segment.type==="draw"&&Number.isFinite(segment.inheritedBedStart)?.42*(1-sinking)*secondPourRelease()*(1-secondBedSettling()):0;if(alpha<=0)return;const anchor=surface,lift=12*bedExpansion()*(Number.isFinite(segment.inheritedBedStart)?1-sinking:1),y=Math.max(175,Math.min(423,anchor-lift+(Number.isFinite(segment.inheritedBedStart)?(424-anchor)*sinking*.48:0))),halfHeight=((4+bedThickness()*.17)*(1+bedExpansion())*1.6+lift)*(segment.label==="Bloom rest"?1-.72*bedShapeProgress():1),left=215+(y-167)*(112/257)+7,right=635-(y-167)*(112/257)-7;ctx.beginPath();ctx.moveTo(left,y);for(let x=left+8;x<right;x+=8)ctx.lineTo(x,y+Math.sin(x*.11+time*2)*1.5);ctx.lineTo(right,y);ctx.lineTo(right,y+halfHeight);for(let x=right-8;x>left;x-=8)ctx.lineTo(x,y+halfHeight+Math.sin(x*.09+time*2.4)*1.3);ctx.lineTo(left,y+halfHeight);ctx.closePath();const coffeeCloud=ctx.createLinearGradient(0,y,0,y+halfHeight);coffeeCloud.addColorStop(0,`rgba(56,37,25,${.82*alpha})`);coffeeCloud.addColorStop(.48,`rgba(75,50,34,${.5*alpha})`);coffeeCloud.addColorStop(1,`rgba(110,75,49,${.16*alpha})`);ctx.fillStyle=coffeeCloud;ctx.fill();ctx.fillStyle=`rgba(43,29,22,${.86*alpha})`;for(let i=0;i<42;i++){const u=(i+.35)/42,x=left+8+u*(right-left-16)+Math.sin(i*12.989)*3.5,gy=y+Math.sin(i*7.7+time*2)*5+(i%4)*3,r=1.1+((i*7)%5)*.24;ctx.beginPath();ctx.ellipse(x,gy,r,r*.7,i*.4,0,Math.PI*2);ctx.fill()}}function flow(){const s=activeSegment();return time<duration&&s.mass?s.mass/(s.end-s.start):0}
+function estimateProgress(){const target=finalEY();return hasStarted?target*(1-Math.exp(-4.1*time/duration))/(1-Math.exp(-4.1)):0}
+function updateTechnique(){const centre=by('pourPattern').value==='centre',diameter=Number(by('circleDiameter').value),label=centre?'Centre pour':diameter+' mm circles · '+Number(by('circlePeriod').value).toFixed(2)+' s per circle';by('circleDiameterField').hidden=centre;by('circleDiameter').disabled=centre;by('circlePeriod').disabled=centre;by('circleSpeedField').hidden=centre;const period=Number(by('circlePeriod').value);by('circlePeriodVal').textContent=period.toFixed(2)+' s · '+(1/period).toFixed(2)+' circles/s';by('circleDiameterVal').textContent=diameter+' mm';by('pourTechnique').textContent=label;by('pourInstruction').textContent=centre?'Keep the stream fixed over the centre of the bed.':'Trace a circle '+diameter+' mm across. The cutaway shows the side-to-side part of this movement.';by('bloomTechnique').textContent=centre?'Keep the stream over the centre.':'Use '+diameter+' mm circles.';const pouring=hasStarted&&time<duration&&flow()>0;by('pourCue').textContent=(pouring?'Pour now · ':hasStarted&&time<duration?'Next pour · ':'Pouring technique · ')+label;by('pourOrbit').setAttribute('r',centre?0:diameter/60*50);by('pourMarker').setAttribute('cx',80+(centre?0:Math.sin(pourAngle())*diameter/60*50));by('pourMarker').setAttribute('cy',65+(centre?0:Math.cos(pourAngle())*diameter/60*50));}
+function updateFocusBrewingData(){
+ const target=guideApp.querySelector('.focus-target');if(target){target.querySelector('span').textContent=settings.water===250?'Target brew time':'Modelled brew time';const m=Math.floor(duration/60),sec=String(Math.round(duration%60)).padStart(2,'0');target.querySelector('strong').textContent=window.kodeKettleType==='traditional'?'Record drawdown · trial':settings.water===250?'2:40–2:55':'≈ '+m+':'+sec;}
+
+ const text=(id,value)=>{const el=by(id);if(el.textContent!==value)el.textContent=value},number=n=>String(Math.round(n)),seconds=n=>number(n)+' s',centre=by('pourPattern').value==='centre',period=+by('circlePeriod').value,bloom=segments.find(s=>s.type==='bloom'),rest=segments.find(s=>s.label==='Bloom rest'),pours=segments.filter(s=>s.type==='pour'),draw=segments.find(s=>s.type==='draw');
+ text('focusRecipeMass',doseLabel()+' g coffee · '+settings.water+' g water');text('focusRatio','1:'+(settings.water/settings.dose).toFixed(1));
+ text('focusTemp',settings.temp+'°C');text('focusRate',settings.rate+' g/s');text('focusHeight',settings.height+' cm');text('focusPattern',centre?(window.kodeKettleType==='traditional'?'Central · trial':'Centre'):'Circular');text('focusDiameter',centre?'—':by('circleDiameter').value+' mm');text('focusRotation',centre?'—':number(1/period)+' circle'+(period===1?'':'s')+'/s');
+ text('focusBloom',bloom?number(bloom.mass)+' g · '+seconds(bloom.end-bloom.start):'—');text('focusBloomRest',rest?seconds(rest.end-rest.start):'0 s');text('focusFollowing',pours.length?number(pours[0].mass)+' g · '+seconds(pours[0].end-pours[0].start)+(pours.length>1?' each':''):'—');text('focusPours',String(pours.length));text('focusPause',seconds(settings.pause));text('focusDrawdown',draw?seconds(draw.end-draw.start):'—');text('focusDuration',Math.floor(duration/60)+':'+String(Math.round(duration%60)).padStart(2,'0'));
+}
+function updateUI(){updateBrewScale();updateFoundationGuide();updateTechnique();updateFocusBrewingData();let s=activeSegment(),ey=estimateProgress(),beverage=Math.max(1,settings.water-MODEL.retention*settings.dose),tds=finalEY()*settings.dose/beverage;by('simPhase').textContent=time>=duration?'Brew complete':hasStarted?s.label:'Ready to bloom';by('simClock').textContent=`${Math.floor(time/60)}:${String(Math.floor(time%60)).padStart(2,'0')} / ${Math.floor(duration/60)}:${String(Math.round(duration%60)).padStart(2,'0')}`;by('simPoured').textContent=`${Math.round(poured)} / ${settings.water} g poured · ${(hasStarted?flow():0).toFixed(1)} g/s`;by('simProgress').style.width=time/duration*100+'%';by('simScrub').value=time/duration*1000;const style=finalEY()<19?'Mild':finalEY()<22?'Medium':'Intense';by('brewSummary').textContent=`${doseLabel()} g coffee / ${settings.water} g water · 1:${(settings.water/settings.dose).toFixed(1)} · ${settings.temp}°C`;by('simOutcome').textContent=`${doseLabel()} g coffee · ${settings.water} g water · ${settings.temp}°C`;by('simExplanation').textContent=hasStarted&&s.label==='Bloom rest'?'After the bloom pour, grounds stay mixed near the slurry surface. FB45 receptors draw coffee outward to the filter walls; the side layer starts near the ridge and grows down as the slurry falls.' :hasStarted&&flow()>0&&postBloomPourActive()?'The second pour stirs grounds away from the walls into the slurry. When it stops, the falling slurry front begins building the bed from the ridge downward.':hasStarted&&flow()>0?'The incoming bloom stream mixes the bed. After the pour, the falling slurry front moves down through the extraction zone and leaves grounds along the walls and base.':hasStarted&&(s.type==='draw'||s.type==='pause')?'As the slurry front descends, the wall and bottom bed form together. Once the shape is complete, the remaining water drains through the FB45 receptors.':hasStarted&&time<duration?'As the slurry front descends, the wall and bottom bed form together. Once the shape is complete, the remaining water drains through the FB45 receptors.':'Adjust your pouring technique or brew settings, then play the recipe.';by('simAdvanced').textContent='Foundation reference targets: 21.5–22.5% extraction yield · 1.40–1.50% TDS · aim 1.45%. These targets require brew measurements to verify.';
+}
+// Only pouring advances the spout motion; pauses freeze it at the last position.
+function pourAngle(){return segments.reduce((sum,s)=>sum+(s.mass?Math.max(0,Math.min(s.end-s.start,time-s.start)):0),0)*2*Math.PI/Number(by('circlePeriod').value)}
+function spoutX(){if(by('pourPattern').value==='centre')return 425;const pouringTime=segments.reduce((sum,s)=>sum+(s.mass?Math.max(0,Math.min(s.end-s.start,time-s.start)):0),0),segment=activeSegment(),volumeFactor=1;return 425+Math.sin(pouringTime*2*Math.PI/(Number(by('circlePeriod').value)||4))*((BED_RIGHT-BED_LEFT)/2)*(Number(by('circleDiameter').value)/60)*volumeFactor}function field(x,y,t){const hit=impact(),jet=spoutX(),dx=x-jet,depth=y-(426-bedDepth()-waterPool*.9),width=hit.width+Math.max(0,depth)*.2;
+const down=Math.exp(-((dx/width)**2))*energy*14;
+const outward=dx/(width+1)*Math.exp(-((dx/(width*2))**2))*energy*8*Math.exp(-(((y-(426-bedDepth()))/55)**2));
+const up=-Math.exp(-(((Math.abs(dx)-width*2)/width)**2))*energy*5;
+// Hybrid visual entrainment: irregular, counter-rotating eddies around impact.
+// These are procedural visual cues, not resolved turbulence or thermal convection.
+ const segment=activeSegment(),flowOut=(segment.type==="pause"||segment.type==="draw")?outflowProgress():0,lift=bedLiftProgress();let vx=outward,vy=down+up+flowOut*7;const leftReceptor=215+(y-167)*(112/257),rightReceptor=635-(y-167)*(112/257),nearReceptor=Math.max(Math.exp(-(((x-leftReceptor)/18)**2)),Math.exp(-(((x-rightReceptor)/18)**2))),receptorZone=Math.max(0,Math.min(1,(y-320)/22))*Math.max(0,Math.min(1,(432-y)/16));const leftPull=Math.exp(-(((x-leftReceptor)/85)**2)),rightPull=Math.exp(-(((x-rightReceptor)/85)**2));vx+=flowOut*receptorZone*.09*((leftReceptor-x)*leftPull+(rightReceptor-x)*rightPull)+Math.sign(x-425)*flowOut*22*nearReceptor*receptorZone;vy+=flowOut*9*nearReceptor*receptorZone+flowOut*16*Math.exp(-(((y-422)/13)**2));if(lift>0&&lift<1){const rise=Math.sin(Math.PI*lift);vy-=rise*(12+energy*10)*Math.exp(-(((x-425)/145)**2));}const bed=426-bedDepth(),surface=liquidSurfaceY(bed),bloomSegment=activeSegment();if(bloomSegment.type==="bloom"||bloomSegment.label==="Bloom rest"||postBloomPourActive()){const swirl=2*Math.PI/(Number(by('circlePeriod').value)||1)/5*(bloomSegment.label==="Bloom rest"?Math.max(.12,1-bloomWallProgress())*bloomTurbulenceFactor():1),rx=x-425,ry=y-(surface+16),orbit=Math.exp(-((rx/132)**2+(ry/42)**2));vx-=ry*swirl*orbit;vy+=rx*swirl*orbit;}
+ const postBloom=postBloomPourActive(),volumeRise=postBloom?Math.min(1,waterPool/80):0,centreY=postBloom?Math.max(surface+18,bed+(slurryTargetSurface()-bed)*volumeRise):Math.min(425,Math.max(surface+22,bed-8)),reach=60+Math.min(40,waterPool*.25);if((segment.type==="bloom"||postBloomPourActive())&&by("pourPattern").value!=="centre"){const rx=x-425,ry=y-398,orbit=Math.exp(-((rx/145)**2+(ry/58)**2));vx+=-ry*.055*(1+energy)*orbit;vy+=rx*.055*(1+energy)*orbit;}
+for(let j=0;j<4;j++){const side=j%2?1:-1,cx=jet+side*(27+12*Math.sin(t*.31+j))+Math.sin(t*.47+j)*8,cy=centreY+(j<2?-18:22)+Math.cos(t*.39+j*1.7)*13;
+const rx=x-cx,ry=y-cy,envelope=Math.exp(-(rx*rx+ry*ry)/(reach*reach*.65)),spin=side*(j<2?1:-.65),strength=energy*(.65+.2*Math.sin(t*.63+j))*((segment.label==="Bloom rest")?bloomTurbulenceFactor():1);
+vx+=-ry*envelope*spin*strength;vy+=rx*envelope*spin*strength;}
+return {vx,vy};}
+ function firstBedClock(){const onset=segments[0].end+3;return 13+Math.max(0,time-onset)*.85}function firstBedFormation(){const u=Math.max(0,Math.min(1,(firstBedClock()-13)/19));return u*u*(3-2*u)}function firstCoffeeDeposit(p){const seed=Math.floor(p.r*1000),u=Math.max(0,Math.min(1,(firstBedClock()-13-rand(seed+71)*14)/5)),pull=u*u*(3-2*u),top=activeSegment().surfaceStart||slurryTargetSurface(),side=rand(seed+81)<.65,y=side?top+8+rand(seed+91)*(412-top):421-rand(seed+101)*9,left=215+(y-167)*112/257,x=side?(rand(seed+111)<.5?left+9:850-left-9):338+rand(seed+121)*174;return {pull,x,y}}function bloomTurbulenceFactor(){const fade=Math.max(0,Math.min(1,(time-segments[0].end)/5));return 1-.82*(fade*fade*(3-2*fade))}function bloomWallProgress(){const segment=activeSegment();return segment.label==="Bloom rest"?Math.sqrt(Math.max(0,Math.min(1,(liquidSurfaceY()-320)/96))):0}function bloomCoffeeTarget(p,surface,phase){const floating=Math.max(175,surface-(p.float?14-rand(Math.floor(p.r*1000))*10:0)+(!p.float?10+rand(Math.floor(p.r*1000))*Math.max(10,Math.min(115,424-surface-10)):0));if(phase.type==="bloom")return floating;const deposit=firstCoffeeDeposit(p);return floating+(deposit.y-floating)*deposit.pull}function step(dt){const previousSegment=activeSegment(),previousBedProgress=bedShapeProgress(),previousSurface=liquidSurfaceY(),previousPool=waterPool,previousDepth=Math.min(34*Math.pow(settings.water/250,.65),Math.max(18,bedThickness()*.66));time=Math.min(duration,time+dt);hasStarted=true;let f=flow(),s=activeSegment(),ag=impact().power*2.2;if(s!==previousSegment&&(s.type==="pour"||s.type==="draw")){if(previousSegment.label==="Bloom rest"){s.inheritedBedStart=s.start;s.inheritedBedDepth=previousDepth;s.inheritedSurface=previousSurface;s.inheritedWater=previousPool;for(const p of particles){p.pourAnchor={x:p.x,y:p.y}}}else if(Number.isFinite(previousSegment.inheritedBedStart)){s.inheritedBedStart=previousSegment.inheritedBedStart;s.inheritedBedDepth=previousSegment.inheritedBedDepth;s.inheritedSurface=previousSegment.inheritedSurface;s.inheritedWater=previousSegment.inheritedWater}}if(s!==previousSegment&&s.type==="draw"&&!Number.isFinite(s.bedStartProgress))s.bedStartProgress=previousBedProgress;if(s!==previousSegment&&s.type==="draw"&&Number.isFinite(s.inheritedBedStart)){s.releaseWaterAtStop=Math.max(0,previousPool-s.inheritedWater);s.releaseSurfaceAtStop=previousSurface;s.cloudSinking=Math.max(0,Math.min(.45,(time-s.inheritedBedStart-7)/18));for(const p of particles){p.drawAnchor={x:p.x,y:p.y}}}if(s!==previousSegment&&(s.type==="pause"||s.type==="draw")&&!Number.isFinite(s.startWater)){if(s.type==="draw"||s.label==="Bloom rest")s.surfaceStart=s.type==="draw"?previousSurface:Math.max(175,426-bedDepth()-(128.7*bloomRiseScale()*Math.min(1,Math.max(0,waterPool/settings.bloomMass))+bloomEndRise()));s.startWater=Math.max(1,waterPool)}const targetEnergy=f>0?ag:s.label==="Bloom rest"?.12+(.65+1.1*outflowProgress()-.12)*bloomTurbulenceFactor():0;energy+=(targetEnergy-energy)*Math.min(1,dt*(f>0?.8:.16));poured=segments.reduce((a,s)=>a+s.mass*Math.max(0,Math.min(1,(time-s.start)/(s.end-s.start))),0);const drawP=s.type==="draw"?Math.max(0,Math.min(1,(time-s.start)/(s.end-s.start))):0,hold=settings.dose*2*(1-Math.exp(-time/18))*(1-drawP);const drainRate=Math.max(0,waterPool)*(s.type==='pause'?(s.label==='Bloom rest'?.04:.065):.025)+(s.type==='draw'?waterPool/Math.max(.5,duration-time):0);if(s.label==="Bloom rest"){const progress=Math.max(0,Math.min(1,(time-s.start)/(s.end-s.start))),startWater=Number.isFinite(s.startWater)?s.startWater:waterPool,remainingWater=Math.min(startWater,Math.min(settings.bloomMass,settings.water)*.1),targetPool=remainingWater+(startWater-remainingWater)*Math.pow(1-progress,1.4);drained=Math.max(drained,Math.max(0,poured-hold-targetPool))}else{drained=Math.min(Math.max(0,poured-hold),drained+drainRate*dt);}if(s.type==="draw"&&time>=duration)drained=Math.max(0,poured-hold);waterPool=Math.max(0,poured-drained-hold);updateBed(dt);let bottom=426,bedTop=bottom-bedDepth(),surface=liquidSurfaceY(bedTop),particlePhase=activeSegment(),sinkProgress=saturationDropProgress();for(const p of particles){const inherited=postBloomPourActive()&&Number.isFinite(s.inheritedBedStart)&&p.pourAnchor,release=inherited?secondPourRelease(p.pourAnchor.y):1;if(inherited&&release<=0){p.x=p.pourAnchor.x;p.y=p.pourAnchor.y;p.vx=0;p.vy=0;continue}if(inherited){const orbit=secondCoffeeOrbit(p,surface);p.x=p.pourAnchor.x+(orbit.x-p.pourAnchor.x)*release;p.y=p.pourAnchor.y+(orbit.y-p.pourAnchor.y)*release;p.vx=0;p.vy=0;continue}if(s.type==="draw"&&p.drawAnchor&&Number.isFinite(s.inheritedBedStart)){const settle=secondBedSettling(),deposit=secondBedTarget(p),elapsed=time-s.start,seed=Math.floor(p.r*1000),residual=Math.sin(elapsed*2.4)*(1-settle);p.x=p.drawAnchor.x+(deposit.x-p.drawAnchor.x)*settle+residual*8*Math.sin(seed);p.y=p.drawAnchor.y+(deposit.y-p.drawAnchor.y)*settle+residual*5*Math.cos(seed);continue}let v=field(p.x,p.y,time);if(s.label==="Bloom rest"){const deposit=firstCoffeeDeposit(p);v.vx+=(deposit.x-p.x)*deposit.pull*.5}let targetY=particlePhase.type==="bloom"||particlePhase.label==="Bloom rest"?bloomCoffeeTarget(p,surface,particlePhase):postBloomPourActive()?Math.min(424,surface+5+(424-surface)*sinkProgress+rand(Math.floor(p.r*1000))*8):bedSurface(p.x)+rand(Math.floor(p.r*1000))*(426-bedSurface(p.x));if(inherited){const seed=Math.floor(p.r*1000),mixDepth=Math.max(8,416-surface),orbit=.5+.5*Math.sin(pourAngle()+rand(seed+251)*Math.PI*2),mixedY=surface+5+mixDepth*(.12+.7*orbit);targetY=p.pourAnchor.y+(mixedY-p.pourAnchor.y)*release;v.vx*=release;v.vy*=release}if(s.type==="draw"&&p.drawAnchor&&Number.isFinite(s.inheritedBedStart)){const settle=secondBedSettling(),deposit=secondBedTarget(p);targetY=p.drawAnchor.y+(deposit.y-p.drawAnchor.y)*settle;v.vx=v.vx*(1-settle)+(deposit.x-p.x)*settle*.8;v.vy*=1-settle}v.vx+=(Math.sin(time*2.7+p.r*31+p.y*.17)*energy*5);v.vy+=Math.cos(time*3.1+p.r*23+p.x*.19)*energy*4;p.vx+=(v.vx-p.vx)*Math.min(1,dt*2);p.vy+=(v.vy+(targetY-p.y)*((p.float?4.5:.12)/(1+energy*.35))-p.vy)*Math.min(1,dt*2);p.x+=p.vx*dt*5*(inherited?release:1);p.y+=p.vy*dt*5*(inherited?release:1);const left=215+(p.y-167)*112/257,right=635-(p.y-167)*112/257;if(p.x<left+8){p.x=left+8;p.vx=Math.abs(p.vx)}if(p.x>right-8){p.x=right-8;p.vx=-Math.abs(p.vx)}p.y=Math.max(inherited||(s.type==="draw"&&Number.isFinite(s.inheritedBedStart))?175:p.float?Math.max(175,surface-14):Math.min(surface+5,bedSurface(p.x)),Math.min(424,p.y));}for(const p of traces){const v=field(p.x,p.y,time);p.x+=v.vx*dt*5;p.y+=v.vy*dt*5;p.life-=dt*.2;if(p.life<0||p.y>426||p.y<surface||p.x<260||p.x>590){p.x=300+Math.random()*250;p.y=surface+Math.random()*(426-surface);p.life=.5+Math.random()*.5}}}
+function drawReceptorPull(){const segment=activeSegment();if(segment.label!=="Bloom rest"||waterPool<=0)return;const progress=outflowProgress(),alpha=.38+.45*progress;ctx.save();ctx.globalAlpha=alpha;ctx.strokeStyle='rgba(118,65,43,.92)';ctx.fillStyle='rgba(118,65,43,.92)';ctx.lineWidth=2.1;ctx.lineCap='round';const arrow=(sx,sy,tx,ty)=>{const a=Math.atan2(ty-sy,tx-sx),back=7;ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(tx,ty);ctx.lineTo(tx-back*Math.cos(a-.55),ty-back*Math.sin(a-.55));ctx.moveTo(tx,ty);ctx.lineTo(tx-back*Math.cos(a+.55),ty-back*Math.sin(a+.55));ctx.stroke()};for(const y of [324,345,366,387,408]){const lx=215+(y-167)*112/257,rx=635-(y-167)*112/257;arrow(lx+15,y-5,lx+2,y+3);arrow(rx-15,y-5,rx-2,y+3)}for(let i=0;i<7;i++){const x=340+i*28.5;arrow(x,414,x,429)}ctx.restore()}
+function draw(){ctx.clearRect(0,0,850,viewHeight);ctx.save();ctx.translate(25,18);ctx.scale(.88,.88);if(!showFullServer){ctx.scale(1.1,1.1);ctx.translate(-35,-55)}ctx.translate(0,160);if(dilutionScene)ctx.translate(0,-165*dilutionScene.lift);ctx.save();if(dilutionScene)ctx.translate(-760*dilutionScene.lift,-540*dilutionScene.lift);let depth=bedDepth(),bed=426-depth,surface=liquidSurfaceY(bed),f=flow(),jet=spoutX();
+// Keep the illustration clear of redundant captions.
+// Proportions traced from the supplied section, scaled uniformly from its rim width.
+ctx.beginPath();ctx.moveTo(175,150);ctx.lineTo(236,272);ctx.quadraticCurveTo(251,300,248,329);ctx.quadraticCurveTo(245,380,217,464);ctx.lineTo(334,464);ctx.lineTo(341,488);ctx.lineTo(509,488);ctx.lineTo(516,464);ctx.lineTo(633,464);ctx.quadraticCurveTo(605,380,602,329);ctx.quadraticCurveTo(599,300,614,272);ctx.lineTo(675,150);ctx.lineTo(665,150);ctx.lineTo(605,270);ctx.lineTo(583,286);ctx.lineTo(583,320);ctx.lineTo(531,431);ctx.lineTo(319,431);ctx.lineTo(267,320);ctx.lineTo(267,286);ctx.lineTo(245,270);ctx.lineTo(185,150);ctx.closePath();ctx.fillStyle='#c4c9bd';ctx.fill();ctx.strokeStyle='#627468';ctx.lineWidth=2;ctx.stroke();
+// Filter has straight flat base with pleated walls; coffee and water clipped inside.
+function paper(){ctx.beginPath();ctx.moveTo(215,167);ctx.lineTo(327,424);ctx.quadraticCurveTo(330,431,338,431);ctx.lineTo(512,431);ctx.quadraticCurveTo(520,431,523,424);ctx.lineTo(635,167);for(let x=635;x>=215;x-=5)ctx.lineTo(x,158+9*Math.sin((x-215)*Math.PI/25));ctx.closePath()}
+
+paper();ctx.fillStyle='rgba(255,254,241,.55)';ctx.fill();ctx.strokeStyle='#d4d8c5';ctx.lineWidth=1.5;ctx.stroke();ctx.save();paper();ctx.clip();let grad=ctx.createLinearGradient(0,surface,0,465);const firstPhase=hasStarted&&(activeSegment().type==="bloom"||activeSegment().label==="Bloom rest"||Number.isFinite(activeSegment().inheritedBedStart)),clearing=activeSegment().label==="Bloom rest"?firstBedFormation():secondBedSettling();grad.addColorStop(0,firstPhase?`rgba(113,77,46,${.42-.12*clearing})`:"rgba(126,90,55,.32)");grad.addColorStop(1,firstPhase?`rgba(72,45,27,${.65-.12*clearing})`:"rgba(81,52,31,.58)");ctx.fillStyle=grad;ctx.fillRect(200,surface,450,470-surface);drawFloatingCoffee(surface);const shape=bedShapeProgress();ctx.save();ctx.globalAlpha=Number.isFinite(activeSegment().inheritedBedStart)?0:(1-shape)*(1-bedLiftProgress());ctx.fillStyle=`rgba(50,34,23,${.48/(1+energy*1.5)})`;ctx.beginPath();ctx.moveTo(200,bed);for(let x=200;x<=650;x+=5)ctx.lineTo(x,bedSurface(x)+Math.sin(x*.07+time*2)*energy*3);ctx.lineTo(650,470);ctx.lineTo(200,470);ctx.closePath();ctx.fill();ctx.strokeStyle=`rgba(38,26,18,${.58/(1+energy*8)})`;ctx.lineWidth=1.5;ctx.beginPath();for(let x=300;x<=560;x+=3){const y=bedSurface(x)+Math.sin(x*.07+time*2)*energy*3;if(x===300)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.restore();ctx.save();ctx.globalAlpha=1;drawFormingBed(shape);ctx.restore();
+if(true&&hasStarted){ctx.strokeStyle='rgba(63,124,127,.48)';ctx.lineWidth=1;for(const p of traces){const v=field(p.x,p.y,time);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x-v.vx*.3,p.y-v.vy*.3);ctx.stroke()}}
+for(const p of particles){ctx.fillStyle=p.r>2?'rgba(65,48,32,.8)':'rgba(104,78,49,.75)';ctx.beginPath();const saturated=Number.isFinite(activeSegment().inheritedBedStart)?1.35:1;ctx.ellipse(p.x,p.y,p.r*saturated,p.r*.65*saturated,p.r,0,Math.PI*2);ctx.fill()}
+ ctx.strokeStyle='#a8b496';ctx.lineWidth=2;ctx.beginPath();for(let x=200;x<650;x+=4){const y=surface+Math.sin(x*.08+time*3)*Math.min(4,energy*2);if(x===200)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.restore();drawReceptorPull();
+ if(hasStarted&&(activeSegment().type==='draw'||activeSegment().type==='pause')&&waterPool>0){const flowOut=outflowProgress();ctx.save();ctx.strokeStyle='rgba(71,145,175,.72)';ctx.fillStyle='rgba(71,145,175,.8)';ctx.lineWidth=2;ctx.lineCap='round';const flowFront=Math.max(322,Math.min(410,surface-8)),leftAtFront=215+(flowFront-167)*(112/257)+8,rightAtFront=635-(flowFront-167)*(112/257)-8;for(let i=0;i<9;i++){const x=leftAtFront+i*(rightAtFront-leftAtFront)/8;ctx.beginPath();ctx.moveTo(x,flowFront);ctx.lineTo(x,flowFront+14);ctx.moveTo(x-3,flowFront+10);ctx.lineTo(x,flowFront+14);ctx.lineTo(x+3,flowFront+10);ctx.stroke()}const receptorY=Math.max(330,Math.min(416,flowFront));if(flowOut>.12&&flowFront>=360){const lx=215+(receptorY-167)*(112/257)+3,rx=635-(receptorY-167)*(112/257)-3,reach=5+flowOut*12;ctx.lineWidth=2+flowOut*1.5;for(const side of [-1,1]){const edge=side<0?lx:rx,sign=side<0?-1:1;ctx.beginPath();ctx.moveTo(edge,receptorY);ctx.lineTo(edge+sign*reach,receptorY);ctx.lineTo(edge+sign*(reach-5),receptorY-3);ctx.moveTo(edge+sign*reach,receptorY);ctx.lineTo(edge+sign*(reach-5),receptorY+3);ctx.stroke()}}if(bedShapeProgress()>=.9){for(let i=0;i<9;i++){const outletX=338+i*21.75;ctx.beginPath();ctx.moveTo(outletX,436);ctx.lineTo(outletX,449);ctx.moveTo(outletX-3,446);ctx.lineTo(outletX,450);ctx.lineTo(outletX+3,446);ctx.stroke()}}ctx.restore()}
+// Taut wave paper; straight folds touch the ridge tips without conforming to them.
+ctx.strokeStyle='rgba(226,229,209,.88)';ctx.lineWidth=1.1;
+for(let i=0;i<=14;i++){const u=i/14,topX=215+420*u,baseX=327+196*u;ctx.beginPath();ctx.moveTo(topX,158+9*Math.sin((topX-215)*Math.PI/25));ctx.lineTo(baseX,424);ctx.stroke()}
+// Ridge is a circumferential belt halfway down the section.
+for(const side of [-1,1]){ctx.save();if(side===1){ctx.translate(850,0);ctx.scale(-1,1)}ctx.beginPath();ctx.moveTo(245,271);ctx.lineTo(267,286);ctx.lineTo(267,320);ctx.lineTo(254,320);ctx.lineTo(254,288);ctx.closePath();ctx.fillStyle='#89998b';ctx.fill();ctx.strokeStyle='#435e50';ctx.lineWidth=1.7;ctx.stroke();ctx.beginPath();ctx.moveTo(266,287);ctx.lineTo(266,318);ctx.strokeStyle='#eff1dd';ctx.lineWidth=2;ctx.stroke();ctx.restore()}
+// Long lower receptors, then the shallow exit structure visible in the reference.
+ctx.strokeStyle='#718575';ctx.lineWidth=1.4;
+for(let i=0;i<9;i++){const u=i/8,topX=278+294*u,baseX=330+190*u;ctx.beginPath();ctx.moveTo(topX-4,329);ctx.quadraticCurveTo(topX,314,topX+4,329);ctx.lineTo(baseX+3,430);ctx.lineTo(baseX-3,430);ctx.closePath();ctx.stroke()}
+ctx.beginPath();ctx.moveTo(319,433);ctx.lineTo(531,433);ctx.stroke();
+for(const side of [-1,1]){ctx.save();if(side===1){ctx.translate(850,0);ctx.scale(-1,1)}ctx.beginPath();ctx.moveTo(332,435);ctx.quadraticCurveTo(330,458,361,460);ctx.quadraticCurveTo(386,463,387,483);ctx.lineTo(394,483);ctx.lineTo(394,439);ctx.stroke();ctx.restore()}
+for(let i=0;i<3;i++){const x=405+i*20;ctx.strokeRect(x-4,435,8,49)}
+// Keep all kettle geometry above the rim (y=150), with clearance.
+const pourGeometry=pouringTrajectory(jet,surface,settings.height,f>0?f:settings.rate,257/8,150);
+ctx.save();ctx.translate(pourGeometry.tipX-jet-22,pourGeometry.tipY-97);
+// Hario photo reference: silver S-shaped gooseneck entering from the right.
+// The high rounded arch falls gently towards an oblique open lip.
+if(window.kodeKettleType==='traditional'){ctx.beginPath();ctx.moveTo(jet+22,97);ctx.lineTo(jet+150,58);ctx.lineTo(jet+195,141);ctx.lineTo(jet+77,149);ctx.closePath();ctx.fillStyle='#c8d2cd';ctx.fill();ctx.strokeStyle='#77827e';ctx.lineWidth=1.5;ctx.stroke();ctx.beginPath();ctx.ellipse(jet+22,97,9,4,-.6,0,Math.PI*2);ctx.fillStyle='#283432';ctx.fill();}else{ctx.beginPath();ctx.moveTo(jet+250,175);
+ctx.bezierCurveTo(jet+196,201,jet+157,189,jet+126,142);
+ctx.bezierCurveTo(jet+93,90,jet+58,77,jet+24,91);
+ctx.lineTo(jet+19,103);
+ctx.bezierCurveTo(jet+54,91,jet+86,102,jet+115,150);
+ctx.bezierCurveTo(jet+151,207,jet+196,219,jet+255,192);ctx.closePath();
+const metal=ctx.createLinearGradient(0,80,0,215);metal.addColorStop(0,'#596566');metal.addColorStop(.12,'#e1e5e2');metal.addColorStop(.24,'#f6f7f3');metal.addColorStop(.34,'#7e8988');metal.addColorStop(.55,'#bbc3bf');metal.addColorStop(.72,'#f0f2ed');metal.addColorStop(.9,'#737e7c');metal.addColorStop(1,'#b7c0bb');
+ctx.fillStyle=metal;ctx.fill();ctx.strokeStyle='#77827e';ctx.lineWidth=1;ctx.stroke();
+ctx.beginPath();ctx.moveTo(jet+250,180);ctx.bezierCurveTo(jet+195,206,jet+155,195,jet+122,146);ctx.bezierCurveTo(jet+91,98,jet+58,84,jet+26,96);ctx.strokeStyle='rgba(249,249,249,.8)';ctx.lineWidth=2;ctx.stroke();
+// Dark opening with a thin metal rim, angled towards the falling stream.
+ctx.beginPath();ctx.ellipse(jet+22,97,7,3.4,-1.12,0,Math.PI*2);ctx.fillStyle='#283432';ctx.fill();ctx.strokeStyle='#c7ceca';ctx.lineWidth=1.3;ctx.stroke();
+}ctx.restore();
+if(f>0&&hasStarted&&time<duration){
+const streamWidth=Math.max(2,Math.min(6,f*.5));
+function streamPath(){const g=pourGeometry;ctx.beginPath();ctx.moveTo(g.tipX,g.tipY);ctx.quadraticCurveTo(g.controlX,g.controlY,g.landingX,g.surfaceY);}
+ctx.lineCap='round';ctx.strokeStyle='rgba(91,130,139,.45)';ctx.lineWidth=streamWidth+1.5;streamPath();ctx.stroke();
+ctx.strokeStyle='rgba(221,239,237,.86)';ctx.lineWidth=streamWidth;streamPath();ctx.stroke();
+ctx.strokeStyle='rgba(249,249,249,.9)';ctx.lineWidth=Math.max(.8,streamWidth*.25);streamPath();ctx.stroke();
+for(let i=0;i<8;i++){const a=time*6+i*2;ctx.fillStyle='rgba(127,170,177,.6)';ctx.beginPath();ctx.arc(jet+Math.sin(a)*energy*15,surface-5-Math.abs(Math.cos(a))*energy*10,1.5,0,7);ctx.fill()}}
+if(hasStarted&&time<duration&&drained>0){ctx.strokeStyle='#9d7442';ctx.lineWidth=2;ctx.setLineDash([4,8]);ctx.lineDashOffset=-time*13;ctx.beginPath();ctx.moveTo(425,490);ctx.lineTo(425,Math.min(750,758-serverLiquidHeight(drained)));ctx.stroke();ctx.setLineDash([])}// Enlarge about the support rim, which remains fixed beneath the brewer.
+ctx.restore();
+ctx.save();ctx.translate(425,465);ctx.scale(1.12,1.08);ctx.translate(-425,-465);
+// Varia Flow reference: open double-wall server, with its rim supporting the FB45.
+// The supporting top rim sits at the brewer's underside (y=464).
+function outerServer(){ctx.beginPath();ctx.moveTo(291,465);ctx.bezierCurveTo(295,483,294,510,291,545);ctx.bezierCurveTo(290,618,269,684,250,737);ctx.bezierCurveTo(236,777,254,793,282,795);ctx.quadraticCurveTo(425,806,568,795);ctx.bezierCurveTo(596,793,614,777,600,737);ctx.bezierCurveTo(581,684,560,618,559,545);ctx.bezierCurveTo(556,510,555,483,559,465);ctx.closePath()}
+function innerServer(){ctx.beginPath();ctx.moveTo(312,467);ctx.lineTo(312,736);ctx.quadraticCurveTo(312,754,333,755);ctx.quadraticCurveTo(425,764,517,755);ctx.quadraticCurveTo(538,754,538,736);ctx.lineTo(538,467);ctx.closePath()}
+
+ctx.lineWidth=2;ctx.strokeStyle='rgba(102,128,120,.8)';outerServer();ctx.fillStyle='rgba(241,249,245,.16)';ctx.fill();ctx.stroke();
+// Coffee is clipped exclusively to the inner chamber; insulating gap remains clear.
+ctx.save();innerServer();ctx.clip();const coffeeHeight=serverLiquidHeight(dilutionScene?dilutionScene.sourceMass+dilutionScene.amount:drained),coffeeTop=758-coffeeHeight;const coffee=ctx.createLinearGradient(0,coffeeTop,0,765);const dilutionFraction=dilutionScene?dilutionScene.amount/Math.max(1,dilutionScene.sourceMass+dilutionScene.amount):0;coffee.addColorStop(0,'rgba('+(120+Math.round(35*dilutionFraction))+','+(50+Math.round(25*dilutionFraction))+',22,.55)');coffee.addColorStop(1,'rgba('+(61+Math.round(40*dilutionFraction))+','+(23+Math.round(25*dilutionFraction))+',12,.8)');ctx.fillStyle=coffee;if((dilutionScene?dilutionScene.sourceMass+dilutionScene.amount:drained)>0){ctx.fillRect(306,coffeeTop,238,240);ctx.beginPath();ctx.ellipse(425,coffeeTop,113,4.5,0,0,Math.PI*2);ctx.fillStyle='rgba(145,84,41,.5)';ctx.fill();ctx.strokeStyle='rgba(178,130,82,.7)';ctx.lineWidth=1;ctx.stroke()}ctx.restore();
+innerServer();ctx.strokeStyle='rgba(110,138,129,.75)';ctx.lineWidth=1.7;ctx.stroke();
+// Glass wall highlights make the empty double-wall space legible.
+ctx.beginPath();ctx.moveTo(282,491);ctx.bezierCurveTo(302,565,272,689,260,735);ctx.strokeStyle='rgba(249,249,249,.8)';ctx.lineWidth=4;ctx.stroke();ctx.beginPath();ctx.moveTo(548,481);ctx.lineTo(548,733);ctx.strokeStyle='rgba(249,249,249,.65)';ctx.lineWidth=3;ctx.stroke();ctx.beginPath();ctx.moveTo(285,787);ctx.quadraticCurveTo(425,798,563,787);ctx.strokeStyle='rgba(153,174,162,.5)';ctx.lineWidth=2;ctx.stroke();
+// Continuous top rim: brewer rests on it; the centre outlet projects inside.
+ctx.beginPath();ctx.moveTo(291,465);ctx.quadraticCurveTo(425,458,559,465);ctx.quadraticCurveTo(425,472,291,465);ctx.strokeStyle='#8ba398';ctx.lineWidth=2.4;ctx.stroke();ctx.beginPath();ctx.moveTo(293,465);ctx.quadraticCurveTo(276,454,274,465);ctx.quadraticCurveTo(286,469,294,483);ctx.strokeStyle='#8ba398';ctx.lineWidth=2;ctx.stroke();
+
+ctx.restore();
+if(dilutionScene){drawDilutionPour();ctx.restore();return;}
+drawFoundationZone();
+if(guidanceVisible){
+ const phase=activeSegment(),pouring=phase.type==='bloom'||phase.type==='pour';
+ const labels=[['Ridge',150,288,266,298,!hasStarted],['Filter paper',600,260,580,270,!hasStarted],['Coffee bed',600,395,533,398,hasStarted&&pouring],['Exit receptors',120,470,357,459,hasStarted&&!pouring]];
+ ctx.font='18px NoBH-Regular';ctx.textBaseline='middle';
+ for(const [text,x,y,toX,toY,active] of labels){
+  const width=ctx.measureText(text).width;ctx.fillStyle='rgba(246,242,233,.92)';ctx.fillRect(x-5,y-13,width+10,26);
+  ctx.fillStyle=active?'#b7352c':'#173f46';ctx.fillText(text,x,y);
+  ctx.strokeStyle=active?'#b7352c':'#657e76';ctx.lineWidth=active?2:1.2;
+  ctx.beginPath();ctx.moveTo(x<425?x+width+5:x-5,y);ctx.lineTo(toX,toY);ctx.stroke();
+ }
+}
+ctx.restore();}
+// Shared glass calibration keeps the brewing and dilution scenes continuous.
+// Leave headroom for additions rather than filling the receiving glass to its rim.
+function serverLiquidHeight(mass){return Math.min(260,Math.max(0,mass)*260/500);}
+function drawDilutionPour(){if(!dilutionScene||dilutionScene.lift<.95)return;const jet=425,coffeeTop=758-serverLiquidHeight(dilutionScene.sourceMass+dilutionScene.amount),surface=465+(coffeeTop-465)*1.08,pourGeometry=pouringTrajectory(jet,surface,6,dilutionScene.rate||5,257/8,465);
+ctx.save();ctx.translate(pourGeometry.tipX-jet-22,pourGeometry.tipY-97);
+// Hario photo reference: silver S-shaped gooseneck entering from the right.
+// The high rounded arch falls gently towards an oblique open lip.
+ctx.beginPath();ctx.moveTo(jet+250,175);
+ctx.bezierCurveTo(jet+196,201,jet+157,189,jet+126,142);
+ctx.bezierCurveTo(jet+93,90,jet+58,77,jet+24,91);
+ctx.lineTo(jet+19,103);
+ctx.bezierCurveTo(jet+54,91,jet+86,102,jet+115,150);
+ctx.bezierCurveTo(jet+151,207,jet+196,219,jet+255,192);ctx.closePath();
+const metal=ctx.createLinearGradient(0,80,0,215);metal.addColorStop(0,'#596566');metal.addColorStop(.12,'#e1e5e2');metal.addColorStop(.24,'#f6f7f3');metal.addColorStop(.34,'#7e8988');metal.addColorStop(.55,'#bbc3bf');metal.addColorStop(.72,'#f0f2ed');metal.addColorStop(.9,'#737e7c');metal.addColorStop(1,'#b7c0bb');
+ctx.fillStyle=metal;ctx.fill();ctx.strokeStyle='#77827e';ctx.lineWidth=1;ctx.stroke();
+ctx.beginPath();ctx.moveTo(jet+250,180);ctx.bezierCurveTo(jet+195,206,jet+155,195,jet+122,146);ctx.bezierCurveTo(jet+91,98,jet+58,84,jet+26,96);ctx.strokeStyle='rgba(249,249,249,.8)';ctx.lineWidth=2;ctx.stroke();
+// Dark opening with a thin metal rim, angled towards the falling stream.
+ctx.beginPath();ctx.ellipse(jet+22,97,7,3.4,-1.12,0,Math.PI*2);ctx.fillStyle='#283432';ctx.fill();ctx.strokeStyle='#c7ceca';ctx.lineWidth=1.3;ctx.stroke();
+ctx.restore();
+if(dilutionScene.pouring){ctx.beginPath();ctx.moveTo(pourGeometry.tipX,pourGeometry.tipY);ctx.quadraticCurveTo(pourGeometry.controlX,pourGeometry.controlY,jet,surface);ctx.strokeStyle='#82b4be';ctx.lineWidth=1.5+(dilutionScene.rate||5)*.3;ctx.stroke();ctx.strokeStyle='#e2f1ee';ctx.lineWidth=1.5;ctx.stroke();}
+}
+window.setKodeDilutionScene=data=>{const first=!dilutionScene;if(first)dilutionPreviousView={showFullServer,viewHeight};dilutionScene=data;showFullServer=true;viewHeight=760;canvas.classList.add('serverExpanded');if(first)resizeBrewerCanvas();else draw();};
+window.clearKodeDilutionScene=()=>{if(!dilutionScene)return;dilutionScene=null;if(dilutionPreviousView){showFullServer=dilutionPreviousView.showFullServer;viewHeight=dilutionPreviousView.viewHeight;}dilutionPreviousView=null;canvas.classList.toggle('serverExpanded',showFullServer);resizeBrewerCanvas();};
+function loop(now){updateWaterPractice(now);const realDt=Math.min(.05,(now-last)/1000||0);last=now;if(running){try{const dt=realDt*+by('simSpeed').value;for(let n=0;n<4&&running;n++)advanceFoundation(dt/4);if(time>=duration){running=false;by('simPlay').textContent='↻ Replay'}updateUI();draw();if(time>=duration)window.continueKodePlannedDilution?.()}catch(error){running=false;console.error(error);by('simPlay').textContent='▶ Continue';by('simPhase').textContent='Paused · '+(error&&error.message?error.message:'animation error')}}frameId=requestAnimationFrame(loop)}
+function choose(){Object.entries(foundationRecipe()).forEach(([k,v])=>{if(by('brew_'+k))by('brew_'+k).value=v});configure()}
+definitions.forEach(([id])=>by('brew_'+id).oninput=()=>{configure()});
+function syncStrength(){by('focusRecipeMass').textContent=doseLabel()+' g coffee · '+settings.water+' g water';}
+by('trainerStrength').oninput=()=>{Object.entries(foundationRecipe()).forEach(([k,v])=>{if(by('brew_'+k))by('brew_'+k).value=v});strengthChosen=true;configure();syncStrength()};
+window.setFoundationBrewSize=water=>{if(![250,275,300,325,350].includes(+water)||hasStarted)return false;foundationWater=+water;Object.entries(foundationRecipe()).forEach(([k,v])=>{if(by('brew_'+k))by('brew_'+k).value=v});configure();syncStrength();return true;};
+window.getFoundationBrewSize=()=>foundationWater;
+window.setKodeKettle=type=>{const next=type==='traditional'?'traditional':'gooseneck';const stamp=next+':'+(window.kodeTraditionalRate||15);if(by('kob-app').dataset.kettleConfig===stamp)return;by('kob-app').dataset.kettleConfig=stamp;window.kodeKettleType=next;by('kob-app').dataset.kettle=next;by('pourPattern').value=next==='traditional'?'centre':'circle';practiceRunning=false;practiceElapsed=0;choose();};
+for(const [id,level] of [['simpleMild',1],['simpleLevel2',2],['simpleLevel3',3],['simpleLevel4',4],['simpleBold',5]])by(id).onclick=()=>{by('trainerStrength').value=level;by('trainerStrength').oninput();for(const name of ['simpleMild','simpleLevel2','simpleLevel3','simpleLevel4','simpleBold']){by(name).classList.toggle('active',name===id);by(name).setAttribute('aria-pressed',String(name===id))}};
+let customSettings={...recipes.foundation};
+window.setTrainerMode=advanced=>{if(!advanced)customSettings={...settings};const next=advanced?customSettings:foundationRecipe();Object.entries(next).forEach(([k,v])=>{if(by('brew_'+k))by('brew_'+k).value=v});configure()};
+by('resetCustom').onclick=()=>{customSettings={...recipes.foundation};window.setTrainerMode(true)};
+
+// Foundation guidance reads the same recipe and segment clock as the illustration.
+function readGuidancePreference(){try{return localStorage.getItem('kode-v3-guidance')!=='off'}catch{return true}}
+function saveGuidancePreference(){try{localStorage.setItem('kode-v3-guidance',guidanceVisible?'on':'off')}catch{}}
+let foundationMode='brew', preparationStep=0, preparationDone=false, guideEditing=false, guidanceVisible=readGuidancePreference(), strengthChosen=false, preparationEntered=false, waitingPour=null, authorisedPours=new Set();
+let reopenedPreparation = false;
+let practiceElapsed=0,practiceRunning=false,practiceLast=null;
+const guideApp=by('kob-app');
+const strengthNames=['Delicate','Bright','Classic','Rich','Intense'];
+function preparationSteps(){const first=segments[0];if(window.kodeLearningRun)return [
+ ['What you’ll need','Watch without equipment. For your real brew:\n• FB45 + Wave 185 filter paper\n• Cup or server + scale\n• '+(window.kodeKettleType==='traditional'?'Traditional kettle + brewing water':'Gooseneck kettle + brewing water')+'\n• '+doseLabel()+' g freshly ground coffee for this '+settings.water+' g example\n• Grind whole beans just before brewing','kit'],
+ ['Grind for the right drawdown','• Grind fresh, just before brewing\n• Grind size controls how quickly water drains\n• Too fast? Grind a little finer next time\n• Too slow? Grind a little coarser next time\n• '+(window.kodeKettleType==='traditional'?'Trial: record your drawdown and taste; timing is not validated':'For the 250 g example: aim for last drips at 2:40–2:55 from the first pour')+'\n• Keep the dose and pouring technique the same while adjusting','grind'],
+ ['Prepare the water','• Example recipe: '+settings.temp+'°C water\n• Heat enough for the full brew\n• Add extra water only if practising\n• Temperature shown is a recipe setting','kettle'],
+ ['Position the dry filter','• Place the Wave 185 filter inside the FB45\n• Leave space above the ridge\n• No rinsing required for this method\n• Seat fully after adding the coffee','filter'],
+ ['Find your pouring rhythm',window.kodeKettleType==='traditional'?'• Trial: pour towards the centre\n• Trial flow: about '+settings.rate+' g/s; ease off near the target\n• Use the scale, rather than an exact pour time\n• Keep the spout as low as practical without touching the brewer':'• 50 mm (5 cm) circles over the coffee surface\n• One circle per second · 10 g water per second\n• Spout 6 cm above the brewer’s top rim','practice'],
+ ['Add and distribute the grounds','• Weigh '+doseLabel()+' g ground coffee\n• Add all the coffee first\n• Lift the FB45 clear of the cup or server\n• Gently shake to distribute the grounds','coffee'],
+ ['Seat the paper at the ridge','• Keep the FB45 off the receiving vessel\n• Gently press the paper back down\n• Seat it against the ridge\n• Keep the upper paper away from the wall','seat'],
+ ['Understand the scale','• Place brewer + receiving vessel on the scale\n• Zero before pouring\n• Keep the total reading across both pours\n• Water added is not finished drink weight','scale'],
+ ['Learn at your own pace','• Watch each part of the brew\n• Pause whenever you need\n• Continue when you’re ready','ready']];return [
+ ['Heat your water','Set your kettle to '+(window.kodeStageConfig?.temperatureEnabled?window.kodeStageConfig.bloomTemperature+'°C for the bloom and prepare '+window.kodeStageConfig.pourTemperature+'°C water for the following pour':settings.temp+'°C')+'. Have '+settings.water+' g for your brew, plus an extra 100 g if you choose the water practice.','kettle'],
+ ['Place the Wave 185 filter','Place the dry Wave 185 filter in the FB45. You’ll seat it fully after adding the coffee. No rinsing needed.','filter'],
+ ['Practise with water','Optional: place the FB45 and server on your scale and zero it. Pour 100 g in 10 seconds, using steady circles. This teaches the movement; it isn’t a required paper rinse.','practice'],
+ ['Add your coffee','Weigh '+doseLabel()+' g of freshly ground coffee separately, then add all of it to the filter. Only once all the coffee is in, hold the FB45 clear of the receiving vessel and gently shake to distribute the grounds.','coffee'],
+ ['Seat against the ridge','With the coffee distributed, gently press the filter paper back down against the ridge while the FB45 is still off the receiving vessel.','seat'],
+ ['Zero your scale','Place the FB45 onto your receiving vessel, then put the complete setup on the scale. Zero it so the water reading starts at 0 g. Keep the cumulative reading for both pours.','scale'],
+ ['Find your pouring rhythm','Keep the spout '+settings.height+' cm above the vessel’s top rim. '+(by('pourPattern').value==='centre'?'Pour steadily in the centre.':'Use '+by('circleDiameter').value+' mm circles: '+Number(by('circlePeriod').value)+' second(s) per circle.')+' Follow the kettle in the brewing illustration.','motion'],
+ ['Your first pour','Pour to '+Math.round(first.mass)+' g in '+Math.round(first.end-first.start)+' seconds. '+(window.kodeLearningRun?'Press Watch the first pour when ready. The practice run pauses between phases so you can learn at your pace.':'Press Start first pour when you are ready. Brewing then continues through both pours and drawdowns.'),'ready']];}
+// Shared pouring demonstration: the jet lands at the existing impact point.
+// Display projection uses a 4 mm nozzle directed 22.5 degrees from vertical.
+function pouringTrajectory(landingX,surfaceY,heightCm,rate,unitsPerCm,rimY){
+ // Height is referenced to the fixed vessel rim; only the flight to the landing
+ // surface changes as the slurry rises or falls.
+ const tipY=rimY-heightCm*unitsPerCm,dropCm=Math.max(.01,(surfaceY-tipY)/unitsPerCm),height=dropCm/100,speed=Math.max(0,rate)/12.566,angle=Math.PI/8,vx=speed*Math.sin(angle),vy=speed*Math.cos(angle),flight=(Math.sqrt(vy*vy+2*9.81*height)-vy)/9.81,run=vx*flight*100*unitsPerCm;
+ return {tipX:landingX+run,tipY,landingX,surfaceY,controlX:landingX+run/2,controlY:tipY+vy*flight*50*unitsPerCm};
+}
+function teachingSpout(){if(window.kodeKettleType==='traditional')return '<path d="M0 0L128-39L173 44L55 52Z" fill="#c8d2cd" stroke="#77827e" stroke-width="2"/><ellipse cx="0" cy="0" rx="9" ry="4" fill="#283432"/>';return '<defs><linearGradient id="teachingSpoutMetal" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e1e5e2"/><stop offset=".25" stop-color="#f6f7f3"/><stop offset=".55" stop-color="#7e8988"/><stop offset=".8" stop-color="#d8e0da"/><stop offset="1" stop-color="#77827e"/></linearGradient></defs><path d="M228 78C174 104 135 92 104 45C71-7 36-20 2-6L-3 6C32-6 64 5 93 53C129 110 174 122 233 95Z" fill="url(#teachingSpoutMetal)" stroke="#77827e" stroke-width="1.5"/><path d="M228 83C173 109 133 98 100 49C69 1 36-13 4-1" fill="none" stroke="#f9f9f9" stroke-width="2"/><ellipse cx="0" cy="0" rx="7" ry="3.4" transform="rotate(-64)" fill="#283432" stroke="#c7ceca" stroke-width="1.3"/>';}
+function practiceSpoutPosition(){const radius=(Number(by('circleDiameter').value)||50),angle=practiceElapsed*2*Math.PI/(Number(by('circlePeriod').value)||1),circular=by('pourPattern').value!=='centre',offset=circular?Math.sin(angle)*radius:0,surface=190+(circular?Math.cos(angle)*radius*.32:0);return pouringTrajectory(200+offset,surface,settings.height,settings.rate,20,62);}
+function prepIllustration(kind){if(kind==='kettle'&&window.kodeKettleType==='traditional')return '<svg viewBox="0 0 430 400" role="img" aria-label="Traditional kettle"><defs><linearGradient id="standardMetal"><stop stop-color="#dce4df"/><stop offset=".5" stop-color="#f4f5ee"/><stop offset="1" stop-color="#a5b7b1"/></linearGradient></defs><g stroke="#47696a" stroke-width="2" stroke-linejoin="round"><path d="M144 120Q215 98 280 120L311 295Q214 322 119 295Z" fill="url(#standardMetal)"/><path d="M144 139L83 112L94 171L132 195" fill="url(#standardMetal)"/><path d="M286 139Q360 115 350 218Q346 249 305 257" fill="none" stroke-width="13"/><path d="M162 116Q215 104 263 116M194 103V91H233V103" fill="none"/><path d="M131 290Q214 307 300 290" fill="none"/></g><rect x="184" y="218" width="65" height="32" rx="5" fill="#173f46"/><text x="216" y="240" text-anchor="middle" fill="#fffdf5" font-family="Arial" font-size="20">'+settings.temp+'°C</text></svg>';
+ if(kind==='kettle')return '<svg viewBox="0 -85 430 425" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><defs><linearGradient id="prepKettleMetal" x1="0" x2="1"><stop stop-color="#cedbd5"/><stop offset=".42" stop-color="#f6f5ec"/><stop offset="1" stop-color="#b8cbc3"/></linearGradient></defs><ellipse cx="215" cy="315" rx="107" ry="5" fill="#173f460a"/><g stroke="#173f46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M274 111H291Q310 110 318 91L343 100L335 127Q334 134 339 143L383 222L365 233L316 150Q311 142 298 142H274Z" fill="#dce6df"/><path d="M318 91L343 100M365 233L383 222" fill="none" stroke="#8aa59a"/><path d="M276 114H290V139H276Z" fill="#b9ccc3"/><path d="M137 247C113 242 103 232 99 214L80 130C74 103 59 86 38 65L52 62C77 87 89 104 95 132L113 212Q117 230 143 235Z" fill="url(#prepKettleMetal)"/><path d="M38 65L52 62" fill="none"/><path d="M156 63H274V133Q274 145 279 163L310 278Q313 289 291 294Q217 307 143 294Q124 291 127 280L152 170Q156 151 156 136Z" fill="url(#prepKettleMetal)"/><path d="M156 63H274M129 279Q217 300 310 278" fill="none"/><path d="M187 60V55Q185 49 196 47Q215 43 233 47Q245 49 244 55V60Z" fill="#e8eee5"/><path d="M192 61H239" fill="none" stroke="#8aa59a"/><path d="M168 79V136Q168 152 162 176L140 272" fill="none" stroke="#fffdf8" stroke-width="3"/><path d="M136 285Q217 302 302 285" fill="none" stroke="#8aa59a" stroke-width="1"/><rect x="187" y="190" width="65" height="34" rx="6" fill="#173f46" stroke="none"/></g><text x="219" y="213" text-anchor="middle" style="fill:#fffdf8!important;font:18px Arial;stroke:none">'+(window.kodeStageConfig?.temperatureEnabled?window.kodeStageConfig.bloomTemperature:settings.temp)+'°C</text><path d="M44 42Q36 32 44 20M62 37Q54 27 62 15" fill="none" stroke="#9fb6aa" stroke-width="2" stroke-linecap="round"/></svg>';
+
+ const coffee=!['filter','kettle','practice'].includes(kind),seat=kind==='seat',showReceptors=kind==='motion'||kind==='ready'||kind==='practice';
+ // Preparation cross-section at 20 drawing units/cm: opening 12, foot 10,
+ // filter floor 5, ridge span 7.5, internal height 8; ridge 4 above floor.
+ const vessel='<defs><pattern id="prepShellHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-42)"><path d="M0 0V6" stroke="#7c9188" stroke-opacity=".27" stroke-width="1"/></pattern></defs><path d="M80 62L106 126Q120 157 100 242H300Q280 157 294 126L320 62H313L286 126L275 142V164L250 222H150L125 164V142L114 126L87 62Z" fill="#dce2d8" stroke="#657e76" stroke-width="1.7"/><path d="M80 62L106 126Q120 157 100 242H300Q280 157 294 126L320 62H313L286 126L275 142V164L250 222H150L125 164V142L114 126L87 62Z" fill="url(#prepShellHatch)"/>';
+ // The open, flared paper follows the KODE reference: an upper air gap,
+ // contact at the ridge, and continuous support in the lower extraction area.
+ const paperShape='M100 66Q108 58 116 64Q124 74 132 68Q140 58 148 64Q156 74 164 68Q172 58 180 64Q188 74 196 68Q204 58 212 64Q220 74 228 68Q236 58 244 64Q252 74 260 68Q268 58 276 64Q284 74 292 68L300 64L275 142V164L250 222H150L125 164V142Z';
+ const pleats=Array.from({length:10},(_,i)=>{const x=101+i*20,b=150+i*10;return '<path d="M'+x+' 66Q'+(x+6)+' 61 '+(x+12)+' 67L'+(b+8)+' 221H'+b+'Z" fill="'+(i%2?'#efefdf':'#fffef4')+'" stroke="#d7dcc8" stroke-width=".7"/>';}).join('');
+ const paper='<defs><clipPath id="prepPaperClip"><path d="'+paperShape+'"/></clipPath></defs><path d="'+paperShape+'" fill="#fcfbed" stroke="#c7d1bd" stroke-width="1.3"/><g clip-path="url(#prepPaperClip)">'+pleats+'</g><path d="M100 66L125 142V164L150 222H250L275 164V142L300 64" fill="none" stroke="#c7d1bd" stroke-width="1.3"/>';
+ const receptors='<g fill="'+(showReceptors?'#bd9b5f':'#e8ede4')+'" fill-opacity="'+(showReceptors?'.14':'.45')+'" stroke="'+(showReceptors?'#9b855b':'#7e978c')+'" stroke-width="1">'+Array.from({length:9},(_,i)=>{const x=132+i*17,b=153+i*11.75;return '<path d="M'+x+' 159Q'+(x+3)+' 148 '+(x+6)+' 159L'+(b+3)+' 220H'+b+'Z"/>';}).join('')+'</g><path d="M151 225H249M170 226v12h6v-12m21 0v12h6v-12m21 0v12h6v-12" fill="none" stroke="#7e978c" stroke-width="1.3"/>';
+ const ridge='<path d="M110 126L125 142V164H119Q120 146 110 126ZM290 126L275 142V164H281Q280 146 290 126Z" fill="'+(kind==='filter'||seat?'#a8c969':'#b6c6ba')+'" stroke="'+(kind==='filter'||seat?'#70933b':'#657e76')+'" stroke-width="1.4"/>';
+ const dryBedTop=222-26*settings.dose/15;const bed=coffee?'<path d="M142 '+dryBedTop+'Q200 '+(dryBedTop-4)+' 258 '+dryBedTop+'L250 222H150Z" fill="#745039"/><path d="M153 204l6 2m13-6 4 3m16-2 5 3m14-6 6 2m15 2 4-1m13 4 5-2" stroke="#aa805b" stroke-width="2"/>':'';
+ const held=kind==='coffee'||seat||kind==='filter';
+ const base=held?'':'<g fill="rgba(217,234,230,.12)" stroke="#78928f" stroke-width="1.1"><path d="M137 245L129 240L147 243H260L263 290Q264 300 254 301H148Q138 301 138 291Z"/><path d="M146 247H256" fill="none" stroke="#9bb0a6" stroke-width=".8"/><path d="M145 253L147 286Q147 293 153 294" fill="none" stroke="#fffdf7" stroke-opacity=".7" stroke-width="1.7"/><path d="M152 298H253" fill="none" stroke="#b4c5bb" stroke-width=".8"/></g><rect x="121" y="309" width="158" height="23" rx="4" fill="#173f46"/><path d="M132 312H268" stroke="#748f88" stroke-width=".8"/><text '+(kind==='practice'?'id="practiceScaleDigits"':'')+' x="200" y="326" text-anchor="middle" style="fill:#fffdf8!important;font:15px Arial;stroke:none">0 g</text>';
+
+ let extra='';
+ if(kind==='kettle')extra='<path d="M244 27q27-15 50 9l32 29-6 4-35-26q-17-12-36-8Z" fill="#d5ddda" stroke="#657e76" stroke-width="2"/><path d="M238 29q-21 12-27 36" stroke="#ba382f" stroke-dasharray="3 5" fill="none"/><text x="122" y="35" fill="#173f46" font-size="21">'+(window.kodeStageConfig?.temperatureEnabled?window.kodeStageConfig.bloomTemperature:settings.temp)+'°C</text>';
+ if(kind==='coffee')extra='<defs><linearGradient id="prepDoseMetal" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#91a39b"/><stop offset=".25" stop-color="#edf1e9"/><stop offset=".65" stop-color="#d5dfd6"/><stop offset="1" stop-color="#84998f"/></linearGradient></defs><g class="prep-dose-cup" transform="translate(217 23)"><g transform="rotate(52)"><path d="M-24-19Q-27-22-29-17L-24 15Q-22 25 0 26Q22 25 24 15L28-18Q26-23 22-19Z" fill="url(#prepDoseMetal)" stroke="#526d64" stroke-width="1.5"/><path d="M-29-18Q-20-28 0-28Q20-28 28-18Q21-9 0-10Q-20-10-29-18Z" fill="#e3e9df" stroke="#526d64" stroke-width="1.4"/><path d="M-23-18Q-12-23 2-23Q17-23 23-18Q12-13-2-14Q-15-14-23-18Z" fill="#62412d"/><path d="M-26-17l-8 5 11 2" fill="#d5dfd6" stroke="#526d64" stroke-width="1.3"/><path d="M-18-7L-14 13Q-11 19 1 19" fill="none" stroke="#f9fbf5" stroke-width="2"/></g></g><g class="prep-falling-coffee" fill="#745039"><ellipse cx="192" cy="60" rx="2" ry="1.5"/><ellipse cx="201" cy="72" rx="1.8" ry="2"/><ellipse cx="195" cy="86" rx="2" ry="1.4"/><ellipse cx="207" cy="99" rx="1.5" ry="2"/></g><text x="280" y="31" style="fill:#745039;font-size:16px">'+doseLabel()+' g</text><g class="prep-shake-cue"><path d="M98 197l-14 0 5-6m-5 6 5 6M302 197h14l-5-6m5 6-5 6" fill="none" stroke="#ba382f" stroke-width="2"/></g><text x="200" y="280" text-anchor="middle" style="fill:#657f82;font-size:12px">Add all coffee, then gently shake</text>';
+
+
+ if(seat)extra='<g class="prep-contact-confirm"><ellipse cx="125" cy="142" rx="8" ry="10" fill="#a8c969" fill-opacity=".2"/><ellipse cx="275" cy="142" rx="8" ry="10" fill="#a8c969" fill-opacity=".2"/><circle cx="125" cy="142" r="2.7" fill="#70933b"/><circle cx="275" cy="142" r="2.7" fill="#70933b"/><path d="M283 142h19" fill="none" stroke="#70933b" stroke-width="1"/><text x="306" y="146" style="fill:#648238;font-size:11px">Ridge contact</text></g>';
+ if(kind==='filter')extra='<path d="M145 29l55 19 55-19M200 19v22m-7-7 7 7 7-7" fill="none" stroke="#ba382f" stroke-width="2"/>';
+ if(kind==='scale')extra='';
+ if(kind==='motion')extra='<ellipse cx="200" cy="110" rx="'+(Number(by('circleDiameter').value)||50)+'" ry="17" fill="none" stroke="#ba382f" stroke-width="2" stroke-dasharray="4 4"/><g class="prep-orbit" style="--orbit-rx:'+(Number(by('circleDiameter').value)||50)+'px;--orbit-time:'+(Number(by('circlePeriod').value)||1)+'s"><circle cx="200" cy="110" r="5" fill="#ba382f"/></g><text x="200" y="33" text-anchor="middle" fill="#173f46" font-size="16">'+by('circleDiameter').value+' mm · '+by('circlePeriod').value+' s / circle</text>';
+ if(kind==='practice'){const g=practiceSpoutPosition();extra='<ellipse cx="200" cy="190" rx="'+(Number(by('circleDiameter').value)||50)+'" ry="'+((Number(by('circleDiameter').value)||50)*.32)+'" fill="#b7352c" fill-opacity=".04" stroke="#b7352c" stroke-width="1.6" stroke-dasharray="3 3"/><circle id="practiceOrbitMarker" cx="'+g.landingX+'" cy="'+g.surfaceY+'" r="3.5" fill="#b7352c"/><path d="M251 184L276 174H289" stroke="#8c9e94" stroke-width=".8" fill="none"/><text x="292" y="177" text-anchor="start" style="fill:#173f46;font:10px Arial">'+by('circleDiameter').value+' mm</text><g id="practiceWater" opacity="0"><path id="practiceStream" d="M'+g.tipX+' '+g.tipY+'Q'+g.controlX+' '+g.controlY+' '+g.landingX+' '+g.surfaceY+'" fill="none" stroke="#7bb8c6" stroke-width="2.5"/><path d="M149 211Q200 204 251 211L250 219H150Z" fill="#91c6d4" fill-opacity=".18"/><path d="M177 228v27m23-27v27m23-27v27" fill="none" stroke="#7bb8c6" stroke-width="1.5" stroke-dasharray="3 4"/></g><g id="practiceKettle" transform="translate('+g.tipX+' '+g.tipY+') scale(.38)">'+teachingSpout()+'</g>';}
+ if(kind==='motion'){const g=pouringTrajectory(200,196,settings.height,settings.rate,20,62);extra+='<g transform="translate('+g.tipX+' '+g.tipY+') scale(.38)">'+teachingSpout()+'</g>'; }
+ if(kind==='ready')extra='<circle cx="298" cy="38" r="17" fill="#173f46"/><path d="M289 38l6 6 12-13" fill="none" stroke="#fff" stroke-width="2"/>';
+ const bypass=kind==='filter'?'<path class="zone-glow" d="M104 73L125 142H275L296 73Z" fill="#a8c969" fill-opacity=".08" clip-path="url(#prepPaperClip)"/>':'';
+ const extraction=kind==='motion'?'<path class="zone-glow" d="M129 154L150 222H250L271 154Z" fill="#3c8c9c" fill-opacity=".12" stroke="#3c8c9c" stroke-opacity=".5"/>':'';
+ const paperGroup='<g class="'+(kind==='filter'?'prep-paper-lower':seat?'prep-paper-seat':'')+'">'+paper+'</g>';
+ const extraGroup='<g>'+extra+'</g>';
+ return '<svg viewBox="0 -85 430 425" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><ellipse cx="200" cy="329" rx="107" ry="5" fill="#173f4609"/><g class="'+(kind==='coffee'?'prep-shake':'')+'">'+vessel+paperGroup+bypass+'<g class="'+(kind==='coffee'?'prep-bed-build':'')+'">'+bed+'</g>'+extraction+receptors+ridge+base+'</g>'+extraGroup+'</svg>';
+}
+function learningDiagram(kind){
+ const captions={grind:'Finer → slower · coarser → faster',kit:'Your brewing kit',kettle:'Water temperature · recipe setting',filter:'Paper above the ridge · space at the wall',practice:'Pouring path · where the stream meets the coffee',coffee:'Add all the grounds · then gently shake',seat:'Paper meets brewer at the ridge',scale:'Zero first · keep the cumulative reading',motion:'Circle width · rotation · spout height',ready:'Pour → delay → pour → drawdown'};
+ let drawing=prepIllustration(kind==='kit'?'scale':kind);if(kind!=='kettle')drawing=drawing.replace('viewBox="0 -85 430 425"','viewBox="50 -85 320 425"');
+ if(kind==='grind'){drawing='<svg viewBox="0 0 440 360" role="img" aria-label="Finer grounds slow drawdown; coarser grounds speed it up"><g fill="#173f46" font-family="Arial,sans-serif" text-anchor="middle"><text x="115" y="65" font-size="23">FINER</text><text x="325" y="65" font-size="23">COARSER</text><text x="115" y="267" font-size="18">Slower drawdown</text><text x="325" y="267" font-size="18">Faster drawdown</text></g><path d="M220 85V285" stroke="#cbd7cd"/>'+Array.from({length:36},(_,i)=>'<circle cx="'+(55+(i%6)*24)+'" cy="'+(105+Math.floor(i/6)*21)+'" r="4" fill="#70452f"/>').join('')+Array.from({length:16},(_,i)=>'<circle cx="'+(270+(i%4)*35)+'" cy="'+(110+Math.floor(i/4)*31)+'" r="9" fill="#70452f"/>').join('')+'<path d="M90 300H350" stroke="#b9362c" stroke-width="2"/><text x="220" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#173f46">Adjust one step. Brew again. Taste.</text></svg>'; }
+ if(kind==='kit'){
+ const nested=(art,x,y,w,ht)=>art.replace('<svg ', '<svg x="'+x+'" y="'+y+'" width="'+w+'" height="'+ht+'" ');
+ const brewer=document.createElement('div');brewer.innerHTML=prepIllustration('filter');const root=brewer.querySelector('svg');root.querySelectorAll('text,.prep-extra').forEach(el=>el.remove());
+ drawing='<svg viewBox="0 0 440 430" role="img" aria-label="Brewing kit: FB45 and Wave 185 filter paper, gooseneck kettle, receiving server on a scale, and ground coffee">'+
+ '<defs><linearGradient id="kitGlass" x1="0" x2="1"><stop stop-color="#f8faf5" stop-opacity=".65"/><stop offset="1" stop-color="#cbded7" stop-opacity=".35"/></linearGradient></defs>'+
+ '<g fill="none" stroke="#d3ded6" stroke-width="1"><path d="M28 230H412M232 32V405"/></g>'+
+ nested(root.outerHTML,4,-8,236,265)+nested(prepIllustration('kettle'),242,4,183,215)+
+ '<g stroke="#47696a" stroke-width="1.8" stroke-linejoin="round"><path d="M66 273L59 267L77 270H168L172 348Q172 360 161 361H78Q67 361 67 350Z" fill="url(#kitGlass)"/><path d="M77 275H165M80 357H160" fill="none" stroke="#9fb9af" stroke-width="1"/><path d="M74 284L75 341Q75 350 82 351" fill="none" stroke="#fffdf8" stroke-width="2"/><rect x="52" y="366" width="138" height="23" rx="5" fill="#173f46" stroke="#173f46"/><path d="M61 370H181" stroke="#809f98"/><rect x="105" y="373" width="34" height="11" rx="2" fill="#edf3e9" stroke="none"/></g>'+
+ '<g stroke="#6b8177" stroke-width="1.6" stroke-linejoin="round"><path d="M278 276L294 260H355L369 276L377 358Q331 372 275 358Z" fill="#e4d6be"/><path d="M278 276H369M294 260L300 276M355 260L349 276" fill="none"/><rect x="289" y="291" width="75" height="46" rx="2" fill="#f7f2e7" stroke="none"/><path d="M305 303L314 310L305 317M317 303L326 310L317 317M329 303L338 310L329 317" fill="none" stroke="#173f46" stroke-width="2"/><path d="M300 325H349" stroke="#a9b3a1"/></g>'+
+ '<g fill="#78573e"><ellipse cx="293" cy="378" rx="4" ry="6" transform="rotate(-25 293 378)"/><ellipse cx="309" cy="382" rx="4" ry="6" transform="rotate(20 309 382)"/><ellipse cx="324" cy="376" rx="4" ry="6" transform="rotate(-15 324 376)"/></g>'+
+ '<g font-family="Arial,sans-serif" font-size="11" letter-spacing="1.2" fill="#526f75" text-anchor="middle"><text x="120" y="218">FB45 + WAVE 185</text><text x="331" y="218">GOOSENECK KETTLE</text><text x="120" y="414">SERVER + SCALE</text><text x="327" y="414">GROUND COFFEE</text></g></svg>';
+ }
+
+ if(window.kodeKettleType==='traditional'){drawing=drawing.replace(/<ellipse[^>]*stroke-dasharray="3 3"[^>]*\/>/g,'').replace(/<path d="M251 184L276 174H289"[^>]*\/>/g,'').replace(/<text x="292"[\s\S]*?<\/text>/g,'').replaceAll('GOOSENECK KETTLE','TRADITIONAL KETTLE');}
+ if (window.matchMedia('(max-width: 600px)').matches) {
+  const mobileBounds = {
+   kit: '22 36 396 386',
+   grind: '34 40 372 308',
+   kettle: window.kodeKettleType === 'traditional' ? '67 76 305 251' : '26 7 369 319',
+   filter: '67 11 266 243',
+   practice: '56 -82 324 410',
+   coffee: '66 -22 275 319',
+   seat: '65 43 318 211',
+   scale: '66 47 268 296',
+   ready: '66 17 268 326'
+  };
+  if (mobileBounds[kind]) drawing = drawing.replace(/viewBox="[^"]+"/, 'viewBox="'+mobileBounds[kind]+'"');
+ }
+ return '<div class="learning-diagram">'+drawing+'<p class="learning-art-caption">'+captions[kind]+'</p></div>';
+}
+window.kodePreparationIllustration=prepIllustration;
+window.matchMedia('(max-width: 600px)').addEventListener('change', () => {
+ if (!by('foundationPrep').hidden) updateFoundationGuide();
+});
+const foundationZones={
+ bypass:{title:'RIDGE TECHNOLOGY™',text:'The ridge shapes and positions the paper, helping control bypass above the coffee bed.',why:'After adding and gently shaking the coffee, press the paper down against the ridge. This establishes the intended paper shape and contact point while preserving the gap from the upper vessel walls.'},
+ extraction:{title:'EXTRACTION ZONE',text:'Your pouring movement circulates water and coffee below the ridge.',why:'The ridge positions the filter above this area. Below it, the receptors support the paper and guide the flow as the coffee circulates, settles and forms the bed.'},
+ exit:{title:'RECEPTOR TECHNOLOGY™',text:'The receptors support coffee distribution and guide extraction towards the outlet.',why:'The lower receptors extend along the sides and base of the extraction area. As the slurry drains through the formed coffee bed and paper, they guide the brewed coffee towards the exit.'}
+};
+function updateZoneLesson(prefix,key){
+ const learning=prefix==='prep'&&window.kodeLearningRun;
+ const shortLessons={bypass:{title:'RIDGE TECHNOLOGY™',text:'The ridge seats the paper while leaving space above it.',why:'This contact helps direct water through the coffee rather than around it.'},extraction:{title:'EXTRACTION ZONE',text:'Circular pouring mixes water and grounds below the ridge.',why:'The receptors support the paper as water moves through the forming coffee bed.'},exit:{title:'RECEPTOR TECHNOLOGY™',text:'The side and base receptors provide exit paths for brewed coffee.',why:'Watch how the water drains through the bed as the grounds settle.'}};
+ const z=learning?shortLessons[key]:foundationZones[key];setGuideText(prefix+'ZoneTitle',z.title);setGuideText(prefix+'ZoneText',z.text);setGuideText(prefix+'ZoneWhy',z.why);
+ const block=by(prefix==='prep'?'prepZoneLesson':'guideZoneLesson');if(learning){block.querySelector('details').open=true;block.dataset.zone=key;}else if(block.dataset.zone!==key){block.querySelector('details').open=false;block.dataset.zone=key;}
+}
+
+function drawFoundationZone(){
+ if(!hasStarted||!guidanceVisible||time>=duration)return;
+ const s=activeSegment(),pouring=s.type==='bloom'||s.type==='pour';
+ ctx.save();ctx.lineWidth=1.5;ctx.beginPath();
+ if(pouring){ctx.moveTo(273,296);ctx.lineTo(323,424);ctx.lineTo(527,424);ctx.lineTo(577,296);ctx.closePath();ctx.fillStyle='rgba(60,140,156,.065)';ctx.strokeStyle='rgba(60,140,156,.4)';ctx.fill();ctx.stroke();}
+ else {
+  ctx.strokeStyle='rgba(191,134,31,.55)';ctx.lineWidth=2;
+  for(let i=0;i<9;i++){const x=280+i*36.25,bottom=329+i*24;ctx.beginPath();ctx.moveTo(x,308);ctx.quadraticCurveTo(x+2,300,x+5,308);ctx.lineTo(bottom,422);ctx.stroke();}
+  ctx.beginPath();ctx.moveTo(327,430);ctx.lineTo(523,430);ctx.lineTo(515,460);ctx.lineTo(335,460);ctx.closePath();ctx.fillStyle='rgba(223,164,48,.08)';ctx.fill();ctx.stroke();
+ }
+ ctx.restore();
+}
+function setGuideText(id,value){if(by(id).textContent!==value)by(id).textContent=value;}
+function updateFoundationGuide(){
+ const learning=foundationMode==='learn',playing=hasStarted,choosing=!strengthChosen||(!preparationEntered&&!playing),preparing=learning&&preparationEntered&&!playing&&!preparationDone;
+ guideApp.classList.toggle('guide-brewing',!guideEditing);guideApp.classList.toggle('foundation-preflight',!playing&&!preparationDone);guideApp.classList.toggle('foundation-editing',guideEditing);
+ by('learnMode').setAttribute('aria-pressed',String(learning));by('brewMode').setAttribute('aria-pressed',String(!learning));
+ by('foundationChoice').hidden=!choosing;by('foundationPrep').hidden=!preparing;by('foundationSummary').hidden=!strengthChosen;
+ const strength=strengthChosen?strengthNames[+by('trainerStrength').value-1]:'';
+ setGuideText('foundationSummaryText','Foundation / '+strength+' · '+doseLabel()+' g coffee · '+settings.water+' g water · '+settings.temp+'°C');
+ setGuideText('choiceRecipe',strengthChosen?settings.water+' g brewing water · '+strength:'Choose a strength to see your recipe.');
+ by('foundationStartOver').hidden=!strengthChosen&&!hasStarted;
+ by('choiceNext').disabled=!strengthChosen;setGuideText('choiceNext',!strengthChosen?'View my recipe →':window.kodeEvoLevel===2?'Choose finished strength →':'View my recipe →');
+ document.querySelectorAll('[data-foundation-strength]').forEach(el=>el.setAttribute('aria-pressed',String(strengthChosen&&+el.dataset.foundationStrength===+by('trainerStrength').value)));
+ if(preparing){const steps=preparationSteps(),e=steps[preparationStep];by('foundationPrep').dataset.lesson=e[2];setGuideText('prepCount',(window.kodeLearningRun?'LEARN / ':'PREPARE / ')+String(preparationStep+1).padStart(2,'0')+' OF '+steps.length);setGuideText('prepTitle',e[0]);setGuideText('prepText',e[1]);by('prepText').classList.toggle('learning-bullets',!!window.kodeLearningRun);by('prepZoneLesson').hidden=!(window.kodeLearningRun?['filter','seat']:['filter','seat','motion','ready']).includes(e[2]);if(!by('prepZoneLesson').hidden)updateZoneLesson('prep',e[2]==='ready'?'exit':(e[2]==='motion'||e[2]==='practice')?'extraction':'bypass');by('waterPractice').hidden=e[2]!=='practice';by('foundationPrep').classList.toggle('pouring-lesson',e[2]==='practice');const art=window.kodeLearningRun?learningDiagram(e[2]):prepIllustration(e[2]);if(by('prepArt').innerHTML!==art)by('prepArt').innerHTML=art;by('prepBack').hidden=false;by('prepBack').disabled=preparationStep===0&&!!returnFromPreparation;by('prepReturnToRecipe').hidden=!returnFromPreparation;setGuideText('prepNext',e[2]==='practice'?(window.kodeLearningRun?'Continue →':practiceElapsed>0?'Water emptied · continue →':'Skip practice →'):preparationStep===steps.length-1?(window.kodeLearningRun?'Open demonstration →':'Ready to brew →'):(window.kodeLearningRun?'Next →':'I’m ready →'));by('prepDots').innerHTML=steps.map((_,i)=>'<i class="'+(i===preparationStep?'current':'')+'"></i>').join('');}
+ by('foundationPrompt').hidden=!playing||!guidanceVisible;by('guidanceToggle').setAttribute('aria-expanded',String(guidanceVisible));setGuideText('guidanceToggle',guidanceVisible?'Hide guidance':'Show guidance');
+ setGuideText('foundationEdit',guideEditing?'Close recipe':'View recipe');if(!playing){setGuideText('simPlay','Start first pour');return;}
+ setGuideText('simPlay',time>=duration?'↻ Replay':running?'Ⅱ Pause':'▶ Continue');
+ if(!guidanceVisible)return;
+ const s=activeSegment(),remaining=Math.max(0,Math.ceil(s.end-time)),first=segments[0],target=segments.filter(x=>x.end<=s.start&&x.mass).reduce((n,x)=>n+x.mass,0)+s.mass;
+ let phase,targetText,copy,next;
+ if(time>=duration){phase='BREW COMPLETE';targetText='Your brew is ready';copy='Remove the brewer, swirl the server and enjoy. Revisit the illustration whenever you need a refresher.';next='Ready to brew again?';}
+ else if(waitingPour!==null){const pour=segments.find(x=>x.start===waitingPour),total=segments.filter(x=>x.start<=waitingPour).reduce((n,x)=>n+x.mass,0);phase='YOUR NEXT POUR';targetText='Ready when you are';copy='Keep the formed bed in place. Add '+Math.round(pour.mass)+' g to reach '+Math.round(total)+' g on your scale, using the same steady movement.';next='Press “Start next pour” to continue.';}
+ else if(s.type==='bloom'){phase='01 / FIRST POUR';targetText='Pour to '+Math.round(s.mass)+' g';copy=window.kodeKettleType==='traditional'?'Trial: pour towards the centre, around '+settings.rate+' g/s. Ease off near the scale target.':'Pour at '+settings.rate+' g/s. Follow the kettle movement as the grounds lift and bloom with the rising slurry.';next=remaining+' s left in this pour';}
+ else if(s.label==='Bloom rest'){phase='02 / FIRST DRAWDOWN';targetText='Let the bloom develop';copy=time<first.end+5?'Stop pouring. Watch the remaining circulation gently reduce.':'As the slurry descends, grounds collect against the filter and form the bed along the walls and bottom.';next='Next pour in '+remaining+' seconds · continue when the countdown ends';}
+ else if(s.type==='pour'){phase='03 / FOLLOWING POUR';targetText='Pour to '+Math.round(target)+' g total';copy=window.kodeKettleType==='traditional'?'Add '+Math.round(s.mass)+' g towards the centre. Ease off near the total water target.':'Add '+Math.round(s.mass)+' g at '+settings.rate+' g/s. Incoming water lifts and mixes the previously formed bed.';next=remaining+' s left in this pour';}
+ else {phase='04 / FINAL DRAWDOWN';targetText='Watch the bed reform';copy='The grounds settle into the bed as the remaining slurry drains through the coffee and filter.';next='Watch for the last drips · '+remaining+' s in playback';}
+ if(window.kodeLearningRun&&window.kodeLearningCheckpoint){phase='DEMONSTRATION · PAUSED';targetText=s.type==='pour'?'Ready for the next pour?':s.type==='draw'?'Now watch the final drawdown':'The first pour is complete';copy=s.type==='pour'?'The next pour mixes the wet grounds again. Follow the selected pouring movement.':s.type==='draw'?'Pouring stops. The saturated grounds settle and the remaining water drains through the bed.':'Pouring stops, but the water keeps moving. Watch the circulation reduce and the bed begin to form.';next='Press Continue to watch the next part.';setGuideText('simPlay','Continue learning →');}
+ updateZoneLesson('guide',s.type==='bloom'||s.type==='pour'?'extraction':'exit');by('guideZoneLesson').hidden=time>=duration;setGuideText('guidePhase',phase);setGuideText('guideTarget',targetText);setGuideText('guideText',copy);setGuideText('guideNext',next);
+}
+function updateBrewScale(){
+ window.kodeBrewState={time,complete:hasStarted&&time>=duration,hasStarted,running,phase:activeSegment().type,firstPourEnd:segments[0]?.end||0,nextPourStart:segments.find(x=>x.type==='pour')?.start||0,temp:settings.temp};window.updateKodeStageReadout?.();
+ const amount=hasStarted?Math.max(0,Math.min(settings.water,poured)):0,s=activeSegment(),target=s.mass?segments.filter(x=>x.start<=s.start).reduce((n,x)=>n+x.mass,0):null;
+ setGuideText('brewScaleWeight',Math.round(amount)+' g');
+  const nextPour=segments.find(segment=>segment.type==='pour'&&segment.start>time);
+ const cue=waitingPour!==null?'Ready · press Start next pour':target!==null?'Pour to '+Math.round(target)+' g total':time>=duration?'Complete · '+settings.water+' g poured':nextPour?'Next pour in '+Math.max(0,Math.ceil(nextPour.start-time))+' seconds · keep the scale reading':'Final drawdown · wait for the last drips';
+ setGuideText('brewScaleTarget',cue);
+ const seconds=nextPour?Math.ceil(nextPour.start-time):null;
+ const imminent=hasStarted&&time<duration&&seconds!==null&&seconds>0&&seconds<=10;
+ const pourNow=hasStarted&&s.type==='pour'&&time-s.start<3;
+ const alert=by('pourAwareness');alert.hidden=!(imminent||pourNow);
+ if(imminent||pourNow){setGuideText('pourAwarenessTitle',pourNow?'POUR NOW':'GET READY · NEXT POUR');setGuideText('pourAwarenessCount',pourNow?'Start pouring':String(seconds));setGuideText('pourAwarenessText',pourNow?'Follow the kettle · pour to '+Math.round(target)+' g total':'Have your kettle ready · keep the scale reading');alert.classList.toggle('pour-now',pourNow);}
+}
+function updateWaterPractice(now){
+ const practiceDuration=100/settings.rate;by('practiceProgress').max=practiceDuration;
+ const visible=foundationMode==='learn'&&preparationEntered&&!preparationDone&&!hasStarted&&preparationSteps()[preparationStep][2]==='practice';
+ if(!visible){practiceRunning=false;practiceLast=null;return;}
+ if(practiceRunning){if(practiceLast!==null)practiceElapsed=Math.min(practiceDuration,practiceElapsed+Math.max(0,Math.min(.1,(now-practiceLast)/1000)));practiceLast=now;if(practiceElapsed>=practiceDuration-1e-8){practiceElapsed=practiceDuration;practiceRunning=false;practiceLast=null;}}
+ const scaleDigits=by('practiceScaleDigits');if(scaleDigits)scaleDigits.textContent=Math.round(Math.min(100,practiceElapsed*settings.rate))+' g';setGuideText('practiceWeight',Math.min(100,Math.floor(practiceElapsed*settings.rate))+' / 100 g');setGuideText('practiceClock',Math.round(practiceElapsed)+' / '+Math.round(practiceDuration)+' s');by('practiceProgress').value=practiceElapsed;
+ setGuideText('practicePlay',practiceElapsed>=practiceDuration?(window.kodeLearningRun?'Replay demonstration':'Replay water practice'):practiceRunning?'Pause practice':practiceElapsed>0?'Continue practice':(window.kodeLearningRun?'Play demonstration':'Start water practice'));
+ setGuideText('practiceStatus',practiceElapsed>=practiceDuration?(window.kodeLearningRun?'Complete · 100 g added.':'Practice complete. Empty the practice water from the server before adding coffee.'):practiceRunning?'Aim around '+settings.rate+' g/s · '+(window.kodeKettleType==='traditional'?'pour centrally; ease off near the target.':'follow the circular movement.'):'Optional practice · water drains freely without a coffee bed.');
+ const kettle=by('practiceKettle'),water=by('practiceWater'),stream=by('practiceStream'),g=practiceSpoutPosition();
+ const marker=by('practiceOrbitMarker');if(marker){marker.setAttribute('cx',g.landingX);marker.setAttribute('cy',g.surfaceY);}if(kettle)kettle.setAttribute('transform','translate('+g.tipX+' '+g.tipY+') scale(.38)');if(water)water.setAttribute('opacity',practiceRunning?'1':'0');if(stream)stream.setAttribute('d','M'+g.tipX+' '+g.tipY+'Q'+g.controlX+' '+g.controlY+' '+g.landingX+' '+g.surfaceY);
+ if(practiceElapsed>=practiceDuration)setGuideText('prepNext',window.kodeLearningRun?'Continue →':'Water emptied · continue →');
+}
+by('practicePlay').onclick=()=>{if(practiceElapsed>=100/settings.rate)practiceElapsed=0;practiceRunning=!practiceRunning;practiceLast=null;updateWaterPractice(performance.now())};
+function advanceFoundation(dt){
+ if(!window.kodeLearningRun){step(dt);return;}
+ const boundary=segments.find(segment=>segment.end>time+1e-7)?.end??duration;
+ step(Math.min(dt,Math.max(0,boundary-time)));
+ if(time>=boundary-1e-7&&time<duration){running=false;window.kodeLearningCheckpoint=boundary;updateFoundationGuide();}
+}
+let returnFromPreparation = null;
+function canReviseFoundationBrew(){
+ return strengthChosen&&preparationEntered&&preparationDone&&!hasStarted&&!window.kodeLearningRun&&window.kodeEvoLevel===1;
+}
+window.canReviseFoundationBrew = canReviseFoundationBrew;
+window.createKodeRecipeSelectors = (onChange, canEdit=canReviseFoundationBrew) => {
+ const controls=document.createElement('div');
+ controls.className='recipe-selectors';
+ controls.hidden=true;
+ controls.innerHTML='<label>Strength <select class="recipe-strength-select"></select></label><label>Brew size <select></select></label>';
+ const [strength,size]=controls.querySelectorAll('select');
+ strengthNames.forEach((name,index)=>strength.add(new Option(name,index+1)));
+ [250,275,300,325,350].forEach(water=>size.add(new Option(water+' g',water)));
+ let colouredStrength;
+ function sync(){
+  controls.hidden=!canEdit();
+  if(controls.hidden)return;
+  strength.value=by('trainerStrength').value;
+  size.value=String(window.getFoundationBrewSize());
+  if(colouredStrength===strength.value)return;
+  colouredStrength=strength.value;
+  const preset=by(['simpleMild','simpleLevel2','simpleLevel3','simpleLevel4','simpleBold'][Number(strength.value)-1]);
+  const colours=getComputedStyle(preset);
+  strength.style.setProperty('--recipe-strength',colours.getPropertyValue('--strength-brown'));
+  strength.style.setProperty('--recipe-strength-ink',colours.getPropertyValue('--strength-ink'));
+ }
+ function apply(selector){
+  if(canEdit()){
+   by('foundationChoice').querySelector(selector).click();
+   onChange?.();
+  }
+  sync();
+ }
+ strength.onchange=()=>apply('[data-foundation-strength="'+strength.value+'"]');
+ size.onchange=()=>apply('[data-brew-size="'+size.value+'"]');
+ return {controls,sync};
+};
+window.reopenKodePreparation = callback => {
+ if(!canReviseFoundationBrew())return;
+ reopenedPreparation=true;
+ foundationMode='learn';
+ preparationDone=false;
+ window.setKodePreparationReturn(callback);
+ by('prepNext').focus();
+};
+window.setKodePreparationReturn = callback => {
+ returnFromPreparation = callback;
+ updateFoundationGuide();
+};
+function returnToFoundationStart(clearStrength=false){
+ returnFromPreparation = null;
+ reopenedPreparation=false;
+ running=false;practiceRunning=false;practiceLast=null;practiceElapsed=0;
+ preparationStep=0;preparationDone=false;preparationEntered=false;guideEditing=false;
+ if(clearStrength)strengthChosen=false;
+ by('simSpeed').value=String(window.kodePlaybackSpeed||1);restart();updateWaterPractice(performance.now());updateFoundationGuide();
+ by('foundationChoice').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function switchFoundationMode(mode){
+ if(foundationMode===mode)return;
+ foundationMode=mode;returnToFoundationStart();
+}
+by('learnMode').onclick=()=>{switchFoundationMode('learn');if(strengthChosen){preparationEntered=true;preparationDone=false;guideEditing=false;updateFoundationGuide();by('foundationPrep').scrollIntoView({behavior:'smooth',block:'start'});}};
+by('foundationStartOver').onclick=()=>returnToFoundationStart(true);
+by('brewMode').onclick=()=>switchFoundationMode('brew');
+document.querySelectorAll('[data-foundation-strength]').forEach(el=>el.onclick=()=>{strengthChosen=true;by(['simpleMild','simpleLevel2','simpleLevel3','simpleLevel4','simpleBold'][+el.dataset.foundationStrength-1]).click();updateFoundationGuide()});
+window.prepareKodeExistingCoffee=()=>{running=false;preparationEntered=true;preparationDone=true;guideEditing=false;updateFoundationGuide();};
+by('choiceNext').onclick=()=>{if(!strengthChosen)return;preparationEntered=true;guideEditing=false;if(foundationMode==='brew'||window.kodeEvoLevel===2)preparationDone=true;updateFoundationGuide()};
+by('prepBack').onclick=()=>{
+ practiceRunning=false;
+ practiceLast=null;
+ if (preparationStep > 0) {
+  preparationStep--;
+  updateFoundationGuide();
+  return;
+ }
+ preparationEntered=false;
+ updateFoundationGuide();
+};
+by('prepReturnToRecipe').onclick=()=>{
+ const returnToRecipe = returnFromPreparation;
+ returnFromPreparation = null;
+ practiceRunning=false;
+ practiceLast=null;
+ if(reopenedPreparation){
+  reopenedPreparation=false;
+  preparationDone=true;
+ }else{
+  preparationStep=0;
+  preparationEntered=false;
+ }
+ updateFoundationGuide();
+ returnToRecipe?.();
+};
+by('prepNext').onclick=()=>{practiceRunning=false;practiceLast=null;if(preparationStep<preparationSteps().length-1){preparationStep++;updateFoundationGuide()}else{returnFromPreparation=null;reopenedPreparation=false;preparationDone=true;by('simSpeed').value=String(window.kodePlaybackSpeed||1);updateFoundationGuide()}};
+by('foundationEdit').onclick=()=>{running=false;guideEditing=!guideEditing;setGuideText('foundationEdit',guideEditing?'Close recipe':'View recipe');updateFoundationGuide()};
+by('guideHide').onclick=()=>{guidanceVisible=false;saveGuidancePreference();updateFoundationGuide();draw()};
+by('guidanceToggle').onclick=()=>{guidanceVisible=!guidanceVisible;saveGuidancePreference();updateFoundationGuide();draw()};
+by('simPlay').onclick=()=>{window.kodeLearningCheckpoint=null;if(!strengthChosen)return;if(foundationMode==='learn'&&!hasStarted&&!preparationDone){by('foundationPrep').scrollIntoView({behavior:'smooth',block:'nearest'});return}guideEditing=false;if(waitingPour!==null){authorisedPours.add(waitingPour);waitingPour=null}if(time>=duration)restart();running=!running;hasStarted=true;by('simPlay').textContent=running?'Ⅱ Pause':'▶ Continue';updateFoundationGuide()};by('simRewind').onclick=()=>seekPlayback(-5);by('simForward').onclick=()=>seekPlayback(5);by('simRestart').onclick=restart;by('toggleServer').onclick=()=>{showFullServer=!showFullServer;viewHeight=showFullServer?1010:700;resizeBrewerCanvas();canvas.classList.toggle('serverExpanded',showFullServer);by('toggleServer').textContent=showFullServer?'Brewer detail':'Full setup';by('toggleServer').setAttribute('aria-expanded',String(showFullServer));draw()};by('circlePeriod').oninput=()=>{updateUI();draw()};by('pourPattern').onchange=()=>{updateUI();draw()};by('circleDiameter').oninput=()=>{updateUI();draw()};by('simScrub').oninput=()=>{let target=+by('simScrub').value/1000*duration;restart();hasStarted=true;while(time<target)step(Math.min(.25,target-time));updateUI();draw();by('simPlay').textContent='▶ Continue'};window.setActualDisplay=enabled=>{if(!enabled)actualBrew=null;updateUI()};window.startBrewerSimulation=name=>{choose(name);by('simPlay').click()};choose();resizeBrewerCanvas();new ResizeObserver(resizeBrewerCanvas).observe(canvas);document.fonts.ready.then(()=>draw());requestAnimationFrame(loop);
+})();
+});</script></div></div><script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const canvas=document.getElementById('brewerCanvas'),playback=document.querySelector('.focus-playback'),app=document.getElementById('kob-app');
+ if(!canvas||!playback)return;
+ const toolbar=app.querySelector('.foundation-toolbar'),stage=playback.querySelector('.simstage');if(toolbar&&stage)playback.before(toolbar);
+ let queued=false;
+ function fit(){
+  queued=false;
+  const focused=!app.classList.contains('foundation-preflight')&&!app.classList.contains('foundation-editing');app.classList.toggle('brew-screen',focused);
+  const summary=document.getElementById('foundationSummary');if(focused&&summary&&toolbar&&toolbar.parentElement!==summary)summary.append(toolbar);else if(!focused&&toolbar&&toolbar.parentElement!==playback.parentElement)playback.before(toolbar);
+  if(focused){canvas.style.height='100%';return;}
+  const rect=canvas.getBoundingClientRect(),panel=playback.getBoundingClientRect(),viewport=window.visualViewport?window.visualViewport.height:window.innerHeight;
+  const top=rect.top+window.scrollY,below=panel.bottom-rect.bottom;
+  const natural=rect.width*canvas.height/Math.max(1,canvas.width);
+  const recipe=app.querySelector('.focus-recipe'),recipeBelow=recipe.getBoundingClientRect().top>=panel.bottom-2,reserve=recipeBelow?Math.min(60,recipe.getBoundingClientRect().height)+12:0;
+  const available=Math.max(190,Math.floor(viewport-top-below-reserve-14));
+  const height=Math.round(Math.min(natural,available));
+  if(canvas.style.height!==height+'px')canvas.style.height=height+'px';
+ }
+ function schedule(){if(!queued){queued=true;requestAnimationFrame(fit)}}
+ window.addEventListener('resize',schedule);
+ window.visualViewport?.addEventListener('resize',schedule);
+ app.addEventListener('toggle',schedule,true);
+ app.querySelector('.switch')?.addEventListener('click',schedule);
+ const recipePanel=app.querySelector('.focus-recipe'),disclosure=recipePanel.querySelector('.focus-recipe-disclosure');
+ let compact;
+ function syncRecipe(){disclosure.open=true;schedule()}
+ window.addEventListener('resize',syncRecipe);syncRecipe();
+ new ResizeObserver(schedule).observe(recipePanel);
+ new MutationObserver(schedule).observe(app,{attributes:true,attributeFilter:['class']});
+ new MutationObserver(schedule).observe(canvas,{attributes:true,attributeFilter:['height','width']});
+ document.fonts?.ready.then(schedule);
+ schedule();
+});
+</script>
+<script src="evo2.js?v=42"></script><script src="evo-stages.js?v=rollback1"></script><script src="viewport-fit.js"></script><script src="journey-review.js"></script><script src="learning-framework.js?v=7"></script><script src="user-settings.js?v=rollback1"></script><script src="saved-recipes.js?v=pro1"></script><script src="planned-dilution.js?v=33"></script><script src="printable-recipes.js?v=32"></script><script src="docked-recipe.js?v=3"></script><script src="timeline-controls.js"></script><script src="two-methods.js?v=34"></script><script src="strength-tracks.js?v=17"></script><script src="learning-slides.js?v=9"></script><script src="phone-functional.js?v=29"></script><script src="responsive-audit.js?v=1"></script><script src="existing-coffee.js?v=4"></script><script src="foundation-trials.js?v=13"></script><script src="station-home.js"></script><script>document.addEventListener("DOMContentLoaded",()=>{requestAnimationFrame(()=>requestAnimationFrame(()=>{document.documentElement.classList.remove("kode-starting");clearTimeout(window.kodeStartupFallback);}));});</script></body></html>
