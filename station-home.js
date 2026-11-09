@@ -36,6 +36,31 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>`;
  home.prepend(screen);
  home.classList.add('station-landing');
+ const choice = by('foundationChoice');
+ const size = by('brewSizePicker');
+ const strengthTitle = by('brewStrengthHeading');
+ const cups = choice.querySelector('.foundation-cups');
+ const footer = choice.querySelector('.choice-bottom');
+ const progress = document.createElement('ol');
+ progress.className = 'station-journey station-setup-journey';
+ progress.setAttribute('aria-label', 'Brew journey');
+ choice.classList.add('station-setup');
+ size.before(strengthTitle, cups);
+ footer.before(progress);
+ by('brewSizeHeading').textContent = 'Choose your brew size';
+ function renderSetup() {
+  const dilution = window.kodeBrewPath === 'dilution';
+  strengthTitle.textContent = dilution ? 'Choose your starting station' : 'Your strength station';
+  const steps = dilution ? ['Plan brew', 'Brew', 'Add water', 'Taste'] : ['Choose size', 'Brew', 'Taste'];
+  progress.replaceChildren(...steps.map((step, i) => {
+   const item = document.createElement('li');
+   item.textContent = step;
+   if (i === 0) item.setAttribute('aria-current', 'step');
+   return item;
+  }));
+ }
+ document.addEventListener('kode-path-change', renderSetup);
+ renderSetup();
  const find = selector => screen.querySelector(selector);
  const rail = find('.station-rail');
  names.forEach((name, i) => {

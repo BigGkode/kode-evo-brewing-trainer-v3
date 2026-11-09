@@ -29,3 +29,27 @@
 #kob-app .station-continue{width:100%;min-height:46px;background:#b9362c;border:0;color:#fffdf7;font-weight:700;text-align:left}
 #kob-app .station-support{display:flex;justify-content:space-between;flex-wrap:wrap;gap:0 10px}
 #kob-app .station-link{background:none;border:0;color:#fffdf7;text-decoration:underline;min-height:44px;padding:0;font-size:12px}
+
+/* Continue the station theme into the working recipe picker. */
+#kob-app #foundationChoice.station-setup{max-width:580px!important;margin-inline:auto!important;padding:clamp(16px,5vw,34px)!important;background:#173f46!important;color:#fffdf7!important;border-radius:12px}
+#kob-app #foundationChoice.station-setup .choice-heading{border-color:#78978f!important}
+#kob-app #foundationChoice.station-setup :is(.choice-heading h2,#brewStrengthHeading,.recipe-calculation-notes summary){color:#fffdf7!important}
+#kob-app #foundationChoice.station-setup #brewStrengthHeading{margin:14px 0 5px!important;font-size:17px!important}
+#kob-app #foundationChoice.station-setup .foundation-cups{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:3px!important;position:relative;margin:4px 0 13px!important}
+#kob-app #foundationChoice.station-setup .foundation-cups::before{content:'';position:absolute;left:10%;right:10%;top:17px;border-top:1px solid #8ebcc7}
+#kob-app #foundationChoice.station-setup .foundation-cups>button[data-foundation-strength]{display:grid!important;justify-items:center;align-content:start;gap:5px!important;min-width:0!important;min-height:50px!important;padding:6px 0!important;border:0!important;background:transparent!important;color:#fffdf7!important;box-shadow:none!important;z-index:1}
+#kob-app #foundationChoice.station-setup .foundation-cups>button[data-foundation-strength][aria-pressed]{background:transparent!important}
+#kob-app #foundationChoice.station-setup .foundation-cups>button[data-foundation-strength] strong{font-size:11px!important;color:#fffdf7!important}
+#kob-app #foundationChoice.station-setup .foundation-cups>button[data-foundation-strength] small,#kob-app #foundationChoice.station-setup .foundation-cups .route-station svg{display:none!important}
+#kob-app #foundationChoice.station-setup .foundation-cups>button[data-foundation-strength] .route-station{display:block!important;box-sizing:border-box;width:23px!important;height:23px!important;margin:0!important;border:3px solid #cce6ee!important;border-radius:50%!important;background:var(--station-brown)!important}
+#kob-app #foundationChoice.station-setup .foundation-cups>button[aria-pressed=true] .route-station{border-color:#fffdf7!important;outline:3px solid #b9362c;outline-offset:1px}
+#kob-app #foundationChoice.station-setup :is(#brewSizePicker,.station-setup-journey,.choice-bottom){background:#f8f5ec!important;color:#173f46!important;margin:0!important}
+#kob-app #foundationChoice.station-setup #brewSizePicker{padding:12px 12px 6px!important;border:0!important;border-radius:8px 8px 0 0}
+#kob-app #foundationChoice.station-setup #brewSizePicker::before{content:'YOUR BREW TICKET';display:block;font-size:10px;font-weight:700;letter-spacing:.12em;margin-bottom:6px}
+#kob-app #foundationChoice.station-setup .brew-size-options{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+#kob-app #foundationChoice.station-setup .brew-size-options button{min-width:0!important;min-height:44px!important;padding:4px 0!important;font-size:13px!important}
+#kob-app #foundationChoice.station-setup .station-setup-journey{padding:8px 12px 10px!important}
+#kob-app #foundationChoice.station-setup .station-setup-journey[aria-label] li[aria-current=step]::before{outline:2px solid #173f46;outline-offset:2px}
+#kob-app #foundationChoice.station-setup .choice-bottom{padding:8px 12px 12px!important;border:0!important;border-radius:0 0 8px 8px}
+#kob-app #foundationChoice.station-setup #choiceRecipe{color:#173f46!important}
+#kob-app #foundationChoice.station-setup #choiceNext{min-height:44px}
