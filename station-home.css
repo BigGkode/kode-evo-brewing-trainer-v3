@@ -68,3 +68,6 @@
 #kob-app .station-size-controls button:disabled{opacity:.5}
 #kob-app .station-quick [data-quick-yield]{font-size:12px;margin:6px 0 10px}
 #kob-app .station-quick-links{display:flex;justify-content:space-between;gap:8px}
+
+#kob-app .station-quick-heading .station-rail{margin:9px 0 0}
+#kob-app .station-quick-heading .station-rail button{color:#fffdf7!important;text-decoration:none!important;min-height:50px;padding:6px 0!important;font-size:11px}

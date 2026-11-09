@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
  quick.className = 'station-quick';
  quick.hidden = true;
  quick.innerHTML = `
-  <div class="station-quick-heading"><span class="station-kicker">FOUNDATION · DIRECT</span><h2 class="station-destination"></h2><button type="button" data-quick-home>Change strength</button></div>
+  <div class="station-quick-heading"><span class="station-kicker">FOUNDATION · DIRECT</span><h2 class="station-destination"></h2><div class="station-rail" role="group" aria-label="Change strength"></div></div>
   <div class="station-ticket">
    <span class="station-kicker">YOUR BREW TICKET</span>
    <div class="station-quick-amounts">
@@ -69,7 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
  choice.prepend(quick);
  const q = selector => quick.querySelector(selector);
  const sizeButtons = [...size.querySelectorAll('[data-brew-size]')];
- q('[data-quick-home]').onclick = () => by('methodHome').click();
+ const quickRail = q('.station-rail');
+ populateRail(quickRail, strength => {
+  destination = strength;
+  cups.querySelector('[data-foundation-strength="' + strength + '"]').click();
+  render();
+  renderSetup();
+ });
  q('[data-quick-recipe]').onclick = () => by('choiceNext').click();
  function openQuickRecipe(action) {
   by('choiceNext').click();
@@ -95,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
    const dose = Number(by('brew_dose').value);
    const title = q('h2');
    title.textContent = names[selected - 1];
+   markRail(quickRail, selected);
    title.style.setProperty('--bean', colours[selected - 1]);
    q('[data-quick-water]').textContent = water + ' g';
    q('[data-quick-dose]').textContent = dose + ' g';
@@ -119,14 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
  renderSetup();
  const find = selector => screen.querySelector(selector);
  const rail = find('.station-rail');
- names.forEach((name, i) => {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = name;
-  button.style.setProperty('--bean', colours[i]);
-  button.onclick = () => { destination = i + 1; render(); };
-  rail.append(button);
- });
+ function populateRail(container, onSelect) {
+  names.forEach((name, i) => {
+   const button = document.createElement('button');
+   button.type = 'button';
+   button.textContent = name;
+   button.style.setProperty('--bean', colours[i]);
+   button.onclick = () => onSelect(i + 1);
+   container.append(button);
+  });
+ }
+ function markRail(container, selected) {
+  [...container.children].forEach((button, i) => button.setAttribute('aria-pressed', String(i + 1 === selected)));
+ }
+ populateRail(rail, strength => { destination = strength; render(); });
  const routes = find('.station-routes');
  routes.addEventListener('click', event => {
   const button = event.target.closest('button[data-route]');
@@ -157,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!available || last) route = 'Foundation';
   const direct = route === 'Foundation';
   const name = names[destination - 1];
-  [...rail.children].forEach((button, i) => button.setAttribute('aria-pressed', String(i + 1 === destination)));
+  markRail(rail, destination);
   routes.hidden = !available;
   [...routes.children].forEach(button => {
    button.disabled = last && button.dataset.route === 'Dilution';
