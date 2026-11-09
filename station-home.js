@@ -48,8 +48,62 @@ document.addEventListener('DOMContentLoaded', () => {
  size.before(strengthTitle, cups);
  footer.before(progress);
  by('brewSizeHeading').textContent = 'Choose your brew size';
+ const quick = document.createElement('div');
+ quick.className = 'station-quick';
+ quick.hidden = true;
+ quick.innerHTML = `
+  <div class="station-quick-heading"><span class="station-kicker">FOUNDATION · DIRECT</span><h2 class="station-destination"></h2><button type="button" data-quick-home>Change strength</button></div>
+  <div class="station-ticket">
+   <span class="station-kicker">YOUR BREW TICKET</span>
+   <div class="station-quick-amounts">
+    <div><span>COFFEE DOSE</span><strong data-quick-dose></strong></div>
+    <div><span>BREW WATER</span><strong data-quick-water></strong><div class="station-size-controls">
+     <button type="button" data-size-step="-1" aria-label="Use 25 grams less brew water">−</button>
+     <button type="button" data-size-step="1" aria-label="Use 25 grams more brew water">+</button>
+    </div></div>
+   </div>
+   <p data-quick-yield></p>
+   <button type="button" class="station-continue" data-quick-brew>Go to brewing →</button>
+   <div class="station-quick-links"><button type="button" data-quick-recipe>View recipe</button><button type="button" data-quick-help>Preparation help</button></div>
+  </div>`;
+ choice.prepend(quick);
+ const q = selector => quick.querySelector(selector);
+ const sizeButtons = [...size.querySelectorAll('[data-brew-size]')];
+ q('[data-quick-home]').onclick = () => by('methodHome').click();
+ q('[data-quick-recipe]').onclick = () => by('choiceNext').click();
+ function openQuickRecipe(action) {
+  by('choiceNext').click();
+  if (by('brewRecipeOverlay').open) by(action).click();
+ }
+ q('[data-quick-brew]').onclick = () => openQuickRecipe('recipeContinue');
+ q('[data-quick-help]').onclick = () => openQuickRecipe('recipeShowPreparation');
+ quick.querySelectorAll('[data-size-step]').forEach(button => {
+  button.onclick = () => {
+   const current = sizeButtons.findIndex(option => Number(option.dataset.brewSize) === window.getFoundationBrewSize());
+   sizeButtons[current + Number(button.dataset.sizeStep)]?.click();
+   renderSetup();
+  };
+ });
  function renderSetup() {
   const dilution = window.kodeBrewPath === 'dilution';
+  const simple = !dilution && !window.kodeLearningRun && window.kodeEvoLevel === 1;
+  choice.classList.toggle('station-quick-active', simple);
+  quick.hidden = !simple;
+  if (simple) {
+   const selected = Number(by('trainerStrength').value);
+   const water = window.getFoundationBrewSize();
+   const dose = Number(by('brew_dose').value);
+   const title = q('h2');
+   title.textContent = names[selected - 1];
+   title.style.setProperty('--bean', colours[selected - 1]);
+   q('[data-quick-water]').textContent = water + ' g';
+   q('[data-quick-dose]').textContent = dose + ' g';
+   q('[data-quick-yield]').textContent = 'Estimated in cup: about ' + Math.round(water - 2 * dose) + ' g';
+   const current = sizeButtons.findIndex(option => Number(option.dataset.brewSize) === water);
+   quick.querySelectorAll('[data-size-step]').forEach(button => {
+    button.disabled = !sizeButtons[current + Number(button.dataset.sizeStep)];
+   });
+  }
   strengthTitle.textContent = dilution ? 'Choose your starting station' : 'Your strength station';
   const steps = dilution ? ['Plan brew', 'Brew', 'Add water', 'Taste'] : ['Choose size', 'Brew', 'Taste'];
   progress.replaceChildren(...steps.map((step, i) => {
@@ -60,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
  }
  document.addEventListener('kode-path-change', renderSetup);
+ new MutationObserver(renderSetup).observe(choice,{attributes:true,attributeFilter:['hidden']});
+ new MutationObserver(renderSetup).observe(by('choiceRecipe'),{childList:true});
  renderSetup();
  const find = selector => screen.querySelector(selector);
  const rail = find('.station-rail');
@@ -91,7 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
    finish.value = String(destination);
    finish.dispatchEvent(new Event('change', { bubbles:true }));
   }
-  by('brewSizeHeading').scrollIntoView({ block:'nearest' });
+  renderSetup();
+  if (!dilution && !quick.hidden) quick.scrollIntoView({ block:'start' });
+  else by('brewSizeHeading').scrollIntoView({ block:'nearest' });
  };
  function render() {
   const available = !!window.kodeDilutionEnabled;

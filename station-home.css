@@ -53,3 +53,18 @@
 #kob-app #foundationChoice.station-setup .choice-bottom{padding:8px 12px 12px!important;border:0!important;border-radius:0 0 8px 8px}
 #kob-app #foundationChoice.station-setup #choiceRecipe{color:#173f46!important}
 #kob-app #foundationChoice.station-setup #choiceNext{min-height:44px}
+
+#kob-app #foundationChoice.station-quick-active>:not(.station-quick){display:none!important}
+#kob-app #foundationChoice .station-quick[hidden]{display:none!important}
+#kob-app .station-quick-heading{position:relative;margin-bottom:12px}
+#kob-app .station-quick-heading .station-destination{color:#fffdf7!important;font-size:clamp(42px,11vw,65px)!important;letter-spacing:-.065em;margin:5px 0!important}
+#kob-app .station-quick-heading button,#kob-app .station-quick-links button{background:none!important;border:0!important;color:inherit!important;text-decoration:underline;padding:0!important;min-height:44px;font-size:12px}
+#kob-app .station-quick-amounts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0;padding:12px;border-radius:5px;background:#173f46;color:#fffdf7}
+#kob-app .station-quick-amounts span{display:block;font-size:10px;letter-spacing:.1em;font-weight:700}
+#kob-app .station-quick-amounts strong{display:block;font-size:clamp(27px,8vw,39px);line-height:1.2;letter-spacing:-.04em}
+#kob-app .station-quick-amounts>div+div{border-left:1px solid #78978f;padding-left:12px}
+#kob-app .station-size-controls{display:flex;gap:6px;margin-top:5px}
+#kob-app .station-size-controls button{width:44px;min-height:44px;padding:0;background:transparent;color:#fffdf7;border:1px solid #a8d7e6;font-size:21px}
+#kob-app .station-size-controls button:disabled{opacity:.5}
+#kob-app .station-quick [data-quick-yield]{font-size:12px;margin:6px 0 10px}
+#kob-app .station-quick-links{display:flex;justify-content:space-between;gap:8px}
