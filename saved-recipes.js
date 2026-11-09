@@ -1,6 +1,6 @@
 'use strict';
 document.addEventListener('DOMContentLoaded',()=>{
- const $=id=>document.getElementById(id),app=$('kob-app'),key='kode-saved-recipes-v1',MAX_RECIPES=100;let recipes=[];try{recipes=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(recipes))recipes=[]}catch{}
+ const $=id=>document.getElementById(id),app=$('kob-app'),key='kode-v3-saved-recipes-v1',MAX_RECIPES=100;let recipes=[];try{recipes=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(recipes))recipes=[]}catch{}
  const saveButton=document.createElement('button');saveButton.textContent='Save recipe';saveButton.type='button';saveButton.id='saveRecipeButton';$('brewRecipeOverlay').append(saveButton);
  const libraryButton=document.createElement('button');libraryButton.textContent='My recipes';libraryButton.id='myRecipesButton';libraryButton.type='button';$('userSettingsButton').before(libraryButton);
  const editor=document.createElement('dialog');editor.id='saveRecipeDialog';editor.innerHTML='<form method="dialog"><h2>Save your recipe</h2><div id="saveRecipeSummary"></div><label>My name for this recipe<input id="savedRecipeName" maxlength="80" required></label><label>Tasting notes<textarea id="savedRecipeNotes" maxlength="1000" rows="3"></textarea></label><p id="savedRecipeStatus" role="status"></p><button value="cancel" formnovalidate>Cancel</button><button type="button" id="confirmSaveRecipe" class="primary">Save recipe</button></form>';app.append(editor);

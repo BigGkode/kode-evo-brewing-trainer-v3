@@ -1,4 +1,4 @@
-<!doctype html><html lang="en-GB"><head><style>html.kode-starting #kob-app{visibility:hidden}</style><script>document.documentElement.classList.add("kode-starting");window.kodeStartupFallback=setTimeout(()=>document.documentElement.classList.remove("kode-starting"),5000);</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KODE Recipe Trainer · Version 2</title><style>
+<!doctype html><html lang="en-GB"><head><style>html.kode-starting #kob-app{visibility:hidden}</style><script>document.documentElement.classList.add("kode-starting");window.kodeStartupFallback=setTimeout(()=>document.documentElement.classList.remove("kode-starting"),5000);</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KODE Recipe Trainer · Version 3</title><style>
 @font-face{font-family:'NoBH-Bold';src:url('https://www.baristahustle.com/wp-content/themes/divi-child/assets/fonts/head/Head-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'Head-Bold';src:url('https://www.baristahustle.com/wp-content/themes/divi-child/assets/fonts/nobh/NoBH-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'NoBH-Regular';src:url('https://www.baristahustle.com/wp-content/themes/divi-child/assets/fonts/nobh/NoBH-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
@@ -679,8 +679,8 @@ window.setTrainerMode=advanced=>{if(!advanced)customSettings={...settings};const
 by('resetCustom').onclick=()=>{customSettings={...recipes.foundation};window.setTrainerMode(true)};
 
 // Foundation guidance reads the same recipe and segment clock as the illustration.
-function readGuidancePreference(){try{return localStorage.getItem('kode-guidance')!=='off'}catch{return true}}
-function saveGuidancePreference(){try{localStorage.setItem('kode-guidance',guidanceVisible?'on':'off')}catch{}}
+function readGuidancePreference(){try{return localStorage.getItem('kode-v3-guidance')!=='off'}catch{return true}}
+function saveGuidancePreference(){try{localStorage.setItem('kode-v3-guidance',guidanceVisible?'on':'off')}catch{}}
 let foundationMode='brew', preparationStep=0, preparationDone=false, guideEditing=false, guidanceVisible=readGuidancePreference(), strengthChosen=false, preparationEntered=false, waitingPour=null, authorisedPours=new Set();
 let reopenedPreparation = false;
 let practiceElapsed=0,practiceRunning=false,practiceLast=null;
