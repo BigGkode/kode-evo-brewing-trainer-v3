@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EVO V3 · Mobile browser preview</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf1eb;color:#173f46;font:15px/1.4 system-ui,sans-serif}
+header{position:sticky;top:0;z-index:1;background:#173f46;color:#fffdf7;padding:12px 16px}
+h1{font-size:17px;margin:0 0 8px}form{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+label{display:grid;gap:3px;font-size:12px}input,button,select{font:inherit;min-height:38px;padding:5px 8px;border:1px solid #9fb4ac;border-radius:4px;color:#173f46;background:#fffdf7}
+input{width:80px}button{cursor:pointer}main{padding:12px}
+p{max-width:680px;margin:0 auto 10px;font-size:13px}
+#stage{margin:auto;position:relative}iframe{display:block;position:absolute;inset:0;border:0;background:white;transform-origin:top left}
+</style>
+<header>
+<h1>EVO V3 · Mobile browser preview</h1>
+<form>
+<label>Preset<select id="preset"><option value="412,780">Note 10+ · Browser bars visible</option><option value="412,869">Note 10+ · Full height reference</option><option value="412,720">Note 10+ · Shorter browser view</option><option value="360,740">Smaller Android browser</option><option value="custom">Custom size</option></select></label>
+<label>Width (px)<input id="width" type="number" min="280" max="1600" value="412" required></label>
+<label>Height (px)<input id="height" type="number" min="360" max="1600" value="780" required></label>
+<button type="submit">Apply size</button><button id="refresh" type="button">Refresh app</button>
+</form>
+</header>
+<main>
+<p>The 780 px browser height is an estimate. Browser bars and display settings affect the usable space. Adjust the height to match your phone. <span id="status" aria-live="polite"></span></p>
+<div id="stage"><iframe title="Live EVO V3 app" src="./"></iframe></div>
+</main>
+<script>
+const form=document.querySelector('form'), preset=document.querySelector('#preset');
+const width=document.querySelector('#width'), height=document.querySelector('#height');
+const stage=document.querySelector('#stage'), app=stage.querySelector('iframe');
+let viewWidth=412, viewHeight=780;
+function render(){
+ const scale=Math.min(1, document.querySelector('main').clientWidth-24>0?(document.querySelector('main').clientWidth-24)/viewWidth:1);
+ stage.style.width=viewWidth*scale+'px';
+ stage.style.height=viewHeight*scale+'px';
+ app.style.width=viewWidth+'px';
+ app.style.height=viewHeight+'px';
+ app.style.transform='scale('+scale+')';
+ document.querySelector('#status').textContent=viewWidth+' × '+viewHeight+' CSS px.';
+}
+form.onsubmit=event=>{event.preventDefault();viewWidth=width.valueAsNumber;viewHeight=height.valueAsNumber;render();};
+preset.onchange=()=>{if(preset.value==='custom'){width.focus();return;}[width.value,height.value]=preset.value.split(',');form.requestSubmit();};
+for(const input of [width,height]) input.oninput=()=>{preset.value='custom';};
+document.querySelector('#refresh').onclick=()=>app.contentWindow.location.reload();
+window.addEventListener('resize',render);
+render();
+</script>
+</html>
