@@ -15,14 +15,60 @@ document.addEventListener('DOMContentLoaded', () => {
   catch { /* Preferences still work for this visit. */ }
  };
 
- home.querySelector('h2').textContent = 'Your perfect brew. Designed by you, for you.';
+ home.querySelector('h2').innerHTML = 'Your perfect brew.<br>Designed by you,<br>for you.';
  const choices = document.createElement('div');
  choices.className = 'petrol-choices';
  choices.innerHTML = `
-  <button type="button" data-petrol-start="learn"><strong>Learn EVO</strong><small>Make a reference brew, step by step.</small></button>
+  <button type="button" data-petrol-start="learn"><strong>Learn EVO</strong><small>Make a reference brew with Show me how.</small></button>
   <button type="button" data-petrol-start="explore"><strong>Explore brews</strong><small>Find your strength and choose a size.</small></button>
   <button type="button" data-petrol-start="recipes"><strong>My recipes</strong><small>Open a saved recipe.</small></button>`;
- home.querySelector('h3').before(choices);
+
+ const icon = path => '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
+ const choiceIcons = [
+  '<path d="M12 6C9 3 5 3 2 4v14c4-1 7 0 10 3 3-3 6-4 10-3V4c-3-1-7-1-10 2v15"/>',
+  '<circle cx="12" cy="12" r="9"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z"/>',
+  '<path d="M6 4h12v16l-6-4-6 4z"/>'
+ ];
+ [...choices.children].forEach((button, index) => {
+  const copy = document.createElement('span');
+  copy.append(...button.childNodes);
+  button.innerHTML = icon(choiceIcons[index]);
+  button.append(copy);
+  button.insertAdjacentHTML('beforeend', '<span aria-hidden="true">›</span>');
+ });
+ const heading = home.querySelector('h2');
+ const exploreHeading = home.querySelector('h3');
+ const startPanel = document.createElement('section');
+ const explorePanel = document.createElement('section');
+ startPanel.className = 'petrol-start-panel';
+ explorePanel.className = 'petrol-explore-panel';
+ const support = home.querySelector('.station-support');
+ const ticket = home.querySelector('.station-ticket');
+ const next = ticket.querySelector('.station-continue');
+ const header = document.createElement('div');
+ header.className = 'petrol-welcome-header';
+ header.innerHTML = '<div data-start-brand></div><strong>EVO</strong><button type="button" data-open-settings aria-label="Settings">' + icon('<circle cx="12" cy="12" r="3"/><path d="M10 2h4l.7 2.8 2 .9 2.5-1.5 2.8 2.8-1.5 2.5.9 2L24 12l-2.6.5-.9 2 1.5 2.5-2.8 2.8-2.5-1.5-2 .9L14 22h-4l-.7-2.8-2-.9-2.5 1.5L2 17l1.5-2.5-.9-2L0 12l2.6-.5.9-2L2 7l2.8-2.8 2.5 1.5 2-.9z" transform="translate(2.4 2.4) scale(.8)"/>') + '</button>';
+ const brand = app.querySelector('header a[aria-label="KODE website"]').cloneNode(true);
+ const homeLink = document.createElement('button');
+ homeLink.type = 'button';
+ homeLink.textContent = '‹ Home';
+ const brandSlot = header.querySelector('[data-start-brand]');
+ header.querySelector('[data-open-settings]').onclick = () => by('userSettingsButton').click();
+ homeLink.onclick = () => showStart();
+ function showStart(exploring = false) {
+  startPanel.hidden = exploring;
+  explorePanel.hidden = !exploring;
+  brandSlot.replaceChildren(exploring ? homeLink : brand);
+ }
+ startPanel.innerHTML = '<p class="petrol-eyebrow">The FB45 brewing system</p>';
+ explorePanel.innerHTML = '<p class="petrol-eyebrow">Strength stations</p>';
+ startPanel.append(heading, choices, support);
+ for (const button of support.querySelectorAll('[data-open="startLearning"]')) button.classList.add('petrol-redundant');
+ explorePanel.append(exploreHeading, home.querySelector('.station-hint'), rail, ticket, next);
+ home.replaceChildren(header, startPanel, explorePanel);
+ showStart();
+ by('methodHome').addEventListener('click', () => showStart());
+
  home.addEventListener('click', event => {
   if (event.target.closest('[data-open="startLearning"]')) setCompact(false);
   const choice = event.target.closest('[data-petrol-start]')?.dataset.petrolStart;
@@ -31,8 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
    by('startLearning').click();
   }
   if (choice === 'explore') {
-   rail.querySelector('[aria-pressed="true"]')?.focus({ preventScroll: true });
-   rail.scrollIntoView({ block: 'center' });
+   showStart(true);
+   exploreHeading.tabIndex = -1;
+   exploreHeading.focus({ preventScroll: true });
+   home.scrollIntoView({ block: 'start' });
   }
   if (choice === 'recipes') {
    setCompact(read('compact'));
