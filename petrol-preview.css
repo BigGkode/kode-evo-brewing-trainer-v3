@@ -239,7 +239,7 @@
 
 /* The recipe card shares the canvas row, leaving the top row for guidance. */
 @media (min-width:601px) {
- #kob-app.brew-screen.audit-workspace:not(.inplace-dilution) #brewerSim .simstage {
+ #kob-app.brew-screen.audit-workspace:not(.inplace-dilution) #brewerSim .simstage:has(> #foundationPrompt) {
   grid-template-columns:minmax(0,1fr) 210px !important;
  }
  #kob-app.brew-screen.audit-workspace:not(.inplace-dilution) #brewerSim .simstage > #foundationPrompt {
@@ -251,3 +251,6 @@
   min-height:0;
  }
 }
+
+/* The toolbar already carries the guidance toggle in the brewing view. */
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim #foundationPrompt #guideHide { display:none; }
