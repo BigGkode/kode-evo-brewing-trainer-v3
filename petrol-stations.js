@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div></div>
    </div>
    <div class="station-water-add" data-water-add hidden></div><p data-quick-yield></p>
-   <div class="petrol-ticket-routes" hidden><button type="button" data-quick-dilution>Use Dilution</button><span data-quick-dilution-note hidden>Intense is only available through Foundation.</span></div>
+   <div class="petrol-ticket-routes" hidden><button type="button" data-quick-foundation hidden>Use Foundation</button><button type="button" data-quick-dilution>Use Dilution</button><span data-quick-dilution-note hidden>Intense is only available through Foundation.</span></div>
   </div>
   <button type="button" class="station-continue petrol-go-brew" data-quick-brew>Go to brewing →</button>
   <div class="station-quick-links"><button type="button" data-quick-recipe>View recipe</button><button type="button" data-quick-help>Preparation help</button></div>`;
@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
  const q = selector => quick.querySelector(selector);
  const sizeButtons = [...size.querySelectorAll('[data-brew-size]')];
  const quickRail = q('.station-rail');
+ q('[data-quick-foundation]').onclick = () => by('methodFoundation').click();
  q('[data-quick-dilution]').onclick = () => {
   const strength = Number(by('trainerStrength').value);
   if (!window.kodeDilutionEnabled || strength >= 5) return;
@@ -125,9 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
    q('[data-quick-route]').textContent = dilution ? 'DILUTION · DESTINATION' : 'FOUNDATION · DIRECT';
    q('.station-quick-via').hidden = !dilution;
    q('[data-station-heading]').textContent = dilution ? 'Choose your starting station' : 'Find your strength';
-   q('.petrol-ticket-routes').hidden = dilution || !window.kodeDilutionEnabled;
-   q('[data-quick-dilution]').hidden = selected === 5;
-   q('[data-quick-dilution-note]').hidden = selected !== 5;
+   q('.petrol-ticket-routes').hidden = !window.kodeDilutionEnabled;
+   q('[data-quick-foundation]').hidden = !dilution;
+   q('[data-quick-dilution]').hidden = dilution || selected === 5;
+   q('[data-quick-dilution-note]').hidden = dilution || selected !== 5;
    q('[data-quick-to]').textContent = 'To ' + names[target - 1] + ' · Via ' + names[selected - 1];
    quickRail.setAttribute('aria-label', dilution ? 'Starting station' : 'Change strength');
    [...quickRail.children].forEach((button, i) => { button.hidden = dilution && i + 1 <= target; });

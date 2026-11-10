@@ -327,3 +327,19 @@
 #kob-app .station-quick .petrol-go-brew { margin-top:10px; }
 #kob-app .station-quick .petrol-ticket-routes { display:flex; align-items:center; gap:8px; font-size:12px; }
 #kob-app #recipeLibrary > .station-link { color:var(--petrol-preview); }
+
+/* The ticket supplies the route controls on the combined Explore screen. */
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > main {
+ padding:0 !important; background:var(--petrol-preview);
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > main > #methodNav {
+ padding:4px clamp(12px,4vw,25px); margin:0 auto !important; max-width:580px;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) #methodNav > :is(#methodFoundation,#methodDilution) {
+ display:none !important;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) #methodHome {
+ padding:4px 0 !important; background:transparent !important; border:0 !important;
+ color:var(--petrol-blue) !important;
+}
+#kob-app #foundationChoice.station-quick-active { border:0 !important; border-radius:0 !important; margin-block:0 !important; }
