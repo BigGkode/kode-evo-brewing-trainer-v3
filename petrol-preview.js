@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
  controls.append(secondary);
  const speed = by('simSpeed');
  speed.setAttribute('aria-label', 'Playback speed');
- secondary.lastElementChild.append(speed, options);
+ secondary.lastElementChild.append(by('toggleServer'), speed, options);
  const compact = options.querySelector('[data-compact]');
  const voice = options.querySelector('[data-voice]');
  function setCompact(enabled) {

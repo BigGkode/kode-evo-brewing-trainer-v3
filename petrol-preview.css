@@ -218,3 +218,21 @@
 #kob-app .petrol-saver-summary > div { padding:10px; border-radius:7px; background:var(--petrol-paper); color:var(--petrol-preview); }
 #kob-app .petrol-dialog { max-width:min(92vw,550px); }
 #kob-app #petrolLogBrew:not([hidden]) { order:1; }
+
+@container kob (max-width:700px) {
+ #kob-app:not(.adv) main > #methodNav {
+  display:flex !important; flex-wrap:wrap; justify-content:flex-start !important; gap:5px !important;
+ }
+ #kob-app:not(.adv) main > #methodNav > :is(#methodHome,#methodFoundation,#methodDilution):not([hidden]) {
+  width:auto !important; min-width:0 !important; flex:0 1 auto !important; min-height:32px !important;
+  padding:4px 9px !important;
+ }
+ #kob-app.brew-screen #foundationSummary .playback-controls {
+  display:grid !important; grid-template-columns:repeat(8,minmax(0,1fr)) !important;
+ }
+ #kob-app.brew-screen #foundationSummary .playback-controls > :is(button,details) {
+  min-width:0 !important; width:100% !important; margin:0 !important;
+ }
+ #kob-app.brew-screen #foundationSummary .petrol-playback-options { grid-column:5/9; }
+ #kob-app.brew-screen #foundationSummary .petrol-playback-options > summary { text-align:center; }
+}
