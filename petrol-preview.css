@@ -79,3 +79,18 @@
  align-self: stretch;
 }
 #kob-app.brew-screen.petrol-compact .brew-scale strong { font-size: clamp(27px, 6vw, 42px); }
+
+#kob-app .petrol-settings-group {
+ min-width: 0;
+ padding: 10px 12px;
+ margin: 12px 0;
+ border: 1px solid #92b4b9;
+ border-radius: 9px;
+}
+#kob-app .petrol-settings-group legend {
+ padding: 0 5px;
+ color: #173f46;
+ font-weight: 700;
+}
+#kob-app #userSettings [hidden] { display: none !important; }
+#kob-app .petrol-settings-group select { max-width: 100%; }

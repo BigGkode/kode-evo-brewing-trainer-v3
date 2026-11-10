@@ -63,8 +63,133 @@ document.addEventListener('DOMContentLoaded', () => {
  if (!supported) voice.closest('label').title = 'Voice alerts are unavailable in this browser';
  voice.addEventListener('change', () => {
   save('voice', voice.checked);
-  if (!voice.checked) speech.cancel();
+  if (!voice.checked) speech?.cancel();
  });
+
+ const settings = by('userSettings');
+ const form = settings.querySelector('form');
+ const status = by('settingsStatus');
+ const section = (title, ids = []) => {
+  const group = document.createElement('fieldset');
+  group.className = 'petrol-settings-group';
+  const legend = document.createElement('legend');
+  legend.textContent = title;
+  group.append(legend);
+  for (const id of ids) {
+   const field = by(id);
+   group.append(field.closest('label') || field);
+  }
+  form.insertBefore(group, status);
+  return group;
+ };
+ const startup = section('Start screen');
+ startup.innerHTML += `
+  <label>Open EVO at
+   <select data-start-screen>
+    <option value="learn">Learn EVO</option>
+    <option value="explore">Explore brews</option>
+    <option value="usual">Brew my usual</option>
+   </select>
+  </label>
+  <p class="settings-speed-note">Applies the next time you open this preview.</p>
+  <label>Choose a saved recipe for your usual<select data-usual-recipe></select></label>
+  <button type="button" data-save-usual>Save as my usual</button>
+  <p class="settings-speed-note">Changes to today’s brew are separate from your saved recipe.</p>`;
+ section('Brew preferences', ['settingSize', 'settingStrength', 'settingRemember']);
+ const equipment = section('Equipment', ['settingKettle', 'settingTraditionalRate']);
+ const flowNote = [...form.children].find(element => element.textContent.startsWith('Traditional kettle:'));
+ if (flowNote) equipment.append(flowNote);
+ const display = section('Guidance & display', ['settingGuidance', 'settingSound', 'settingSpeed', 'settingReduced', 'settingLarge']);
+ const speedNote = [...form.children].find(element => element.textContent.startsWith('For learning or previewing.'));
+ if (speedNote) by('settingSpeed').closest('label').after(speedNote);
+ display.querySelector('legend').insertAdjacentHTML('afterend', `
+  <label>Default brew view
+   <select data-default-brew-view><option value="illustrated">Illustrated</option><option value="compact">Compact</option></select>
+  </label>
+  <label><input type="checkbox" data-settings-voice> Voice alerts</label>`);
+ section('Brew routes', ['settingDilution']);
+ section('Advanced techniques').insertAdjacentHTML('beforeend', '<p class="settings-speed-note">Two temperatures and Vacuum are unavailable in this preview.</p>');
+ section('Brewing modes').insertAdjacentHTML('beforeend', '<p class="settings-speed-note">EVO Pro and BH Freestyle are unavailable in this preview.</p>');
+ by('settingLearning').closest('label').hidden = true;
+
+ const start = startup.querySelector('[data-start-screen]');
+ const usual = startup.querySelector('[data-usual-recipe]');
+ const saveUsual = startup.querySelector('[data-save-usual]');
+ const defaultView = display.querySelector('[data-default-brew-view]');
+ const settingsVoice = display.querySelector('[data-settings-voice]');
+ settingsVoice.disabled = !supported;
+ function readText(key, fallback) {
+  try { return localStorage.getItem('kode-petrol-' + key) ?? fallback; }
+  catch { return fallback; }
+ }
+ function eligibleRecipes() {
+  try {
+   const items = JSON.parse(localStorage.getItem('kode-v3-saved-recipes-v1') || '[]');
+   return Array.isArray(items) ? items.filter(item => item?.id && !item.temperature && !item.vacuum) : [];
+  } catch { return []; }
+ }
+ function refreshSettings() {
+  start.value = readText('start', 'learn');
+  defaultView.value = read('compact') ? 'compact' : 'illustrated';
+  settingsVoice.checked = voice.checked;
+  const recipes = eligibleRecipes();
+  usual.replaceChildren(new Option(recipes.length ? 'Choose a saved recipe' : 'No eligible saved recipes yet', ''));
+  for (const recipe of recipes) usual.add(new Option(recipe.name || 'Saved recipe', recipe.id));
+  usual.value = readText('usual', '');
+  if (!usual.value) usual.selectedIndex = 0;
+  saveUsual.disabled = !usual.value;
+ }
+ by('userSettingsButton').addEventListener('click', refreshSettings);
+ start.addEventListener('change', () => save('start', start.value));
+ usual.addEventListener('change', () => { saveUsual.disabled = !usual.value; });
+ saveUsual.addEventListener('click', () => {
+  if (!usual.value) return;
+  save('usual', usual.value);
+  status.textContent = 'Usual recipe saved on this device.';
+ });
+ defaultView.addEventListener('change', () => {
+  setCompact(defaultView.value === 'compact');
+  save('compact', compact.checked);
+ });
+ settingsVoice.addEventListener('change', () => {
+  voice.checked = settingsVoice.checked;
+  voice.dispatchEvent(new Event('change'));
+ });
+ by('settingsReset').addEventListener('click', () => {
+  save('start', 'learn');
+  save('usual', '');
+  setCompact(false);
+  save('compact', false);
+  voice.checked = false;
+  voice.dispatchEvent(new Event('change'));
+  refreshSettings();
+ });
+
+ function applyStartScreen() {
+  if (by('brewWelcome').hidden) by('methodHome').click();
+  const mode = readText('start', 'learn');
+  if (mode === 'learn') return;
+  if (mode === 'usual') {
+   const id = readText('usual', '');
+   const recipe = eligibleRecipes().find(item => item.id === id);
+   if (recipe && (!recipe.dilution || window.kodeDilutionEnabled)) {
+    by('myRecipesButton').click();
+    const button = [...by('savedRecipeList').querySelectorAll('button[data-load]')]
+     .find(candidate => candidate.dataset.load === id && !candidate.disabled);
+    if (button) {
+     button.click();
+     return;
+    }
+    by('recipeLibrary').close();
+   }
+   const note = document.createElement('p');
+   note.textContent = 'Your usual is unavailable. Choose a strength below or select a saved recipe in Settings.';
+   note.setAttribute('role', 'status');
+   rail.before(note);
+  }
+  choices.querySelector('[data-petrol-start="explore"]').click();
+ }
+ requestAnimationFrame(() => requestAnimationFrame(applyStartScreen));
 
  let lastPhase;
  let warnedFor;
