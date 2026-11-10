@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
  history.className = 'station-link';
  history.type = 'button';
  history.textContent = 'Saver Ticket';
- app.querySelector('.petrol-start-panel .station-support').append(history);
+ by('recipeLibrary').querySelector('h2').after(history);
 
  const dialog = document.createElement('dialog');
  dialog.id = 'petrolSaver';

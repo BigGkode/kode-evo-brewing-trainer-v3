@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
  const by = id => document.getElementById(id);
  const app = by('kob-app');
  const home = app.querySelector('.station-home');
- const rail = home.querySelector('.station-rail');
  const toolbar = app.querySelector('.foundation-toolbar');
  const read = key => {
   try { return localStorage.getItem('kode-petrol-' + key) === 'true'; }
@@ -39,27 +38,25 @@ document.addEventListener('DOMContentLoaded', () => {
   button.insertAdjacentHTML('beforeend', '<span aria-hidden="true">›</span>');
  });
  const heading = home.querySelector('h2');
- const exploreHeading = home.querySelector('h3');
  const startPanel = document.createElement('section');
- const explorePanel = document.createElement('section');
  startPanel.className = 'petrol-start-panel';
- explorePanel.className = 'petrol-explore-panel';
  const support = home.querySelector('.station-support');
  const ticket = home.querySelector('.station-ticket');
  const next = ticket.querySelector('.station-continue');
- function showStart(exploring = false) {
-  startPanel.hidden = exploring;
-  explorePanel.hidden = !exploring;
+ const why = home.querySelector('[data-open="homeWhyEvo"]');
+ const originalControls = document.createElement('div');
+ originalControls.hidden = true;
+ function openExplore() {
+  setCompact(read('compact'));
+  next.click();
+  const title = by('foundationChoice').querySelector('.petrol-station-intro h2');
+  if (title?.getClientRects().length) title.focus({ preventScroll: true });
  }
  startPanel.innerHTML = '<div class="petrol-welcome-art" aria-hidden="true"><svg viewBox="0 0 360 130" focusable="false"><path d="M90 6 Q90 88 30 114" opacity="0.55"/><path d="M105 6 Q105 88 55 114" opacity="0.63"/><path d="M120 6 Q120 88 80 114" opacity="0.70"/><path d="M135 6 Q135 88 105 114" opacity="0.78"/><path d="M150 6 Q150 88 130 114" opacity="0.85"/><path d="M165 6 Q165 88 155 114" opacity="0.93"/><path d="M180 6 Q180 88 180 114" opacity="1.00"/><path d="M195 6 Q195 88 205 114" opacity="0.93"/><path d="M210 6 Q210 88 230 114" opacity="0.85"/><path d="M225 6 Q225 88 255 114" opacity="0.78"/><path d="M240 6 Q240 88 280 114" opacity="0.70"/><path d="M255 6 Q255 88 305 114" opacity="0.63"/><path d="M270 6 Q270 88 330 114" opacity="0.55"/></svg></div><div class="petrol-hero-mark" role="img" aria-label="EVO">' + wordmark + '</div><p class="petrol-eyebrow">Welcome to EVO · The FB45 brewing system</p>';
- explorePanel.innerHTML = '<h2>Meet EVO<span>.</span></h2><p class="petrol-intro">The brewing system designed for the FB45.</p><p class="petrol-promise">' + promise + '</p>';
- startPanel.append(heading, choices, support);
- for (const button of support.querySelectorAll('[data-open="startLearning"]')) button.classList.add('petrol-redundant');
- explorePanel.append(exploreHeading, home.querySelector('.station-hint'), rail, ticket, next);
- home.replaceChildren(startPanel, explorePanel);
- showStart();
+ startPanel.append(heading, why, choices);
+ originalControls.append(...home.children);
+ home.append(startPanel, originalControls);
  by('methodHome').addEventListener('click', () => {
-  showStart();
   refreshUsualCard();
  });
 
@@ -68,7 +65,35 @@ document.addEventListener('DOMContentLoaded', () => {
  meet.className = 'petrol-dialog';
  meet.setAttribute('aria-labelledby', 'petrolMeetTitle');
  meet.innerHTML = '<form method="dialog"><button autofocus>‹ Back</button></form><div class="petrol-welcome-art" aria-hidden="true"><svg viewBox="0 0 360 130" focusable="false"><path d="M90 6 Q90 88 30 114" opacity="0.55"/><path d="M105 6 Q105 88 55 114" opacity="0.63"/><path d="M120 6 Q120 88 80 114" opacity="0.70"/><path d="M135 6 Q135 88 105 114" opacity="0.78"/><path d="M150 6 Q150 88 130 114" opacity="0.85"/><path d="M165 6 Q165 88 155 114" opacity="0.93"/><path d="M180 6 Q180 88 180 114" opacity="1.00"/><path d="M195 6 Q195 88 205 114" opacity="0.93"/><path d="M210 6 Q210 88 230 114" opacity="0.85"/><path d="M225 6 Q225 88 255 114" opacity="0.78"/><path d="M240 6 Q240 88 280 114" opacity="0.70"/><path d="M255 6 Q255 88 305 114" opacity="0.63"/><path d="M270 6 Q270 88 330 114" opacity="0.55"/></svg></div><h2 id="petrolMeetTitle">Meet EVO</h2><p>The brewing system designed for the FB45.</p><p>' + promise + '</p><p>Learn the technique, then explore the strength stations to find what tastes right to you.</p><p class="petrol-meet-paused" hidden>Your brew is paused. Return to it when you’re ready.</p>';
+ const discover = document.createElement('button');
+ discover.type = 'button';
+ discover.textContent = 'Discover the FB45';
+ discover.onclick = () => {
+  meet.close();
+  by('welcomeDiscover').click();
+ };
+ meet.append(discover);
  app.append(meet);
+ const prep = by('foundationPrep');
+ const equipmentHelp = document.createElement('button');
+ equipmentHelp.type = 'button';
+ equipmentHelp.textContent = 'Equipment & setup';
+ equipmentHelp.className = 'petrol-lesson-setup';
+ equipmentHelp.onclick = () => by('equipmentSetup').click();
+ prep.querySelector('.lesson-body').prepend(equipmentHelp);
+ const syncSetupLink = () => { equipmentHelp.hidden = prep.dataset.lesson !== 'kit'; };
+ new MutationObserver(syncSetupLink).observe(prep, { attributes: true, attributeFilter: ['data-lesson'] });
+ syncSetupLink();
+
+ const syncDilution = window.syncKodeTrialMode;
+ function updateDilutionAvailability() {
+  app.classList.toggle('petrol-dilution-off', !window.kodeDilutionEnabled);
+ }
+ window.syncKodeTrialMode = () => {
+  syncDilution();
+  updateDilutionAvailability();
+ };
+ updateDilutionAvailability();
  const title = app.querySelector('header .banner-app-title');
  const meetButton = document.createElement('button');
  meetButton.type = 'button';
@@ -90,13 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
    setCompact(false);
    by('startLearning').click();
   }
-  if (choice === 'explore') {
-   showStart(true);
-   exploreHeading.tabIndex = -1;
-   exploreHeading.focus({ preventScroll: true });
-   home.scrollIntoView({ block: 'start' });
-  }
-  if (choice === 'usual' && !loadUsual()) showStart(true);
+  if (choice === 'explore' || (choice === 'usual' && !loadUsual())) openExplore();
   if (choice === 'recipes') {
    setCompact(read('compact'));
    by('myRecipesButton').click();
@@ -288,9 +307,11 @@ document.addEventListener('DOMContentLoaded', () => {
    const note = document.createElement('p');
    note.textContent = 'Your usual is unavailable. Choose a strength below or select a saved recipe in Settings.';
    note.setAttribute('role', 'status');
-   rail.before(note);
+   openExplore();
+   by('foundationChoice').querySelector('.petrol-station-intro').append(note);
+   return;
   }
-  choices.querySelector('[data-petrol-start="explore"]').click();
+  openExplore();
  }
  requestAnimationFrame(() => requestAnimationFrame(applyStartScreen));
 

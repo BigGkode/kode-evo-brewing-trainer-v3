@@ -278,3 +278,52 @@
 #kob-app:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])) > main > #methodNav {
  display:none !important;
 }
+
+/* Home is a full-width surface with equal entry cards. */
+#kob-app:has(#brewWelcome:not([hidden]) .petrol-start-panel) > main {
+ padding:0 !important; background:var(--petrol-preview);
+}
+#kob-app #brewWelcome.station-landing:has(.petrol-start-panel) {
+ width:100% !important; max-width:none !important; margin:0 !important; border:0 !important; border-radius:0 !important;
+}
+#kob-app .petrol-start-panel { max-width:580px; margin:0 auto; }
+#kob-app .petrol-choices button,
+#kob-app .petrol-choices.has-usual button:first-child,
+#kob-app .petrol-choices:not(.has-usual) [data-petrol-start="explore"],
+#kob-app .petrol-choices [data-petrol-start="usual"] { background:var(--petrol-panel) !important; color:#fffdf7 !important; }
+#kob-app .petrol-start-panel [data-open="homeWhyEvo"] { color:var(--petrol-blue); }
+#kob-app.petrol-dilution-off #methodDilution { display:none !important; }
+#kob-app .petrol-lesson-setup[hidden] { display:none !important; }
+#kob-app #foundationPrep.kode-lesson .lesson-footer { background:var(--petrol-preview); }
+#kob-app #foundationPrep.kode-lesson .learning-diagram { width:min(100%,330px); }
+@media (max-width:600px) {
+ #kob-app.phone-lesson-active #foundationPrep.kode-lesson {
+  grid-template-rows:clamp(145px,27vh,215px) minmax(0,1fr) 68px !important;
+ }
+}
+@media (min-width:360px) and (max-width:600px) {
+ #kob-app:not(.adv) > header #myRecipesButton {
+  width:73px !important; white-space:nowrap !important; font-size:11px !important;
+  padding:3px !important; align-self:center;
+ }
+ #kob-app:not(.adv) > header #userSettingsButton { width:54px !important; white-space:nowrap; }
+}
+
+/* One working ticket for strength and size, using the existing recipe controls. */
+#kob-app #foundationChoice.station-quick-active { width:100% !important; padding:clamp(12px,4vw,25px) !important; }
+#kob-app .petrol-station-intro h2 { margin:0 0 4px; color:inherit; font-size:clamp(31px,7vw,46px); }
+#kob-app .petrol-station-intro h2 span { color:#f18d7d; }
+#kob-app .petrol-station-intro p { margin:3px 0; color:#d0e7eb; font-size:13px; }
+#kob-app .station-quick [data-station-heading] { margin:0; color:inherit; font-size:21px; }
+#kob-app .station-quick .station-rail button[aria-pressed="true"]::before {
+ background:radial-gradient(circle at center,#a9dbe5 0 3.5px,var(--bean) 4px) !important;
+}
+#kob-app .station-quick-journey { background:var(--petrol-panel); border-radius:7px; padding:7px 0; }
+#kob-app .station-quick-journey::before { top:18px; }
+#kob-app .station-quick-journey li::before { background:var(--petrol-panel); color:#d3e9eb; }
+#kob-app .station-quick-journey li.petrol-step-here::before { background:var(--petrol-blue); color:var(--petrol-preview); outline:0; }
+#kob-app .station-quick .station-ticket h4.station-destination { font-size:26px; margin:3px 0; }
+#kob-app .station-quick .station-route-summary { background:transparent; padding:3px 0; margin:0; }
+#kob-app .station-quick .petrol-go-brew { margin-top:10px; }
+#kob-app .station-quick .petrol-ticket-routes { display:flex; align-items:center; gap:8px; font-size:12px; }
+#kob-app #recipeLibrary > .station-link { color:var(--petrol-preview); }
