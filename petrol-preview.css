@@ -254,3 +254,22 @@
 
 /* The toolbar already carries the guidance toggle in the brewing view. */
 #kob-app.brew-screen:not(.inplace-dilution) #brewerSim #foundationPrompt #guideHide { display:none; }
+
+/* Keep the wordmark centred between the partner logos and phone controls. */
+@media (min-width:360px) and (max-width:600px) {
+ #kob-app:not(.adv) > header {
+  grid-template-columns:minmax(0,1fr) 68px minmax(0,1fr) !important;
+ }
+ #kob-app:not(.adv) > header .banner-app-title {
+  grid-column:2 !important; grid-row:1 !important;
+ }
+ #kob-app:not(.adv) > header .petrol-header-mark { min-width:0; width:68px; padding:2px; }
+ #kob-app:not(.adv) > header #myRecipesButton {
+  grid-column:3 !important; grid-row:1 !important; justify-self:start;
+  width:70px !important; min-width:0; padding-inline:3px; margin:0;
+ }
+ #kob-app:not(.adv) > header #userSettingsButton {
+  grid-column:3 !important; grid-row:1 !important; justify-self:end;
+  width:56px !important; min-width:0; padding-inline:3px; margin:0;
+ }
+}
