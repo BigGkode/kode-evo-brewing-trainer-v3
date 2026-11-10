@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
  quick.hidden = true;
  quick.innerHTML = `
   
-  <div class="petrol-station-intro"><h2 tabindex="-1">Meet EVO<span>.</span></h2><p>The brewing system designed for the FB45.</p><p>Find the taste you want. Use only the coffee you need.</p></div>
+  <div class="petrol-station-intro"><div class="petrol-station-title"><h2 tabindex="-1">Meet EVO<span>.</span></h2><button type="button" data-quick-home>‹ Home</button></div><p>The brewing system designed for the FB45.</p><p>Find the taste you want. Use only the coffee you need.</p></div>
   <ol class="station-journey station-quick-journey" aria-label="Brew journey"></ol>
   <div class="station-quick-heading"><h3 data-station-heading>Find your strength</h3><div class="station-quick-via" hidden><strong data-quick-to></strong></div><div class="station-rail" role="group" aria-label="Strength stations"></div></div>
   <div class="station-ticket">
@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
  const q = selector => quick.querySelector(selector);
  const sizeButtons = [...size.querySelectorAll('[data-brew-size]')];
  const quickRail = q('.station-rail');
+ q('[data-quick-home]').onclick = () => by('methodHome').click();
  q('[data-quick-foundation]').onclick = () => by('methodFoundation').click();
  q('[data-quick-dilution]').onclick = () => {
   const strength = Number(by('trainerStrength').value);

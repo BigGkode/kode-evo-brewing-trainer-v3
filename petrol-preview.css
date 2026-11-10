@@ -343,3 +343,7 @@
  color:var(--petrol-blue) !important;
 }
 #kob-app #foundationChoice.station-quick-active { border:0 !important; border-radius:0 !important; margin-block:0 !important; }
+
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > main > #methodNav { display:none !important; }
+#kob-app .petrol-station-title { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+#kob-app .petrol-station-title [data-quick-home] { background:transparent !important; border:0 !important; color:var(--petrol-blue) !important; padding:4px 0; min-height:36px; white-space:nowrap; }
