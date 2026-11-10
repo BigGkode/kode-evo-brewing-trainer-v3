@@ -1,0 +1,81 @@
+#kob-app {
+ --petrol-preview: #08292f;
+ --petrol-panel: #10343b;
+ --petrol-blue: #a9dbe5;
+ --petrol-paper: #f8ecd5;
+}
+#kob-app > header, #kob-app #brewWelcome.station-landing, #kob-app #foundationChoice.station-setup {
+ background: var(--petrol-preview) !important;
+}
+#kob-app .station-home h2 {
+ font-size: clamp(33px, 8vw, 56px);
+ letter-spacing: -.045em;
+}
+#kob-app .petrol-choices {
+ display: grid;
+ gap: 8px;
+ margin: 12px 0 20px;
+}
+#kob-app .petrol-choices button {
+ display: grid;
+ gap: 3px;
+ min-height: 48px;
+ padding: 11px 14px;
+ border: 1px solid #52777e;
+ border-radius: 10px;
+ background: var(--petrol-panel);
+ color: #fffdf7;
+ text-align: left;
+}
+#kob-app .petrol-choices small { color: inherit; }
+#kob-app .petrol-choices button:first-child,
+#kob-app .station-continue:not(:disabled),
+#kob-app.brew-screen #simPlay {
+ background: var(--petrol-blue) !important;
+ color: var(--petrol-preview) !important;
+}
+#kob-app .station-rail button[aria-pressed=true]::before,
+#kob-app #foundationChoice.station-setup .foundation-cups > button[aria-pressed=true] .route-station {
+ outline-color: var(--petrol-blue);
+}
+#kob-app .station-ticket {
+ position: relative;
+ background: var(--petrol-paper);
+ color: var(--petrol-preview);
+}
+#kob-app .station-ticket::before, #kob-app .station-ticket::after {
+ content: '';
+ position: absolute;
+ top: 44px;
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ background: var(--petrol-preview);
+ pointer-events: none;
+}
+#kob-app .station-ticket::before { left: -6px; }
+#kob-app .station-ticket::after { right: -6px; }
+#kob-app .petrol-brew-options {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 6px 14px;
+ flex: 1 1 100%;
+}
+#kob-app .petrol-brew-options label {
+ display: inline-flex;
+ align-items: center;
+ gap: 5px;
+ min-height: 36px;
+}
+#kob-app.brew-screen.petrol-compact .simulator .simstage {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ overflow: auto;
+}
+#kob-app.brew-screen.petrol-compact :is(#brewerCanvas, #toggleServer) { display: none !important; }
+#kob-app.brew-screen.petrol-compact #foundationPrompt:not([hidden]) {
+ max-height: none;
+ align-self: stretch;
+}
+#kob-app.brew-screen.petrol-compact .brew-scale strong { font-size: clamp(27px, 6vw, 42px); }
