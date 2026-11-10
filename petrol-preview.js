@@ -112,9 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
  const secondary = document.createElement('details');
  secondary.className = 'petrol-playback-options';
  secondary.innerHTML = '<summary>More</summary><div></div>';
- secondary.lastElementChild.append(by('simSpeed'), options);
- by('simSpeed').setAttribute('aria-label', 'Playback speed');
  controls.append(secondary);
+ const speed = by('simSpeed');
+ speed.setAttribute('aria-label', 'Playback speed');
+ secondary.lastElementChild.append(speed, options);
  const compact = options.querySelector('[data-compact]');
  const voice = options.querySelector('[data-voice]');
  function setCompact(enabled) {
