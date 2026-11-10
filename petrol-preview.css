@@ -236,3 +236,18 @@
  #kob-app.brew-screen #foundationSummary .petrol-playback-options { grid-column:5/9; }
  #kob-app.brew-screen #foundationSummary .petrol-playback-options > summary { text-align:center; }
 }
+
+/* The recipe card shares the canvas row, leaving the top row for guidance. */
+@media (min-width:601px) {
+ #kob-app.brew-screen.audit-workspace:not(.inplace-dilution) #brewerSim .simstage {
+  grid-template-columns:minmax(0,1fr) 210px !important;
+ }
+ #kob-app.brew-screen.audit-workspace:not(.inplace-dilution) #brewerSim .simstage > #foundationPrompt {
+  grid-column:1/-1 !important;
+ }
+ #kob-app.brew-screen.audit-workspace:not(.inplace-dilution) #brewerSim .simstage > #dockedRecipeCard {
+  grid-row:2 !important;
+  grid-column:2 !important;
+  min-height:0;
+ }
+}
