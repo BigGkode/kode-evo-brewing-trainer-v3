@@ -273,3 +273,8 @@
   width:56px !important; min-width:0; padding-inline:3px; margin:0;
  }
 }
+
+/* Home already has an Explore brews entry point. */
+#kob-app:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])) > main > #methodNav {
+ display:none !important;
+}
