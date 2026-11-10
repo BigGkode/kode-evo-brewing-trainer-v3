@@ -45,27 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
  const support = home.querySelector('.station-support');
  const ticket = home.querySelector('.station-ticket');
  const next = ticket.querySelector('.station-continue');
- const header = document.createElement('div');
- header.className = 'petrol-welcome-header';
- header.innerHTML = '<div data-start-brand></div><strong>EVO</strong><button type="button" data-open-settings aria-label="Settings">' + icon('<circle cx="12" cy="12" r="3"/><path d="M10 2h4l.7 2.8 2 .9 2.5-1.5 2.8 2.8-1.5 2.5.9 2L24 12l-2.6.5-.9 2 1.5 2.5-2.8 2.8-2.5-1.5-2 .9L14 22h-4l-.7-2.8-2-.9-2.5 1.5L2 17l1.5-2.5-.9-2L0 12l2.6-.5.9-2L2 7l2.8-2.8 2.5 1.5 2-.9z" transform="translate(2.4 2.4) scale(.8)"/>') + '</button>';
- const brand = app.querySelector('header a[aria-label="KODE website"]').cloneNode(true);
- const homeLink = document.createElement('button');
- homeLink.type = 'button';
- homeLink.textContent = '‹ Home';
- const brandSlot = header.querySelector('[data-start-brand]');
- header.querySelector('[data-open-settings]').onclick = () => by('userSettingsButton').click();
- homeLink.onclick = () => showStart();
  function showStart(exploring = false) {
   startPanel.hidden = exploring;
   explorePanel.hidden = !exploring;
-  brandSlot.replaceChildren(exploring ? homeLink : brand);
  }
  startPanel.innerHTML = '<p class="petrol-eyebrow">Welcome to EVO<br>The FB45 brewing system</p>';
  explorePanel.innerHTML = '<p class="petrol-eyebrow">Strength stations</p>';
  startPanel.append(heading, choices, support);
  for (const button of support.querySelectorAll('[data-open="startLearning"]')) button.classList.add('petrol-redundant');
  explorePanel.append(exploreHeading, home.querySelector('.station-hint'), rail, ticket, next);
- home.replaceChildren(header, startPanel, explorePanel);
+ home.replaceChildren(startPanel, explorePanel);
  showStart();
  by('methodHome').addEventListener('click', () => showStart());
 

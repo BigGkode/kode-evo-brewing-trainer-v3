@@ -95,30 +95,19 @@
 #kob-app #userSettings [hidden] { display: none !important; }
 #kob-app .petrol-settings-group select { max-width: 100%; }
 
-#kob-app:has(.petrol-welcome-header):has(#brewWelcome.station-landing:not([hidden])) > header,
-#kob-app:has(.petrol-welcome-header):has(#brewWelcome.station-landing:not([hidden])) #methodNav {
- display: none !important;
-}
-#kob-app #brewWelcome.station-landing:has(.petrol-welcome-header) {
+#kob-app #brewWelcome.station-landing:has(.petrol-start-panel) {
  padding: 0 !important;
  overflow: hidden;
 }
-#kob-app .petrol-welcome-header {
- display: grid;
- grid-template-columns: 1fr auto 1fr;
+#kob-app.welcome-screen main > #methodNav {
+ display: flex !important;
+ flex-wrap: wrap;
+ justify-content: flex-start !important;
+}
+#kob-app.welcome-screen main > #methodNav > :is(#methodHome, #methodFoundation, #methodDilution):not([hidden]) {
+ display: inline-flex !important;
  align-items: center;
- gap: 8px;
- padding: 8px 16px;
- min-height: 56px;
- border-bottom: 1px solid #284b51;
- color: var(--petrol-blue);
 }
-#kob-app .petrol-welcome-header strong { font-size: 24px; letter-spacing: .12em; }
-#kob-app .petrol-welcome-header img { display: block; width: 62px; filter: brightness(0) invert(1); }
-#kob-app .petrol-welcome-header button {
- min-height: 44px; min-width: 44px; border: 0; background: transparent; color: inherit; padding: 0;
-}
-#kob-app .petrol-welcome-header [data-open-settings] { justify-self: end; }
 #kob-app .petrol-start-panel, #kob-app .petrol-explore-panel { padding: clamp(16px, 5vw, 28px); }
 #kob-app .station-home .petrol-eyebrow {
  margin: 0 0 12px; color: var(--petrol-blue); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: 11px;
