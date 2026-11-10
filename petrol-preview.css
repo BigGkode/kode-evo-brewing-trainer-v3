@@ -124,3 +124,97 @@
 #kob-app .petrol-explore-panel h3 { font-size: clamp(28px, 6vw, 39px); }
 #kob-app .petrol-explore-panel > .station-continue { margin-top: 10px; }
 #kob-app .petrol-explore-panel .station-route-summary { background: transparent; border-top: 1px dashed #8b9b94; padding-inline: 0; }
+
+/* Welcome and shared navigation */
+#kob-app > header .banner-app-title { justify-self: center; }
+#kob-app > header .petrol-header-mark { display:grid; place-items:center; min-height:40px; min-width:84px; padding:2px 8px; border:0; background:transparent; color:var(--petrol-blue); }
+#kob-app .petrol-header-mark svg { width:75px; height:auto; display:block; }
+#kob-app .petrol-start-panel { text-align:center; background:radial-gradient(ellipse at 50% 30%,#16454c,var(--petrol-preview) 67%); }
+#kob-app .petrol-welcome-art { position:relative; height:clamp(62px,14vw,99px); overflow:hidden; mask-image:linear-gradient(to bottom,transparent,#000 67%); }
+#kob-app .petrol-welcome-art svg { position:absolute; bottom:-4px; left:50%; transform:translateX(-50%); width:min(100%,410px); height:auto; fill:none; stroke:#b5ebf4; stroke-width:2.6; filter:drop-shadow(0 0 6px #66d2e8); opacity:.78; }
+#kob-app .petrol-hero-mark svg { display:block; width:min(75%,245px); height:auto; margin:0 auto 6px; color:#c6f4fa; }
+#kob-app .petrol-start-panel h2 { font-size:clamp(22px,5vw,31px); max-width:19em; margin:0 auto; }
+#kob-app .petrol-choices button { text-align:left; }
+#kob-app .petrol-choices button:first-child,
+#kob-app .petrol-choices.has-usual button:first-child { background:var(--petrol-panel) !important; color:#fffdf7 !important; }
+#kob-app .petrol-choices:not(.has-usual) [data-petrol-start="explore"],
+#kob-app .petrol-choices [data-petrol-start="usual"] { background:var(--petrol-blue) !important; color:var(--petrol-preview) !important; }
+#kob-app .petrol-explore-panel h2 { font-size:clamp(37px,8vw,56px); }
+#kob-app .petrol-explore-panel .petrol-intro { font-weight:700; }
+#kob-app .petrol-explore-panel .petrol-promise { color:var(--petrol-blue); }
+@container kob (max-width:700px) {
+ #kob-app:not(.adv) > header .banner-app-title { display:block !important; grid-column:1/-1 !important; grid-row:3 !important; padding:0 !important; }
+ #kob-app > header .petrol-header-mark { min-height:32px; }
+ #kob-app .petrol-header-mark svg { width:62px; }
+}
+
+/* Existing product, preparation and recipe surfaces */
+#kob-app :is(.petrol-dialog,#methodSetup,#fb45Introduction,#foundationPrep.kode-lesson) {
+ background:var(--petrol-preview) !important; color:#fffdf7 !important;
+}
+#kob-app :is(.petrol-dialog,#methodSetup,#fb45Introduction,#foundationPrep.kode-lesson) :is(h2,h3,h4,legend,.foundation-kicker) { color:var(--petrol-blue) !important; }
+#kob-app :is(.petrol-dialog,#methodSetup,#fb45Introduction,#foundationPrep.kode-lesson) button:not(:disabled) {
+ background:var(--petrol-blue) !important; color:var(--petrol-preview) !important;
+}
+#kob-app :is(.petrol-dialog,#methodSetup,#fb45Introduction,#foundationPrep.kode-lesson) a { color:var(--petrol-blue); }
+#kob-app #methodSetup .setup-columns > div:last-child,
+#kob-app #foundationPrep.kode-lesson .lesson-body { background:var(--petrol-paper); color:var(--petrol-preview); border-radius:8px; padding:10px; }
+#kob-app #foundationPrep.kode-lesson .lesson-body :is(p,li,strong,summary) { color:var(--petrol-preview); }
+#kob-app :is(#setupIllustration,#prepArt) { background:#edf0e8; border-radius:8px; }
+#kob-app #prepDots i { background:#78969b; }
+#kob-app #prepDots i.current { background:var(--petrol-blue); }
+#kob-app :is(#brewRecipeOverlay,#recipeLibrary,#saveRecipeDialog,#recipePrintPreview) { background:var(--petrol-paper) !important; color:var(--petrol-preview) !important; }
+#kob-app :is(#brewRecipeOverlay,#recipeLibrary,#recipePrintPreview) button.primary:not(:disabled) { background:var(--petrol-blue) !important; color:var(--petrol-preview) !important; }
+#kob-app .petrol-settings-group > summary { cursor:pointer; font-weight:700; }
+#kob-app .petrol-settings-group > summary + p { margin-bottom:0; }
+
+/* Brewing: compact chrome and shared live readouts */
+#kob-app.brew-screen #foundationSummary:not([hidden]) {
+ display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px !important;
+ padding:5px 8px !important; background:var(--petrol-preview); color:#fffdf7;
+}
+#kob-app.brew-screen #foundationSummaryText { flex:1 1 235px; }
+#kob-app.brew-screen #foundationSummary #foundationEdit {
+ order:0; color:var(--petrol-blue) !important; background:transparent !important;
+ border-color:#739197; min-height:30px; padding:3px 8px;
+}
+#kob-app.brew-screen #foundationSummary .foundation-toolbar { flex:1 0 100%; order:2; }
+#kob-app.brew-screen #foundationSummary .playback-controls {
+ display:flex !important; flex-wrap:wrap !important; align-items:center; gap:4px !important;
+}
+#kob-app.brew-screen #foundationSummary #simPlay { flex:0 1 auto; min-width:0; }
+#kob-app.brew-screen #foundationSummary #guidanceToggle { font-size:12px !important; }
+#kob-app .petrol-playback-options { position:relative; }
+#kob-app .petrol-playback-options > summary { display:list-item; padding:6px 8px; color:var(--petrol-blue); cursor:pointer; }
+#kob-app .petrol-playback-options > div {
+ position:absolute; z-index:8; right:0; top:100%; min-width:175px; padding:8px;
+ background:var(--petrol-preview); color:#fffdf7; border:1px solid #78969b; border-radius:7px;
+}
+#kob-app .petrol-playback-options .petrol-brew-options { display:grid; gap:0; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage {
+ display:grid !important; grid-template-columns:minmax(0,1fr) !important;
+ grid-template-rows:auto minmax(0,1fr) auto auto auto !important;
+ background:#edf0e8;
+}
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > #foundationPrompt:not([hidden]) {
+ position:static !important; grid-column:1 !important; grid-row:1 !important;
+ width:auto !important; max-width:none !important; max-height:none !important; margin:0 !important;
+ padding:6px 10px !important; background:var(--petrol-preview) !important; color:#fffdf7 !important;
+ border:0; border-radius:0; box-shadow:none; align-self:stretch;
+}
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > #foundationPrompt :is(#guideTarget,#guidePhase,#guideText,#guideNext) { color:#fffdf7 !important; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > #foundationPrompt #guideTarget { margin:1px 0; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > #foundationPrompt #guideText { margin:2px 0; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > #brewerCanvas { grid-row:2 !important; grid-column:1 !important; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > .brew-scale { grid-row:3 !important; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > .progress { grid-row:4 !important; }
+#kob-app.brew-screen:not(.inplace-dilution) #brewerSim .simstage > .simstatus { grid-row:5 !important; }
+#kob-app.brew-screen .brew-scale { background:var(--petrol-paper) !important; }
+#kob-app.brew-screen.petrol-compact:not(.inplace-dilution) #brewerSim .simstage {
+ display:flex !important; flex-direction:column; justify-content:center; overflow:auto !important;
+}
+#kob-app.brew-screen.petrol-compact:not(.inplace-dilution) #dockedRecipeCard { display:none !important; }
+#kob-app .petrol-saver-summary { display:grid; gap:8px; margin:12px 0; }
+#kob-app .petrol-saver-summary > div { padding:10px; border-radius:7px; background:var(--petrol-paper); color:var(--petrol-preview); }
+#kob-app .petrol-dialog { max-width:min(92vw,550px); }
+#kob-app #petrolLogBrew:not([hidden]) { order:1; }
