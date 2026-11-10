@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   explorePanel.hidden = !exploring;
   brandSlot.replaceChildren(exploring ? homeLink : brand);
  }
- startPanel.innerHTML = '<p class="petrol-eyebrow">The FB45 brewing system</p>';
+ startPanel.innerHTML = '<p class="petrol-eyebrow">Welcome to EVO<br>The FB45 brewing system</p>';
  explorePanel.innerHTML = '<p class="petrol-eyebrow">Strength stations</p>';
  startPanel.append(heading, choices, support);
  for (const button of support.querySelectorAll('[data-open="startLearning"]')) button.classList.add('petrol-redundant');
