@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
   <button type="button" data-petrol-start="recipes"><strong>My recipes</strong><small>Open a saved recipe.</small></button>`;
 
  const icon = path => '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
+ const homeButton = app.querySelector('.petrol-quick-home');
+ homeButton.innerHTML = icon('<path d="m3 10 9-7 9 7v10h-6v-6H9v6H3z"/>') + '<span>Home</span>';
+ const settingsButton = by('userSettingsButton');
+ const settingsLabel = document.createElement('span');
+ settingsLabel.className = 'petrol-settings-label';
+ settingsLabel.textContent = settingsButton.textContent.trim();
+ settingsButton.setAttribute('aria-label', 'Settings');
+ settingsButton.innerHTML = icon('<path d="M9.5 3h5l.6 2.5 2 .9 2.3-.9 2.5 4.3-1.8 1.7v2.3l1.8 1.7-2.5 4.3-2.3-.9-2 .9-.6 2.2h-5l-.6-2.2-2-.9-2.3.9-2.5-4.3 1.8-1.7v-2.3L2.1 9.8l2.5-4.3 2.3.9 2-.9z"/><circle cx="12" cy="12.5" r="3"/>');
+ settingsButton.append(settingsLabel);
  const choiceIcons = [
   '<path d="M12 6C9 3 5 3 2 4v14c4-1 7 0 10 3 3-3 6-4 10-3V4c-3-1-7-1-10 2v15"/>',
   '<circle cx="12" cy="12" r="9"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z"/>',
@@ -64,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
  meet.id = 'petrolMeetEvo';
  meet.className = 'petrol-dialog';
  meet.setAttribute('aria-labelledby', 'petrolMeetTitle');
- meet.innerHTML = '<form method="dialog"><button autofocus>‹ Back</button></form><div class="petrol-welcome-art" aria-hidden="true"><svg viewBox="0 0 360 130" focusable="false"><path d="M90 6 Q90 88 30 114" opacity="0.55"/><path d="M105 6 Q105 88 55 114" opacity="0.63"/><path d="M120 6 Q120 88 80 114" opacity="0.70"/><path d="M135 6 Q135 88 105 114" opacity="0.78"/><path d="M150 6 Q150 88 130 114" opacity="0.85"/><path d="M165 6 Q165 88 155 114" opacity="0.93"/><path d="M180 6 Q180 88 180 114" opacity="1.00"/><path d="M195 6 Q195 88 205 114" opacity="0.93"/><path d="M210 6 Q210 88 230 114" opacity="0.85"/><path d="M225 6 Q225 88 255 114" opacity="0.78"/><path d="M240 6 Q240 88 280 114" opacity="0.70"/><path d="M255 6 Q255 88 305 114" opacity="0.63"/><path d="M270 6 Q270 88 330 114" opacity="0.55"/></svg></div><h2 id="petrolMeetTitle">Meet EVO</h2><p>The brewing system designed for the FB45.</p><p>' + promise + '</p><p>Learn the technique, then explore the strength stations to find what tastes right to you.</p><p class="petrol-meet-paused" hidden>Your brew is paused. Return to it when you’re ready.</p>';
+ meet.innerHTML = '<form method="dialog"><button autofocus>‹ Back</button></form><div class="petrol-welcome-art" aria-hidden="true"><svg viewBox="0 0 360 130" focusable="false"><path d="M90 6 Q90 88 30 114" opacity="0.55"/><path d="M105 6 Q105 88 55 114" opacity="0.63"/><path d="M120 6 Q120 88 80 114" opacity="0.70"/><path d="M135 6 Q135 88 105 114" opacity="0.78"/><path d="M150 6 Q150 88 130 114" opacity="0.85"/><path d="M165 6 Q165 88 155 114" opacity="0.93"/><path d="M180 6 Q180 88 180 114" opacity="1.00"/><path d="M195 6 Q195 88 205 114" opacity="0.93"/><path d="M210 6 Q210 88 230 114" opacity="0.85"/><path d="M225 6 Q225 88 255 114" opacity="0.78"/><path d="M240 6 Q240 88 280 114" opacity="0.70"/><path d="M255 6 Q255 88 305 114" opacity="0.63"/><path d="M270 6 Q270 88 330 114" opacity="0.55"/></svg></div><h2 id="petrolMeetTitle">Meet EVO</h2><p>The brewing system designed for the FB45.</p><p>' + promise + '</p><p>Developed in partnership with Barista Hustle.</p><p>Learn the technique, then explore the strength stations to find what tastes right to you.</p><p class="petrol-meet-paused" hidden>Your brew is paused. Return to it when you’re ready.</p>';
  const discover = document.createElement('button');
  discover.type = 'button';
  discover.textContent = 'Discover the FB45';

@@ -348,9 +348,87 @@
 #kob-app .petrol-station-title { display:flex; justify-content:space-between; align-items:center; gap:8px; }
 #kob-app .petrol-station-title [data-quick-home] { background:transparent !important; border:0 !important; color:var(--petrol-blue) !important; padding:4px 0; min-height:36px; white-space:nowrap; }
 
-/* Match the Home surface through any space below its content. */
-html:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])),
-body:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])),
-#kob-canvas:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])) {
+/* Carry the petrol backdrop below the content on Home and Explore. */
+html:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden]), #foundationChoice.station-quick-active:not([hidden])),
+body:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden]), #foundationChoice.station-quick-active:not([hidden])),
+#kob-canvas:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden]), #foundationChoice.station-quick-active:not([hidden])) {
  background: #08292f;
 }
+
+#kob-canvas:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden]), #foundationChoice.station-quick-active:not([hidden])),
+#kob-app:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden]), #foundationChoice.station-quick-active:not([hidden])) {
+ min-height: 100dvh;
+}
+#kob-app:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden]), #foundationChoice.station-quick-active:not([hidden])) {
+ background: var(--petrol-preview) !important;
+}
+
+/* Explore uses the shared EVO mark with room for Home and the two controls. */
+#kob-app > header .petrol-quick-home { display:none; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header .brandLogos,
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header :is(.switch,#methodAbout) { display:none !important; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header {
+ display:grid !important; grid-template-columns:minmax(0,1fr) clamp(76px,22vw,104px) minmax(0,1fr) !important;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header .petrol-quick-home {
+ display:block; grid-column:1; grid-row:1; justify-self:start;
+ padding:4px 6px; background:transparent; border:0; color:var(--petrol-blue); white-space:nowrap;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header .banner-app-title {
+ display:block !important; grid-column:2 !important; grid-row:1 !important;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header .petrol-header-mark { min-width:0; width:100%; padding:2px; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header .petrol-header-mark svg { width:100%; height:auto; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header :is(#myRecipesButton,#userSettingsButton) {
+ position:static !important; grid-column:3 !important; grid-row:1 !important; margin:0; white-space:nowrap;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #myRecipesButton { justify-self:end; margin-right:66px; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #userSettingsButton { justify-self:end; width:60px !important; }
+#kob-app .petrol-station-intro h2 { font-size:clamp(23px,5vw,31px); }
+#kob-app .station-quick .petrol-water-choice { margin:4px 0 12px; }
+#kob-app .station-quick .petrol-choice-label {
+ font-size:16px; font-weight:700; line-height:1.3; margin:0 0 7px; color:var(--petrol-blue);
+}
+#kob-app .station-quick .petrol-size-options { display:grid; grid-auto-columns:minmax(0,1fr); grid-auto-flow:column; gap:4px; }
+#kob-app .station-quick .petrol-size-options button {
+ min-width:0; min-height:44px; padding:0 2px; white-space:nowrap; font-size:13px;
+ border:2px solid #587a80; border-radius:7px; background:var(--petrol-panel); color:#fffdf7;
+}
+#kob-app .station-quick .petrol-size-options button[aria-pressed="true"] { border-color:#f16b60; font-weight:800; }
+#kob-app .station-quick-journey li.petrol-step-done::before { background:transparent; color:#fffdf7; border-color:#f16b60; }
+#kob-app .station-quick-journey li[aria-current="step"]::before { background:#f16b60; border-color:#f16b60; color:#08292f; outline:0; }
+#kob-app .station-quick .station-rail button[aria-pressed="true"] { color:#fff; font-weight:800; }
+#kob-app .station-quick .station-rail button[aria-pressed="true"]::before {
+ outline:2px solid #f16b60; outline-offset:2px; background:var(--bean) !important;
+}
+#kob-app .station-quick .station-ticket > .petrol-choice-label { color:var(--petrol-preview); }
+#kob-app .station-quick .station-ticket h4.station-destination { display:inline-flex; align-items:center; gap:.25em; }
+#kob-app .station-quick .station-destination::after {
+ content:""; display:block; width:.48em; height:.48em; margin:0;
+ border-radius:50%; background:var(--bean); flex:none;
+}
+#kob-app .station-quick .petrol-ticket-head {
+ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:4px 8px;
+ padding-bottom:5px; border-bottom:1px dashed #858677;
+}
+#kob-app .station-quick .petrol-ticket-head .station-route-summary { font-size:13px; font-weight:700; }
+#kob-app .station-quick .station-destination.petrol-delicate::after { box-shadow:0 0 0 1px #785539; }
+#kob-app .station-quick .station-quick-amounts { background:transparent; color:var(--petrol-preview); padding:0; margin:6px 0; }
+#kob-app .station-quick .station-quick-amounts strong { font-size:clamp(21px,5vw,28px); }
+#kob-app .station-quick .station-quick-links { justify-content:flex-end; }
+@media (max-width:380px) {
+ #kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #myRecipesButton { width:auto !important; margin-right:54px; font-size:10px !important; padding-inline:3px !important; }
+ #kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #userSettingsButton { width:50px !important; font-size:10px !important; padding-inline:2px !important; }
+}
+
+
+#kob-app > header #userSettingsButton svg { display:none; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header .petrol-quick-home {
+ display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:15px; font-weight:700;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #userSettingsButton {
+ display:inline-grid; place-items:center; width:44px !important; min-height:44px; padding:0 !important;
+}
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #userSettingsButton svg { display:block; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #userSettingsButton .petrol-settings-label { display:none; }
+#kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > header #myRecipesButton { margin-right:48px; }

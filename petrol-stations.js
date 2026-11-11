@@ -53,29 +53,52 @@ document.addEventListener('DOMContentLoaded', () => {
  quick.hidden = true;
  quick.innerHTML = `
   
-  <div class="petrol-station-intro"><div class="petrol-station-title"><h2 tabindex="-1">Meet EVO<span>.</span></h2><button type="button" data-quick-home>‹ Home</button></div><p>The brewing system designed for the FB45.</p><p>Find the taste you want. Use only the coffee you need.</p></div>
+  <div class="petrol-station-intro"><h2 tabindex="-1">Explore brews</h2></div>
   <ol class="station-journey station-quick-journey" aria-label="Brew journey"></ol>
-  <div class="station-quick-heading"><h3 data-station-heading>Find your strength</h3><div class="station-quick-via" hidden><strong data-quick-to></strong></div><div class="station-rail" role="group" aria-label="Strength stations"></div></div>
+  <div class="station-quick-heading"><h3 class="petrol-choice-label" data-station-heading>Find your strength</h3><div class="station-quick-via" hidden><strong data-quick-to></strong></div><div class="station-rail" role="group" aria-label="Strength stations"></div></div>
+  <div class="petrol-water-choice">
+   <h3 class="petrol-choice-label">Choose your size</h3><div class="petrol-size-options" role="group" aria-label="Brew water"></div>
+  </div>
   <div class="station-ticket">
-   <span class="station-kicker">YOUR BREW TICKET</span>
-   <h4 class="station-destination"></h4><p class="station-route-summary" data-quick-route></p>
+   <div class="petrol-choice-label">Your brew ticket</div><div class="petrol-ticket-head"><h4 class="station-destination"></h4><p class="station-route-summary" data-quick-route></p></div>
    <div class="station-quick-amounts">
     <div><span>COFFEE DOSE</span><strong data-quick-dose></strong></div>
-    <div><span>BREW WATER</span><strong data-quick-water></strong><div class="station-size-controls">
-     <button type="button" data-size-step="-1" aria-label="Use 25 grams less brew water">−</button>
-     <button type="button" data-size-step="1" aria-label="Use 25 grams more brew water">+</button>
-    </div></div>
+    <div><span>BREW WATER</span><strong data-quick-water></strong></div>
    </div>
    <div class="station-water-add" data-water-add hidden></div><p data-quick-yield></p>
    <div class="petrol-ticket-routes" hidden><button type="button" data-quick-foundation hidden>Use Foundation</button><button type="button" data-quick-dilution>Use Dilution</button><span data-quick-dilution-note hidden>Intense is only available through Foundation.</span></div>
   </div>
   <button type="button" class="station-continue petrol-go-brew" data-quick-brew>Go to brewing →</button>
-  <div class="station-quick-links"><button type="button" data-quick-recipe>View recipe</button><button type="button" data-quick-help>Preparation help</button></div>`;
+  <div class="station-quick-links"><button type="button" data-quick-help>Preparation help</button></div>`;
  choice.prepend(quick);
  const q = selector => quick.querySelector(selector);
  const sizeButtons = [...size.querySelectorAll('[data-brew-size]')];
  const quickRail = q('.station-rail');
- q('[data-quick-home]').onclick = () => by('methodHome').click();
+ const quickHome = document.createElement('button');
+ quickHome.type = 'button';
+ quickHome.className = 'petrol-quick-home';
+ quickHome.textContent = '‹ Home';
+ const header = by('kob-app').querySelector('header');
+ header.prepend(quickHome);
+ quickHome.onclick = () => by('methodHome').click();
+ let strengthChosen = false;
+ let waterChosen = false;
+ by('methodHome').addEventListener('click', () => {
+  strengthChosen = false;
+  waterChosen = false;
+ });
+ const quickSizes = sizeButtons.map(option => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = option.dataset.brewSize + ' g';
+  button.onclick = () => {
+   waterChosen = true;
+   option.click();
+   renderSetup();
+  };
+  q('.petrol-size-options').append(button);
+  return button;
+ });
  q('[data-quick-foundation]').onclick = () => by('methodFoundation').click();
  q('[data-quick-dilution]').onclick = () => {
   const strength = Number(by('trainerStrength').value);
@@ -90,25 +113,19 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSetup();
  };
  populateRail(quickRail, strength => {
+  strengthChosen = true;
   if (window.kodeBrewPath !== 'dilution') destination = strength;
   cups.querySelector('[data-foundation-strength="' + strength + '"]').click();
   render();
   renderSetup();
  });
- q('[data-quick-recipe]').onclick = () => by('choiceNext').click();
  function openQuickRecipe(action) {
   by('choiceNext').click();
   if (by('brewRecipeOverlay').open) by(action).click();
  }
  q('[data-quick-brew]').onclick = () => openQuickRecipe('recipeContinue');
  q('[data-quick-help]').onclick = () => openQuickRecipe('recipeShowPreparation');
- quick.querySelectorAll('[data-size-step]').forEach(button => {
-  button.onclick = () => {
-   const current = sizeButtons.findIndex(option => Number(option.dataset.brewSize) === window.getFoundationBrewSize());
-   sizeButtons[current + Number(button.dataset.sizeStep)]?.click();
-   renderSetup();
-  };
- });
+
  function renderSetup() {
   const dilution = window.kodeBrewPath === 'dilution';
   const finish = Number(by('planDilutionStrength').value);
@@ -124,7 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
    const target = dilution ? finish : selected;
    title.textContent = names[target - 1];
    title.style.setProperty('--bean', colours[target - 1]);
-   q('[data-quick-route]').textContent = dilution ? 'DILUTION · DESTINATION' : 'FOUNDATION · DIRECT';
+   title.classList.toggle('petrol-delicate', target === 1);
+   q('[data-quick-route]').textContent = dilution ? 'Dilution · Destination' : 'Foundation · Direct';
    q('.station-quick-via').hidden = !dilution;
    q('[data-station-heading]').textContent = dilution ? 'Choose your starting station' : 'Find your strength';
    q('.petrol-ticket-routes').hidden = !window.kodeDilutionEnabled;
@@ -136,12 +154,18 @@ document.addEventListener('DOMContentLoaded', () => {
    [...quickRail.children].forEach((button, i) => { button.hidden = dilution && i + 1 <= target; });
    quickRail.style.setProperty('--station-count', dilution ? 5 - target : 5);
    markRail(quickRail, selected);
+   quickSizes.forEach((button, i) => button.setAttribute('aria-pressed', String(Number(sizeButtons[i].dataset.brewSize) === water)));
+   q('[data-quick-brew]').textContent = 'Brew ' + names[target - 1] + ' →';
    const journey = dilution ? ['Plan brew', 'Brew', 'Add water', 'Taste'] : ['Choose strength', 'Set size', 'Brew', 'Taste'];
    q('.station-quick-journey').replaceChildren(...journey.map((label, i) => {
     const item = document.createElement('li');
     item.textContent = label;
-    if (i === 0) item.setAttribute('aria-current', 'step');
-    if (i === 0 || (!dilution && i === 1)) item.classList.add('petrol-step-here');
+    const completed = !dilution && (i === 0 && strengthChosen || i === 1 && waterChosen);
+    if (completed) {
+     item.classList.add('petrol-step-done');
+     item.setAttribute('aria-label', label + ', complete');
+    }
+    if (i === (dilution || !strengthChosen ? 0 : waterChosen ? 2 : 1)) item.setAttribute('aria-current', 'step');
     return item;
    }));
    const add = q('[data-water-add]');
@@ -151,10 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
    q('[data-quick-water]').textContent = water + ' g';
    q('[data-quick-dose]').textContent = dose + ' g';
    q('[data-quick-yield]').textContent = 'Estimated in cup: about ' + Math.round(water - 2 * dose + (dilution ? plan.water : 0)) + ' g';
-   const current = sizeButtons.findIndex(option => Number(option.dataset.brewSize) === water);
-   quick.querySelectorAll('[data-size-step]').forEach(button => {
-    button.disabled = !sizeButtons[current + Number(button.dataset.sizeStep)];
-   });
   }
   strengthTitle.textContent = dilution ? 'Choose your starting station' : 'Your strength station';
   const steps = dilution ? ['Plan brew', 'Brew', 'Add water', 'Taste'] : ['Choose size', 'Brew', 'Taste'];
