@@ -347,3 +347,10 @@
 #kob-app:has(#foundationChoice.station-quick-active:not([hidden])) > main > #methodNav { display:none !important; }
 #kob-app .petrol-station-title { display:flex; justify-content:space-between; align-items:center; gap:8px; }
 #kob-app .petrol-station-title [data-quick-home] { background:transparent !important; border:0 !important; color:var(--petrol-blue) !important; padding:4px 0; min-height:36px; white-space:nowrap; }
+
+/* Match the Home surface through any space below its content. */
+html:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])),
+body:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])),
+#kob-canvas:has(#brewWelcome:not([hidden]) .petrol-start-panel:not([hidden])) {
+ background: #08292f;
+}
