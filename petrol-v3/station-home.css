@@ -1,0 +1,31 @@
+#kob-app #brewWelcome.station-landing{background:#173f46!important;color:#fffdf7!important;max-width:580px!important;padding:clamp(16px,5vw,34px)!important}
+#kob-app #brewWelcome.station-landing>:not(.station-home){display:none!important}
+#kob-app .station-home [hidden]{display:none!important}
+#kob-app .station-home h2,#kob-app .station-home h3{color:inherit;line-height:1.05;margin:0 0 8px}
+#kob-app .station-home h2{font-size:clamp(46px,12vw,70px);letter-spacing:-.075em}
+#kob-app .station-home h2 span{color:#f18d7d}
+#kob-app .station-home h3{font-size:25px;margin-top:14px}
+#kob-app .station-home p{margin:4px 0;font-size:13px}
+#kob-app .station-hint{color:#cce6ee}
+#kob-app .station-rail{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;margin:9px 0 12px}
+#kob-app .station-rail::before{content:'';position:absolute;left:10%;right:10%;top:17px;border-top:1px solid #8ebcc7}
+#kob-app .station-rail button{z-index:1;display:grid;justify-items:center;align-content:start;gap:5px;min-width:0;min-height:50px;padding:6px 0;background:none;border:0;color:#fffdf7;font-size:11px}
+#kob-app .station-rail button::before{content:'';width:23px;height:23px;border:3px solid #cce6ee;border-radius:50%;background:var(--bean)}
+#kob-app .station-rail button[aria-pressed=true]{font-weight:700}
+#kob-app .station-rail button[aria-pressed=true]::before{border-color:#fffdf7;outline:3px solid #b9362c;outline-offset:1px}
+#kob-app .station-ticket{background:#f8f5ec;color:#173f46;padding:14px;border-radius:8px}
+#kob-app .station-kicker{font-size:10px;font-weight:700;letter-spacing:.12em}
+#kob-app .station-destination{font-size:38px;line-height:1;margin:4px 0 8px;color:#173f46}
+#kob-app .station-destination::after{content:'';display:inline-block;width:.32em;height:.32em;margin-left:.24em;border-radius:50%;background:var(--bean);vertical-align:middle}
+#kob-app .station-route-summary{background:#e5eff0;border-radius:4px;padding:7px 9px;font-weight:700}
+#kob-app .station-routes{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px}
+#kob-app .station-routes button{background:transparent;color:#173f46;border:1px solid #9eb2a8;min-height:44px}
+#kob-app .station-routes button[aria-pressed=true]{background:#173f46;color:#fffdf7}
+#kob-app .station-routes button:disabled{opacity:.5}
+#kob-app .station-journey{display:flex;justify-content:space-around;position:relative;list-style:none;padding:8px 0 0;margin:8px 0;counter-reset:journey}
+#kob-app .station-journey::before{content:'';position:absolute;left:14%;right:14%;top:19px;border-top:1px solid #8ebcc7}
+#kob-app .station-journey li{position:relative;display:grid;justify-items:center;gap:4px;flex:1;font-size:11px;text-align:center;counter-increment:journey}
+#kob-app .station-journey li::before{content:counter(journey);display:grid;place-items:center;width:22px;height:22px;border:1px solid #8ebcc7;border-radius:50%;background:#cce6ee;font-weight:700}
+#kob-app .station-continue{width:100%;min-height:46px;background:#b9362c;border:0;color:#fffdf7;font-weight:700;text-align:left}
+#kob-app .station-support{display:flex;justify-content:space-between;flex-wrap:wrap;gap:0 10px}
+#kob-app .station-link{background:none;border:0;color:#fffdf7;text-decoration:underline;min-height:44px;padding:0;font-size:12px}
