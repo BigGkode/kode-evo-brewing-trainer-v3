@@ -41,3 +41,12 @@
 #kob-app #foundationChoice .station-quick .station-quick-links button:not([hidden]) {
  color:var(--petrol-blue); background:transparent; border:0; min-height:44px; padding:0; text-decoration:underline;
 }
+
+/* Keep planner labels legible on the petrol surface. */
+#kob-app #foundationChoice.station-quick-active .petrol-station-intro h2,
+#kob-app #foundationChoice.station-quick-active .station-quick-journey > li {
+ color:#fffdf7;
+}
+#kob-app #foundationChoice.station-quick-active .station-quick-journey > li[aria-current="step"] {
+ color:var(--petrol-blue);
+}
